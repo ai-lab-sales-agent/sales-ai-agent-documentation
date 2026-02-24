@@ -22,29 +22,30 @@ This document is the single reference for what happens **after** the agent compl
 
 ### By Lead Category
 
-| Category | Trigger Criteria | Primary Conversion Path | Fallback | Data Destination | Key Agent Language |
-|----------|-----------------|------------------------|----------|------------------|-------------------|
-| **Hot** | All 4 CHAMP signals positive | Calendly (tag: Hot) | Contact form if Calendly declined; Calendly availability fallback if no slots | Botpress Table → Calendly → HubSpot | "This sounds like a great fit. I'd love to get you on a call with our team — here's a link to book a time." |
-| **Warm** | CH positive + 1–2 of A/M/P missing (at least 1 confirmed) | Calendly (tag: Warm) | Contact form if Calendly declined; Calendly availability fallback if no slots | Botpress Table → Calendly → HubSpot | "There's definitely something to explore here. Let me get you connected with our team — here's a link to book a call." |
-| **Nurture** | CH weak/vague, or M/P not established | Resources → re-qualify → soft Calendly nudge | Warm close (N5) | Botpress Table | "Let me share a couple of examples of what we've built — these should give you a clearer sense of what's possible." |
-| **DQ** | ICP exclusion (Adult/18+, Russia-based), no relevant need, wrong scope, no sales team, spam, budget < €5,000 | Polite close — no conversion | — | Botpress Table (tag: DQ) | "Thanks for reaching out — based on what you've described, this service may not be the right fit right now." |
+| Category    | Trigger Criteria                                        | Primary Path                   | Fallback                                | Data Destination                     |
+|-------------|---------------------------------------------------------|--------------------------------|-----------------------------------------|--------------------------------------|
+| **Hot**     | All 4 CHAMP signals positive                            | Calendly (tag: Hot)            | Contact form; availability fallback     | Botpress Table → Calendly → HubSpot |
+| **Warm**    | CH positive, 1–2 of A/M/P missing (≥1 confirmed)       | Calendly (tag: Warm)           | Contact form; availability fallback     | Botpress Table → Calendly → HubSpot |
+| **Nurture** | CH weak/vague, or M/P not established                   | Resources → re-qualify → nudge | Warm close (N5)                         | Botpress Table                       |
+| **DQ**      | ICP exclusion, no need, wrong scope, spam, budget <€5k  | Polite close                   | —                                       | Botpress Table (tag: DQ)             |
+
+> Agent language for each category is provided in the dedicated section below.
 
 ### By Trigger Scenario
 
-| Scenario | When It Fires | Routing |
-|----------|--------------|---------|
-| CHAMP = 4/4 positive | Step 10 scoring | → Hot lead handoff |
-| CHAMP = CH + 1–2 of A/M/P | Step 10 scoring | → Warm lead handoff |
-| CHAMP = CH weak/vague | Step 10 scoring | → Nurture flow |
-| Budget < €5,000 | Step 9 or Step 10 | → DQ path |
-| ICP exclusion detected | Step 3 | → DQ (immediate) |
-| No need / wrong scope / no sales team / spam | Step 10 scoring | → DQ path |
-| Visitor declines Calendly (Hot/Warm) | After Calendly offer | → Contact form fallback |
-| Calendly has no available slots | After Calendly offer | → Calendly availability fallback |
-| Knowledge gap (any category, any point) | Mid-conversation | → Knowledge gap handoff |
-| Nurture signals improve after N3 | N3 re-qualification | → Upgrade to Warm or Hot |
-| Visitor returns to chat | Session start | → Returning visitor routing |
-| Visitor uses urgency phrase (Hot only) | During or after scoring | → Live escalation path |
+| Scenario                                     | When It Fires           | Routing                     |
+|----------------------------------------------|-------------------------|-----------------------------|
+| CHAMP = 4/4 positive                         | Step 10 scoring         | → Hot lead handoff          |
+| CHAMP = CH + 1–2 of A/M/P                   | Step 10 scoring         | → Warm lead handoff         |
+| CHAMP = CH weak/vague                        | Step 10 scoring         | → Nurture flow              |
+| Budget < €5,000                              | Step 9 or Step 10       | → DQ path                   |
+| ICP exclusion detected                       | Step 3                  | → DQ (immediate)            |
+| No need / wrong scope / no sales team / spam | Step 10 scoring         | → DQ path                   |
+| Visitor declines Calendly (Hot/Warm)         | After Calendly offer    | → Contact form fallback     |
+| Calendly has no available slots              | After Calendly offer    | → Availability fallback     |
+| Knowledge gap (any category, any point)      | Mid-conversation        | → Knowledge gap handoff     |
+| Nurture signals improve after N3             | N3 re-qualification     | → Upgrade to Warm or Hot    |
+| Visitor returns to chat                      | Session start           | → Returning visitor routing |
 
 ---
 
@@ -71,8 +72,6 @@ This document is the single reference for what happens **after** the agent compl
 
 5. **Pre-call context brief** — Delivered to the sales team (see [Pre-call context brief](#pre-call-context-brief) for full spec). The brief includes all discovery data, CHAMP signals, and conversation highlights.
 
-6. **Live escalation** — If the visitor uses urgency phrases during or after scoring (see [Live escalation path](#live-escalation-path)), the agent can trigger an immediate Slack notification to the sales team for a live handoff attempt before falling back to Calendly.
-
 **If visitor declines Calendly:**
 > "No problem — I can have someone reach out instead. Can I take your details?"
 
@@ -80,13 +79,13 @@ Present contact form. Set `conversion_action = "form_submitted"`.
 
 **Data written:**
 
-| Variable | Value |
-|----------|-------|
-| `lead_score` | `"Hot"` |
-| `conversation_stage` | `"handoff_hot"` → `"completed"` |
-| `conversion_action` | `"meeting_booked"` or `"form_submitted"` |
-| `pre_call_brief_sent` | `true` (after brief delivery) |
-| `calendly_fallback_used` | `true` if no slots available |
+| Variable                  | Value                                    |
+|---------------------------|------------------------------------------|
+| `lead_score`              | `"Hot"`                                  |
+| `conversation_stage`      | `"handoff_hot"` → `"completed"`          |
+| `conversion_action`       | `"meeting_booked"` or `"form_submitted"` |
+| `pre_call_brief_sent`     | `true` (after brief delivery)            |
+| `calendly_fallback_used`  | `true` if no slots available             |
 
 ---
 
@@ -107,8 +106,6 @@ The Warm handoff follows the same structure as Hot with these key differences:
 
 5. **Pre-call context brief** — Same delivery mechanism as Hot. The brief explicitly flags which CHAMP signals are missing so the sales team knows what to probe on the call.
 
-6. **No live escalation** — Live escalation is reserved for Hot leads only. Warm leads follow the standard Calendly → contact form path.
-
 **If visitor declines Calendly:**
 > "No problem — I can have someone reach out instead. Can I take your details?"
 
@@ -116,13 +113,13 @@ Present contact form. Set `conversion_action = "form_submitted"`.
 
 **Data written:**
 
-| Variable | Value |
-|----------|-------|
-| `lead_score` | `"Warm"` |
-| `conversation_stage` | `"handoff_warm"` → `"completed"` |
-| `conversion_action` | `"meeting_booked"` or `"form_submitted"` |
-| `pre_call_brief_sent` | `true` (after brief delivery) |
-| `calendly_fallback_used` | `true` if no slots available |
+| Variable                  | Value                                    |
+|---------------------------|------------------------------------------|
+| `lead_score`              | `"Warm"`                                 |
+| `conversation_stage`      | `"handoff_warm"` → `"completed"`         |
+| `conversion_action`       | `"meeting_booked"` or `"form_submitted"` |
+| `pre_call_brief_sent`     | `true` (after brief delivery)            |
+| `calendly_fallback_used`  | `true` if no slots available             |
 
 ---
 
@@ -152,7 +149,7 @@ Surfaces blockers. Agent re-evaluates CHAMP signals. Set `nurture_stage = "N3_re
 **N4 (upgrade path)** — If CHAMP signals improve after N3:
 - CH + 1 signal confirmed → upgrade to `Warm`. Set `nurture_upgraded_to = "Warm"`. Set `nurture_stage = "N4_upgraded"`.
 - All 4 confirmed → upgrade to `Hot`. Set `nurture_upgraded_to = "Hot"`. Set `nurture_stage = "N4_upgraded"`.
-- The lead then follows the full **Warm or Hot lead handoff flow** (Calendly → post-booking confirmation → pre-call brief). Live escalation is available if upgraded to Hot.
+- The lead then follows the full **Warm or Hot lead handoff flow** (Calendly → post-booking confirmation → pre-call brief).
 
 **N4 (no upgrade)** — Soft Calendly nudge:
 > "Even if it's just exploratory, a 20-minute call might help clarify what's realistic for you — no commitment needed. Want the link?"
@@ -178,14 +175,14 @@ See [Returning visitor routing](#returning-visitor-routing) for the full routing
 
 **Data written:**
 
-| Variable | Value |
-|----------|-------|
-| `lead_score` | `"Nurture"` (may change to `"Warm"` or `"Hot"` on upgrade) |
-| `conversation_stage` | `"nurture"` → `"completed"` |
-| `nurture_stage` | Tracks N1–N5 progression |
-| `nurture_upgraded_to` | `"Warm"` or `"Hot"` if upgraded, `null` otherwise |
-| `resources_shared` | Array of case study / resource links sent at N1 |
-| `conversion_action` | `"resources_sent"`, `"meeting_booked"` (if upgraded), or `"none"` |
+| Variable              | Value                                                             |
+|-----------------------|-------------------------------------------------------------------|
+| `lead_score`          | `"Nurture"` (may change to `"Warm"` or `"Hot"` on upgrade)       |
+| `conversation_stage`  | `"nurture"` → `"completed"`                                      |
+| `nurture_stage`       | Tracks N1–N5 progression                                         |
+| `nurture_upgraded_to` | `"Warm"` or `"Hot"` if upgraded, `null` otherwise                |
+| `resources_shared`    | Array of case study / resource links sent at N1                   |
+| `conversion_action`   | `"resources_sent"`, `"meeting_booked"` (if upgraded), or `"none"` |
 
 ---
 
@@ -209,13 +206,13 @@ For ICP exclusion (detected at Step 3):
 
 **Data written:**
 
-| Variable | Value |
-|----------|-------|
-| `lead_score` | `"DQ"` |
-| `lead_score_reason` | Specific reason (e.g., "ICP exclusion: Adult/18+ content", "Budget below €5,000 — insufficient for project scope", "No relevant sales challenge", "Wrong scope", "No sales team", "Spam") |
-| `conversation_stage` | `"dq_closed"` |
-| `conversion_action` | `"none"` |
-| `icp_exclusion_flag` | `true` if ICP exclusion |
+| Variable             | Value                                                                                    |
+|----------------------|------------------------------------------------------------------------------------------|
+| `lead_score`         | `"DQ"`                                                                                   |
+| `lead_score_reason`  | Specific reason: "ICP exclusion: Adult/18+", "Budget below €5,000", "No sales challenge" |
+| `conversation_stage` | `"dq_closed"`                                                                            |
+| `conversion_action`  | `"none"`                                                                                 |
+| `icp_exclusion_flag` | `true` if ICP exclusion                                                                  |
 
 ---
 
@@ -238,11 +235,11 @@ For ICP exclusion (detected at Step 3):
 
 **Data written:**
 
-| Variable | Value |
-|----------|-------|
-| `knowledge_gap_triggered` | `true` |
-| `knowledge_gap_question` | The specific question the agent could not answer |
-| `contact_form_question` | Same question (for Botpress Table / sales follow-up) |
+| Variable                   | Value                                                |
+|----------------------------|------------------------------------------------------|
+| `knowledge_gap_triggered`  | `true`                                               |
+| `knowledge_gap_question`   | The specific question the agent could not answer      |
+| `contact_form_question`    | Same question (for Botpress Table / sales follow-up)  |
 
 **Important:** Knowledge gap does not change the lead score. After the gap is addressed, qualification continues. Calendly is still presented at the end if the visitor qualifies.
 
@@ -252,14 +249,13 @@ For ICP exclusion (detected at Step 3):
 
 A consolidated view of every fallback in the system, when it fires, and why that specific mechanism was chosen.
 
-| Scenario | Primary Path | Fallback | Mechanism | Why This Fallback |
-|----------|-------------|----------|-----------|-------------------|
-| Hot/Warm lead declines Calendly | Calendly booking | Contact form | In-chat form (name, email, company, optional message) | Captures lead data for manual outreach. Structured fields ensure data quality for HubSpot sync. |
-| Hot/Warm lead — Calendly has no slots | Calendly booking | Contact form | In-chat form (same as above). Set `calendly_fallback_used = true`. | Visitor shouldn't hit a dead end because of scheduling availability. Contact form ensures follow-up. |
-| Nurture lead declines soft Calendly nudge | Soft Calendly nudge (N4) | Warm close (N5) | Agent closes warmly, notes context in Botpress Table | Low-pressure exit preserves future re-engagement. No form — visitor isn't ready for sales contact. |
-| Knowledge gap — visitor needs human answer | Agent continues conversation | Contact email provided | Email address (not form) with SLA ("typically within 1 business day") | Low-friction parallel channel. Doesn't interrupt conversation. Question logged for follow-up. |
-| Live escalation — no sales rep responds within 2 min | Live handoff to sales rep | Calendly booking | Standard Calendly link (tag: Hot). If no slots → contact form. | Hot lead shouldn't lose momentum because the team is temporarily unavailable. Calendly is the natural next step. |
-| Visitor becomes unresponsive (2+ min) | Continue conversation | Offer contact email | Agent prompts: "Still there? ... I can have our team reach out." | Graceful timeout. Doesn't lose the lead entirely. |
+| Scenario                          | Primary Path       | Fallback + Mechanism                                     | Why                                                   |
+|-----------------------------------|--------------------|----------------------------------------------------------|-------------------------------------------------------|
+| Hot/Warm declines Calendly        | Calendly booking   | Contact form (name, email, company, message)             | Captures lead data for manual outreach + HubSpot sync |
+| Hot/Warm — no Calendly slots      | Calendly booking   | Contact form + `calendly_fallback_used = true`           | Prevents dead-end on scheduling availability          |
+| Nurture declines soft nudge       | Soft Calendly (N4) | Warm close (N5), context saved                           | Low-pressure exit preserves re-engagement             |
+| Knowledge gap                     | Agent continues    | Contact email with SLA ("within 1 business day")         | Low-friction, doesn't interrupt conversation          |
+| Visitor unresponsive (2+ min)     | Continue chat      | Offer contact email                                      | Graceful timeout, doesn't lose the lead               |
 
 ---
 
@@ -269,31 +265,31 @@ The pre-call brief gives the sales team all discovery context before their call 
 
 ### Specification
 
-| Attribute | Detail |
-|-----------|--------|
-| **Trigger** | `conversion_action` set to `"meeting_booked"` for a Hot or Warm lead (includes Nurture leads upgraded to Warm/Hot at N4). Not sent for non-upgraded Nurture bookings via the N4 soft nudge. |
-| **Delivery channel** | Slack notification to the sales channel (or email to assigned sales rep as fallback) |
-| **Timing** | Sent immediately after Calendly booking is confirmed |
-| **Format** | Structured message with variable mappings (see template below) |
+| Attribute            | Detail                                                                                                            |
+|----------------------|-------------------------------------------------------------------------------------------------------------------|
+| **Trigger**          | `conversion_action = "meeting_booked"` for Hot/Warm (incl. upgraded Nurture). Not sent for N4 soft-nudge bookings |
+| **Delivery channel** | Slack notification to sales channel (email fallback)                                                              |
+| **Timing**           | Immediately after Calendly booking confirmed                                                                      |
+| **Format**           | Structured message with variable mappings (see template below)                                                    |
 
 ### Content Template
 
 ```
-📋 New {lead_score} Lead — Pre-Call Brief
+New {lead_score} Lead — Pre-Call Brief
 
-👤 Visitor
+Visitor
    Name:    {visitor_name}
    Company: {visitor_company}
    Role:    {visitor_role}
    Industry: {visitor_industry}
 
-🎯 CHAMP Signals
+CHAMP Signals
    Challenges:     {ch_challenges} — {use_case}; {pain_points}
    Authority:      {a_authority} — {decision_authority}; stakeholders: {other_stakeholders}
    Money:          {m_money} — {budget_indication}
    Prioritization: {p_prioritization} — {timeline}; trigger: {trigger_event}
 
-📊 Additional Context
+Additional Context
    Leads/month:     {leads_per_month}
    Expected volume: {expected_volume}
    Current CRM:     {current_crm}
@@ -301,17 +297,17 @@ The pre-call brief gives the sales team all discovery context before their call 
    Chat tools:      {current_chat_tools}
    Integrations:    {integrations_needed}
 
-⚠️ Missing Signals (Warm leads only)
+Missing Signals (Warm leads only)
    {List any CHAMP signal that is "negative" or "unclear" — these are topics for the call}
 
-💬 Conversation Summary
+Conversation Summary
    {conversation_summary}
 
-🔗 Knowledge Gap (if any)
+Knowledge Gap (if any)
    Question: {knowledge_gap_question}
    (Visitor was given [email] for follow-up)
 
-📅 Meeting: {Calendly booking date/time}
+Meeting: {Calendly booking date/time}
 ```
 
 ### Variable Mappings
@@ -326,20 +322,20 @@ No new variables are needed for the brief content — only the `pre_call_brief_s
 
 When `is_returning_visitor = true`, the agent checks `previous_lead_score` and routes accordingly. The agent greets the visitor by name (if known) and references the previous conversation — it does not re-ask questions already answered.
 
-| Previous Score | Routing | Agent Approach |
-|---------------|---------|----------------|
-| **Hot** | Check if meeting was booked. If yes → "Your call is coming up — anything you'd like to add?" If no booking → re-offer Calendly. | Maintain momentum. Don't re-qualify. |
-| **Warm** | Quick check-in on missing signals. If signals improved → upgrade to Hot. If same → re-offer Calendly as Warm. | "Last time we chatted, [missing signal] was still open. Has anything changed?" |
-| **Nurture** | Skip N1 (resources already shared). Start from N2 check-in. Re-evaluate CHAMP. Upgrade if signals improve. | "Welcome back! Last time we shared some examples. Did any of those resonate?" |
-| **DQ** | Welcome back politely. Do not re-qualify aggressively. Unlike a first-visit DQ (which ends with no resources), returning DQ visitors may receive updated resources if their situation has changed. | "Welcome back — thanks for stopping by again. Let me know if there's anything I can help with." |
-| **Unscored** | Treat as new visitor. Start from Step 1. | Standard greeting. Full discovery. |
+| Previous Score | Routing                                                                                | Agent Approach                                   |
+|----------------|----------------------------------------------------------------------------------------|--------------------------------------------------|
+| **Hot**        | Check if meeting booked. Yes → "Call coming up — anything to add?" No → re-offer.     | Maintain momentum. Don't re-qualify.             |
+| **Warm**       | Check missing signals. Improved → upgrade to Hot. Same → re-offer Calendly as Warm.   | "Last time, [signal] was open. Changed?"         |
+| **Nurture**    | Skip N1. Start from N2 check-in. Re-evaluate CHAMP. Upgrade if improved.              | "Welcome back! Did those examples resonate?"     |
+| **DQ**         | Welcome back. No re-qualification. May share updated resources if situation changed.   | "Welcome back — let me know if I can help."      |
+| **Unscored**   | Treat as new visitor. Full discovery from Step 1.                                      | Standard greeting.                               |
 
 **Data written on return:**
 
-| Variable | Value |
-|----------|-------|
-| `is_returning_visitor` | `true` |
-| `previous_lead_score` | Value from Botpress Table lookup |
+| Variable               | Value                            |
+|------------------------|----------------------------------|
+| `is_returning_visitor` | `true`                           |
+| `previous_lead_score`  | Value from Botpress Table lookup |
 
 The agent updates `lead_score` if the visitor's category changes during the return conversation.
 
@@ -363,46 +359,6 @@ The agent updates `lead_score` if the visitor's category changes during the retu
 
 ---
 
-## Live Escalation Path
-
-A v2 feature that allows Hot leads with urgent needs to be connected to a sales team member in real time, bypassing the Calendly scheduling flow.
-
-### Specification
-
-| Attribute | Detail |
-|-----------|--------|
-| **Eligible leads** | Hot only (all 4 CHAMP signals positive) |
-| **Trigger phrases** | "Can I talk to someone now?", "Is anyone available right now?", "I need to speak to someone today", "This is urgent", or similar urgency/immediacy language |
-| **Detection** | Agent uses intent recognition to detect urgency phrases during or after CHAMP scoring |
-
-### Flow
-
-1. **Detect urgency phrase** from a Hot lead. Set `live_escalation_requested = true` immediately.
-2. **Send Slack notification** to the sales channel:
-   > "🔴 Live escalation requested — Hot lead {visitor_name} ({visitor_company}) wants to speak now. Reply within 2 minutes."
-3. **2-minute window** — Agent holds the conversation:
-   > "Let me check if someone from our team is available right now — give me just a moment."
-4. **If sales rep responds within 2 minutes** — Connect the visitor (handoff to live chat or provide direct contact).
-5. **If no response within 2 minutes** — Fall back to Calendly:
-   > "Our team isn't available right this second, but I can get you on the calendar quickly — here's a link to book the next available slot."
-
-   Continue standard Hot lead Calendly flow.
-
-### Constraints
-
-- Live escalation is **not available** for Warm, Nurture, or DQ leads. Hot leads only.
-- The 2-minute timeout is a hard limit — the agent does not keep the visitor waiting longer.
-- If Calendly also has no slots → contact form fallback (same as standard Hot flow).
-
-**Data written:**
-
-| Variable | Value |
-|----------|-------|
-| `live_escalation_requested` | `true` |
-| `conversation_stage` | Remains `"handoff_hot"` until booking or form completion |
-
----
-
 ## Data Schema Impact
 
 The following new variables are needed to support the handoff improvements in this document. These extend the schemas defined in [Data points schema v2](./Data%20points%20schema%20(JSON%20formatted)%20v2.md). No existing enums or variable types are modified.
@@ -411,12 +367,6 @@ The following new variables are needed to support the handoff improvements in th
 
 ```json
 {
-  "live_escalation_requested": {
-    "type": "boolean",
-    "description": "NEW — Set to true immediately when a Hot lead triggers the live escalation path by using urgency phrases. Remains true regardless of whether a sales rep responds or the flow falls back to Calendly. Used to track escalation frequency and outcomes.",
-    "default": false
-  },
-
   "calendly_fallback_used": {
     "type": "boolean",
     "description": "NEW — True if the Calendly link had no available slots and the agent fell back to the contact form. Tracks scheduling availability issues.",
@@ -433,13 +383,12 @@ The following new variables are needed to support the handoff improvements in th
 
 ### Botpress Table Schema Updates
 
-The same three changes apply to the Leads Table:
+The same two changes apply to the Leads Table:
 
-| Column | Type | Change | Notes |
-|--------|------|--------|-------|
-| `live_escalation_requested` | boolean | **New** | Default: `false`. Only `true` for Hot leads. |
-| `calendly_fallback_used` | boolean | **New** | Default: `false`. Tracks Calendly availability issues. |
-| `pre_call_brief_sent` | boolean | **New** | Default: `false`. Confirms brief delivery. |
+| Column                  | Type    | Change  | Notes                                         |
+|-------------------------|---------|---------|-----------------------------------------------|
+| `calendly_fallback_used`| boolean | **New** | Default: `false`. Tracks availability issues. |
+| `pre_call_brief_sent`   | boolean | **New** | Default: `false`. Confirms brief delivery.    |
 
 ### Impact on Existing Variables
 
@@ -454,7 +403,6 @@ Ordered by dependency. Complete each item before moving to the next group.
 
 ### Group 1 — Schema & Data Layer
 
-- [ ] Add `live_escalation_requested` (boolean, default `false`) to Conversation Variables and Leads Table
 - [ ] Add `calendly_fallback_used` (boolean, default `false`) to Conversation Variables and Leads Table
 - [ ] Add `pre_call_brief_sent` (boolean, default `false`) to Conversation Variables and Leads Table
 
@@ -483,9 +431,6 @@ Ordered by dependency. Complete each item before moving to the next group.
 - [ ] Build pre-call context brief template with variable mappings (see [Pre-call context brief](#pre-call-context-brief))
 - [ ] Set up Slack integration for pre-call brief delivery (with email fallback)
 - [ ] Set `pre_call_brief_sent = true` after successful delivery
-- [ ] Implement live escalation: detect urgency phrases → Slack notification → 2-min window → Calendly fallback
-- [ ] Set `live_escalation_requested = true` when escalation is triggered
-
 ### Group 6 — Returning Visitors
 
 - [ ] Implement returning visitor detection (`is_returning_visitor`, `previous_lead_score` lookup)
@@ -500,7 +445,6 @@ Ordered by dependency. Complete each item before moving to the next group.
 - [ ] Test knowledge gap escalation mid-conversation (verify qualification continues)
 - [ ] Test Nurture upgrade path (N3 → signals improve → Warm/Hot)
 - [ ] Test returning visitor routing for all `previous_lead_score` values
-- [ ] Test live escalation: trigger phrase → Slack → 2-min timeout → Calendly fallback
 - [ ] Test post-booking confirmation and pre-call brief delivery
 - [ ] Verify all new variables are written correctly to Botpress Table
 - [ ] Cross-check Leads Table data against HubSpot sync (Calendly → HubSpot)
