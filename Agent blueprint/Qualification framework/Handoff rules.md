@@ -22,12 +22,12 @@ This document is the single reference for what happens **after** the agent compl
 
 ### By Lead Category
 
-| Category    | Trigger Criteria                                        | Primary Path                   | Fallback                                | Data Destination                     |
-|-------------|---------------------------------------------------------|--------------------------------|-----------------------------------------|--------------------------------------|
-| **Hot**     | All 4 CHAMP signals positive                            | Calendly (tag: Hot)            | Contact form; availability fallback     | Botpress Table → Calendly → HubSpot |
-| **Warm**    | CH positive, 1–2 of A/M/P missing (≥1 confirmed)       | Calendly (tag: Warm)           | Contact form; availability fallback     | Botpress Table → Calendly → HubSpot |
-| **Nurture** | CH weak/vague, or M/P not established                   | Resources → re-qualify → nudge | Warm close (N5)                         | Botpress Table                       |
-| **DQ**      | ICP exclusion, no need, wrong scope, spam, budget <€5k  | Polite close                   | —                                       | Botpress Table (tag: DQ)             |
+| Category     | Trigger Criteria                                       | Primary Path                     | Fallback                            | Data Destination                      |
+|--------------|--------------------------------------------------------|----------------------------------|-------------------------------------|---------------------------------------|
+| **Hot**      | All 4 CHAMP signals positive                           | Calendly (tag: Hot)              | Contact form; availability fallback | Botpress Table -> Calendly -> HubSpot |
+| **Warm**     | CH positive, 1-2 of A/M/P missing (>=1 confirmed)     | Calendly (tag: Warm)             | Contact form; availability fallback | Botpress Table -> Calendly -> HubSpot |
+| **Nurture**  | CH weak/vague, or M/P not established                  | Resources -> re-qualify -> nudge | Warm close (N5)                     | Botpress Table                        |
+| **DQ**       | ICP exclusion, no need, wrong scope, spam, budget <€5k | Polite close                     | --                                  | Botpress Table (tag: DQ)              |
 
 > Agent language for each category is provided in the dedicated section below.
 
@@ -248,13 +248,13 @@ For ICP exclusion (detected at Step 3):
 
 A consolidated view of every fallback in the system, when it fires, and why that specific mechanism was chosen.
 
-| Scenario                          | Primary Path       | Fallback + Mechanism                                     | Why                                                   |
-|-----------------------------------|--------------------|----------------------------------------------------------|-------------------------------------------------------|
-| Hot/Warm declines Calendly        | Calendly booking   | Contact form (name, email, company, message)             | Captures lead data for manual outreach + HubSpot sync |
-| Hot/Warm — no Calendly slots      | Calendly booking   | Contact form + `calendly_fallback_used = true`           | Prevents dead-end on scheduling availability          |
-| Nurture declines soft nudge       | Soft Calendly (N4) | Warm close (N5), context saved                           | Low-pressure exit preserves re-engagement             |
-| Knowledge gap                     | Agent continues    | Contact email for human follow-up                        | Low-friction, doesn't interrupt conversation          |
-| Visitor unresponsive (2+ min)     | Continue chat      | Offer contact email                                      | Graceful timeout, doesn't lose the lead               |
+| Scenario                        | Primary Path        | Fallback + Mechanism                                    | Why                                                     |
+|---------------------------------|---------------------|---------------------------------------------------------|---------------------------------------------------------|
+| Hot/Warm declines Calendly      | Calendly booking    | Contact form (name, email, company, message)            | Captures lead data for manual outreach + HubSpot sync   |
+| Hot/Warm -- no Calendly slots   | Calendly booking    | Contact form + `calendly_fallback_used = true`          | Prevents dead-end on scheduling availability            |
+| Nurture declines soft nudge     | Soft Calendly (N4)  | Warm close (N5), context saved                          | Low-pressure exit preserves re-engagement               |
+| Knowledge gap                   | Agent continues     | Contact email for human follow-up                       | Low-friction, doesn't interrupt conversation            |
+| Visitor unresponsive (2+ min)   | Continue chat       | Offer contact email                                     | Graceful timeout, doesn't lose the lead                 |
 
 ---
 
@@ -321,13 +321,13 @@ No new variables are needed for the brief content — only the `pre_call_brief_s
 
 When `is_returning_visitor = true`, the agent checks `previous_lead_score` and routes accordingly. The agent greets the visitor by name (if known) and references the previous conversation — it does not re-ask questions already answered.
 
-| Previous Score | Routing                                                                                | Agent Approach                                   |
-|----------------|----------------------------------------------------------------------------------------|--------------------------------------------------|
-| **Hot**        | Check if meeting booked. Yes → "Call coming up — anything to add?" No → re-offer.     | Maintain momentum. Don't re-qualify.             |
-| **Warm**       | Check missing signals. Improved → upgrade to Hot. Same → re-offer Calendly as Warm.   | "Last time, [signal] was open. Changed?"         |
-| **Nurture**    | Skip N1. Start from N2 check-in. Re-evaluate CHAMP. Upgrade if improved.              | "Welcome back! Did those examples resonate?"     |
-| **DQ**         | Welcome back. No re-qualification. May share updated resources if situation changed.   | "Welcome back — let me know if I can help."      |
-| **Unscored**   | Treat as new visitor. Full discovery from Step 1.                                      | Standard greeting.                               |
+| Previous Score | Routing                                                                                   | Agent Approach                               |
+|----------------|-------------------------------------------------------------------------------------------|----------------------------------------------|
+| **Hot**        | Check if meeting booked. Yes -> "Call coming up -- anything to add?" No -> re-offer.      | Maintain momentum. Don't re-qualify.         |
+| **Warm**       | Check missing signals. Improved -> upgrade to Hot. Same -> re-offer Calendly as Warm.     | "Last time, [signal] was open. Changed?"     |
+| **Nurture**    | Skip N1. Start from N2 check-in. Re-evaluate CHAMP. Upgrade if improved.                 | "Welcome back! Did those examples resonate?" |
+| **DQ**         | Welcome back. No re-qualification. May share updated resources if situation changed.      | "Welcome back -- let me know if I can help." |
+| **Unscored**   | Treat as new visitor. Full discovery from Step 1.                                         | Standard greeting.                           |
 
 **Data written on return:**
 
