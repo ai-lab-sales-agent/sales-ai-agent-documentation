@@ -106,19 +106,19 @@ Challenges — what problem do they have?
 #### CHAMP Element Mapping
 
 **CH — Challenges**
-- **Maps to:** DISCOVERY_USE_CASE (Step 4) + DISCOVERY_PAIN_POINTS (Step 6)
+- **Maps to:** DISCOVERY_USE_CASE (Step 4) + DISCOVERY_PAIN_POINTS (Step 5)
 - **What the agent collects:** Pain points and current problems: too slow to respond, sales team overwhelmed, low conversion, no 24/7 coverage. Motivation for seeking an inbound Sales AI Agent. Challenges surface first — before budget.
 
 **A — Authority**
-- **Maps to:** DISCOVERY_COMPANY role (Step 3) + DISCOVERY_BUDGET (Step 8)
+- **Maps to:** DISCOVERY_COMPANY role (Step 3) + DISCOVERY_BUDGET (Step 9)
 - **What the agent collects:** Visitor's role, who else is involved in the decision, whether they have budget access. Authority is confirmed alongside budget, not separately.
 
 **M — Money**
-- **Maps to:** DISCOVERY_BUDGET (Step 8)
+- **Maps to:** DISCOVERY_BUDGET (Step 9)
 - **What the agent collects:** Budget range for the project. Floor: €5,000. Explored after challenges are established — visitor with a clear problem but uncertain budget is still valuable.
 
 **P — Prioritization**
-- **Maps to:** DISCOVERY_TIMELINE (Step 7)
+- **Maps to:** DISCOVERY_TIMELINE (Step 8)
 - **What the agent collects:** Timeline urgency, deadlines, trigger events (product launch, funding round, seasonal traffic). Minimum realistic MVP: X weeks.
 
 ---
@@ -185,7 +185,7 @@ When the visitor asks a question the agent cannot answer at all, the agent follo
 "That's a great question — unfortunately, I don't have the details to answer that one. I can help you with [related alternative], or if you'd prefer a direct answer, you can reach our team at [email address]. They'll get back to you quickly. In the meantime, let's keep going — I'd love to learn more about your project."
 
 **Data captured**
-If the visitor provides their email via the contact form, the question is noted in the Botpress Users Table for sales team follow-up.
+The unanswered question is noted in the Botpress Table (Leads Table) for sales team follow-up. The visitor receives a contact email for human follow-up.
 
 *Design principle: the agent stays in the conversation after offering the alternative and email. The visitor gets continuity and a clear path to a human; the sales team gets the unanswered question. This prevents both dead-end conversations and hallucinated answers.*
 
@@ -221,7 +221,7 @@ Introduces automated lead evaluation based on CHAMP signals. After collecting di
 - **Agent action:** Politely disengage. No conversion action.
 - **Conversion path:** Thank & close
 
-**Hot vs Warm distinction:** Both go to Calendly — the difference is Botpress Table tagging. Hot = all 4 CHAMP signals confirmed. Warm = Challenges confirmed + fewer than 2 of Money / Prioritization / Authority. Sales team uses the tag to decide prep and follow-up depth.
+**Hot vs Warm distinction:** Both go to Calendly — the difference is Botpress Table tagging. Hot = all 4 CHAMP signals confirmed. Warm = Challenges confirmed + 1–2 of Money / Prioritization / Authority missing (at least 1 confirmed). Sales team uses the tag to decide prep and follow-up depth.
 
 ### CHAMP Signal Weights
 

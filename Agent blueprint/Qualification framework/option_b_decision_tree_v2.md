@@ -57,7 +57,7 @@
     ┌───────────────────┐               ┌───────────────────┐
     │  PASSES           │               │  FAILS            │
     │  (No exclusions   │               │  Adult/18+        │
-    │   detected)       │               │  Russia-based     │
+    │   detected)       │               │  russia-based     │
     │                   │               │                   │
     │  Continue flow    │               │  → AUTO DQ        │
     │        ↓          │               │  Polite close:    │
@@ -212,7 +212,7 @@
 │         │ │         │  │           │  │ (CHAMP) │ │ (ICP)   │
 │All 4    │ │CH: ✓    │  │CH: weak/  │  │No need  │ │Adult/   │
 │confirmed│ │         │  │  vague    │  │Wrong    │ │18+      │
-│         │ │Missing  │  │           │  │scope    │ │Russia-  │
+│         │ │Missing  │  │           │  │scope    │ │russia-  │
 │CH: ✓    │ │1-2 of:  │  │M / P not  │  │No sales │ │based    │
 │A:  ✓    │ │A, M, P  │  │established│  │team     │ │         │
 │M:  ✓    │ │         │  │           │  │Spam     │ │         │
@@ -455,7 +455,7 @@ Answer from KB.        Answer what you can.        1. Offer an alternative
 │              (or CH confirmed + all 3 of A/M/P missing)             │
 │                                                                     │
 │   DQ:     No relevant need, wrong scope, no sales team,             │
-│             spam, ICP exclusion (Adult/18+, Russia-based),          │
+│             spam, ICP exclusion (Adult/18+, russia-based),          │
 │             or insufficient budget (< €5,000)                       │
 │                                                                     │
 │  KEY RULE: Without Challenges confirmed → max outcome = Nurture     │
@@ -513,7 +513,7 @@ Wait for response or offer contact email
 │                                                                     │
 │  1. ICP exclusion detected at Step 3:                               │
 │     - Adult/18+ content industry                                    │
-│     - Russia-based company                                          │
+│     - russia-based company                                          │
 │     → Immediate polite close. No Calendly. No form.                 │
 │                                                                     │
 │  2. Insufficient budget detected at Step 9:                         │

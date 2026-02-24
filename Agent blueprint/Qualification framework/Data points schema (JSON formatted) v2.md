@@ -386,6 +386,7 @@ Persistent table where lead data is stored across sessions. `lead_score` is popu
     "knowledge_gap_triggered":  { "type": "boolean", "default": false, "description": "True if visitor asked a question outside agent's KB." },
     "knowledge_gap_question":   { "type": ["string", "null"], "description": "The question the agent could not answer. Null if no knowledge gap." },
     "conversation_summary": { "type": ["string", "null"] },
+    "resources_shared":     { "type": "array", "items": { "type": "string" }, "description": "List of case study / resource links shared with the visitor at Nurture N1. Used by returning visitor logic to skip N1.", "default": [] },
 
     "icp_exclusion_flag":   { "type": "boolean", "default": false },
     "is_returning_visitor":  { "type": "boolean", "default": false },
@@ -425,7 +426,7 @@ Persistent table where lead data is stored across sessions. `lead_score` is popu
 
 The following conditions trigger automatic disqualification:
 
-1. **ICP exclusion** — Adult/18+ content industry or Russia-based company (detected at Step 3)
+1. **ICP exclusion** — Adult/18+ content industry or russia-based company (detected at Step 3)
 2. **Insufficient budget** — Budget explicitly stated as less than €5,000 (detected at Step 9)
 3. **No relevant need** — Visitor has no sales challenge (detected at Step 10 CHAMP evaluation)
 4. **Wrong scope** — Visitor is looking for something unrelated (detected at Step 10)
@@ -445,7 +446,7 @@ The following conditions trigger automatic disqualification:
 
 **Warm detail:** Challenges must be confirmed. 1–2 of A/M/P may be missing, but at least 1 of the 3 must be confirmed.
 
-**DQ triggers:** No relevant need, wrong scope, no sales team, spam, ICP exclusion (Adult/18+, Russia-based), or budget explicitly below €5,000.
+**DQ triggers:** No relevant need, wrong scope, no sales team, spam, ICP exclusion (Adult/18+, russia-based), or budget explicitly below €5,000.
 
 **Key rule:** Without Challenges confirmed → max outcome is Nurture.
 
