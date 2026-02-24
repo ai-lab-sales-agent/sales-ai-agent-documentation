@@ -1,11 +1,11 @@
-# Sales AI Agent Decision Tree — Option A (CHAMP · Soft Flow)
+# Sales AI Agent Decision Tree — Option B (CHAMP · Scored Flow)
 
-> No automatic scoring · All leads → Calendly · Sales team decides fit
+> Agent evaluates CHAMP signals · Hot + Warm → Calendly (tagged) · Nurture → resources + re-qualify · DQ → polite close
 > Contact form = knowledge gap escalation only
 
 ---
 
-## Main Conversation Flow (Steps 1–9: Shared)
+## Main Conversation Flow (Steps 1–9: Shared with Option A)
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
@@ -30,7 +30,7 @@
 │                                                                     │
 │  Brief framing: what an inbound Sales AI Agent is, what it does     │
 │  (qualify leads, book meetings, handle FAQs), typical outcomes.     │
-│  Starting price: €5,000 (subject to change). Sets expectations.     │
+│  Sets expectations.                                                 │
 └───────────────────────────────┬─────────────────────────────────────┘
                                 │
                                 ▼
@@ -59,13 +59,16 @@
     │  (No exclusions   │               │  Adult/18+        │
     │   detected)       │               │  Russia-based     │
     │                   │               │                   │
-    │  Continue flow    │               │  Polite close:    │
-    │        ↓          │               │  "Thanks for      │
-    └────────┬──────────┘               │  reaching out —   │
+    │  Continue flow    │               │  → AUTO DQ        │
+    │        ↓          │               │  Polite close:    │
+    └────────┬──────────┘               │  "Thanks for      │
+             │                          │  reaching out —   │
              │                          │  this isn't       │
              │                          │  something we're  │
              │                          │  able to help     │
              │                          │  with."           │
+             │                          │                   │
+             │                          │  No conversion.   │
              │                          └───────────────────┘
              │
              ▼
@@ -126,15 +129,9 @@
        │  URGENT    │   │ REALISTIC  │   │ FLEXIBLE   │
        │  < _ weeks │   │ _+ weeks   │   │ "Someday"  │
        │            │   │            │   │ exploring  │
+       │  P signal: │   │  P signal: │   │  P signal: │
+       │  NEGATIVE  │   │  POSITIVE  │   │  NEGATIVE  │
        └─────┬──────┘   └─────┬──────┘   └─────┬──────┘
-             │                │                 │
-             ▼                ▼                 ▼
-       "Timelines       "That works         Note as
-       under _ weeks    well with our       early-stage.
-       are tight —      typical build       Continue.
-       we can discuss   timelines."
-       phased approach
-       on a call."
              │                │                 │
              └────────────────┴─────────────────┘
                               │
@@ -153,19 +150,18 @@
               │                 │                 │
               ▼                 ▼                 ▼
        ┌────────────┐   ┌────────────┐   ┌────────────┐
-       │ States     │   │ Gives      │   │ "Not sure" │
-       │ specific € │   │ range      │   │ / won't    │
-       │            │   │            │   │ say        │
+       │  ≥ €5,000  │   │  < €5,000  │   │ "Not sure" │
+       │            │   │            │   │ / won't    │
+       │ M signal:  │   │ M signal:  │   │ say        │
+       │ POSITIVE   │   │ NEGATIVE   │   │ M signal:  │
+       │            │   │            │   │ NEGATIVE   │
+       │ Also check │   │            │   │            │
+       │ Authority: │   │            │   │            │
+       │ Decision-  │   │            │   │            │
+       │ maker?     │   │            │   │            │
+       │ Y → A: POS │   │            │   │            │
+       │ N → A: NEG │   │            │   │            │
        └─────┬──────┘   └─────┬──────┘   └─────┬──────┘
-             │                │                 │
-             ▼                ▼                 ▼
-       Check if ≥        Note the range     "No problem —
-       €5,000                                our projects
-                                             typically start
-                                             at €5,000.
-                                             Let's discuss
-                                             what's possible
-                                             on a call."
              │                │                 │
              └────────────────┴─────────────────┘
                               │
@@ -174,140 +170,218 @@
 
 ---
 
-## Step 10: QUALIFICATION_SUMMARY (Option A)
+## Step 10: CHAMP SCORING ENGINE (Option B)
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│  STEP 10: QUALIFICATION_SUMMARY                                     │
+│  STEP 10: INTERNAL CHAMP EVALUATION                                 │
 │                                                                     │
-│  Agent recaps collected information conversationally.               │
-│  NO score announced. CHAMP signals shape the language.              │
-│                                                                     │
-│  "Based on what you've shared, it sounds like you're looking to     │
-│   build an inbound lead qualification agent integrated with         │
-│   [CRM], targeting a go-live in about [timeline]. Let me connect    │
-│   you with our team to walk through the approach."                  │
+│  Agent evaluates all 4 CHAMP signals internally.                    │
+│  Score is NEVER announced to the visitor.                           │
+│  Language and next step naturally reflect the category.             │
 └───────────────────────────────┬─────────────────────────────────────┘
                                 │
-                    ┌───────────┴───────────┐
-                    │                       │
-                    ▼                       ▼
-             ┌────────────┐          ┌────────────┐
-             │  CORRECT   │          │ CORRECTION │
-             │            │          │ needed     │
-             └─────┬──────┘          └─────┬──────┘
-                   │                       │
-                   │                       ▼
-                   │               Update info.
-                   │               Re-summarize.
-                   │                       │
-                   └───────────────────────┘
-                              │
-                              ▼
-```
-
----
-
-## Step 11: HANDOFF (Option A)
-
-```
+                                ▼
 ┌─────────────────────────────────────────────────────────────────────┐
-│  STEP 11: HANDOFF DECISION                                          │
+│                     CHAMP SIGNAL EVALUATION                         │
 │                                                                     │
-│  Has agent collected: company + role, use case, current stack,      │
-│  timeline indication, budget range (even approximate)?              │
+│  CH — Challenges:  Clear use case + specific pain articulated?      │
+│                    REQUIRED. Without this → max outcome = Nurture.  │
+│                                                                     │
+│  A  — Authority:   Decision-maker or confirmed budget access?       │
+│                    STRONG. Differentiates Hot from Warm.            │
+│                                                                     │
+│  M  — Money:       Budget ≥ €5,000?                                 │
+│                    STRONG. Differentiates Hot from Warm.            │
+│                                                                     │
+│  P  — Prioritiz.:  _+ weeks realistic deadline?                     │
+│                    MODERATE. Differentiates Hot from Warm.          │
 └───────────────────────────────┬─────────────────────────────────────┘
+                                │
+                                ▼
+                  ┌─────────────────────────┐
+                  │   SCORING LOGIC         │
+                  └─────────────┬───────────┘
                                 │
      ┌──────────┬───────────────┼───────────────┬──────────┐
      │          │               │               │          │
      ▼          ▼               ▼               ▼          ▼
-┌──────────┐ ┌──────────┐ ┌───────────┐ ┌──────────┐ ┌──────────┐
-│SUFFICIENT│ │  WEAK    │ │  NURTURE  │ │KNOWLEDGE │ │ VISITOR  │
-│  DATA    │ │ SIGNALS  │ │ SITUATION │ │   GAP    │ │ DECLINES │
-│          │ │ budget/  │ │ early-    │ │ at any   │ │ CALENDLY │
-│          │ │ timeline │ │ stage     │ │ point    │ │          │
-└────┬─────┘ └────┬─────┘ └─────┬─────┘ └────┬─────┘ └────┬─────┘
-     │            │             │            │            │
-     ▼            ▼             ▼            ▼            ▼
-  Present     Flag softly.  → Nurture    Offer contact  Acknowledge.
-  Calendly    Still offer    Flow        form. Agent    Offer contact
-  link.       Calendly +    (see below)  continues      form as
-  Recap key   phased                     qualifying     fallback.
-  points.     approach.                  after submit.  Close warmly.
-     │           │             │             │            │
-     ▼           ▼             │             ▼            ▼
-  Calendly   Calendly —        │          Form →        Form →
-  link       sales team        │          Botpress      Botpress
-             assesses          │          Table.        Table.
-             fit on call       │          Calendly
-                               │          still offered
-                               │          at end.
-                               ▼
+┌─────────┐ ┌─────────┐  ┌───────────┐  ┌─────────┐ ┌─────────┐
+│   HOT   │ │  WARM   │  │   NURTURE │  │   DQ    │ │   DQ    │
+│         │ │         │  │           │  │ (CHAMP) │ │ (ICP)   │
+│All 4    │ │CH: ✓    │  │CH: weak/  │  │No need  │ │Adult/   │
+│confirmed│ │         │  │  vague    │  │Wrong    │ │18+      │
+│         │ │Missing  │  │           │  │scope    │ │Russia-  │
+│CH: ✓    │ │1-2 of:  │  │M / P not  │  │No sales │ │based    │
+│A:  ✓    │ │A, M, P  │  │established│  │team     │ │         │
+│M:  ✓    │ │         │  │           │  │Spam     │ │         │
+│P:  ✓    │ │At least │  │Exploring  │  │ICP      │ │Caught   │
+│         │ │1 of 3   │  │options    │  │exclusion│ │at       │
+│         │ │confirmed│  │           │  │         │ │Step 3   │
+└────┬────┘ └────┬────┘  └─────┬─────┘  └────┬────┘ └────┬────┘
+     │          │             │             │           │
+     ▼          ▼             ▼             ▼           ▼
 ```
 
 ---
 
-## Nurture Flow — Option A
+## Routing After Scoring
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│  NURTURE: Visitor is early-stage, not ready to commit               │
+│  HOT LEAD                                                           │
+│                                                                     │
+│  "This sounds like a great fit. I'd love to get you on a call       │
+│   with our team — here's a link to book a time."                    │
+│                                                                     │
+│  → Present Calendly link                                            │
+│  → Tag as HOT in Botpress Table                                     │
+│  → Calendly → syncs to HubSpot                                      │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  WARM LEAD                                                          │
+│                                                                     │
+│  "There's definitely something to explore here. Let me get you      │
+│   connected with our team — here's a link to book a call."          │
+│                                                                     │
+│  → Present Calendly link                                            │
+│  → Tag as WARM in Botpress Table                                    │
+│  → Sales team prepares for missing signals (budget objection, etc.) │
+│  → Calendly → syncs to HubSpot                                      │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  NURTURE                                                            │
+│                                                                     │
+│  → Nurture Flow (see below)                                         │
+│  → Can upgrade to Warm or Hot if signals improve                    │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  DQ                                                                 │
+│                                                                     │
+│  "Thanks for reaching out — based on what you've described,         │
+│   this service may not be the right fit right now."                 │
+│                                                                     │
+│  → Polite close. No conversion action. No Calendly.                 │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Additional Handoff Scenarios (Any Category)
+
+```
+              ┌─────────────────────────────────────┐
+              │ After scoring, additional triggers: │
+              └─────────────────┬───────────────────┘
+                                │
+              ┌─────────────────┼─────────────────┐
+              │                                   │
+              ▼                                   ▼
+    ┌───────────────────┐               ┌───────────────────┐
+    │  KNOWLEDGE GAP    │               │  VISITOR DECLINES │
+    │  (any category,   │               │  CALENDLY         │
+    │   any point)      │               │  (Hot or Warm)    │
+    │                   │               │                   │
+    │  Offer contact    │               │  "No problem — I  │
+    │  form. Agent      │               │  can have someone │
+    │  continues.       │               │  reach out. Can I │
+    │  Calendly still   │               │  take your        │
+    │  offered at end.  │               │  details?"        │
+    │                   │               │                   │
+    │  → Form →         │               │  → Contact form   │
+    │    Botpress Table │               │    as fallback    │
+    │                   │               │  → Botpress Table │
+    └───────────────────┘               └───────────────────┘
+```
+
+---
+
+## Nurture Flow — Option B (with Upgrade Path)
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  NURTURE: Agent knows this is a Nurture lead from CHAMP scoring.    │
+│  Frames check-in with more intent to upgrade.                       │
 └───────────────────────────────┬─────────────────────────────────────┘
                                 │
                                 ▼
 ┌─────────────────────────────────────────────────────────────────────┐
 │  N1: SHARE RESOURCES                                                │
 │                                                                     │
-│  "Let me share a couple of examples of inbound Sales AI Agents      │
-│   we've built — these might give you a better feel for what's       │
-│   possible." [share case studies]                                   │
+│  "Let me share a couple of examples of what we've built — these     │
+│   should give you a clearer sense of what's possible."              │
+│  [share case studies]                                               │
+│                                                                     │
+│  Agent notes visitor's reaction.                                    │
 └───────────────────────────────┬─────────────────────────────────────┘
                                 │
                                 ▼
 ┌─────────────────────────────────────────────────────────────────────┐
 │  N2: CHECK IN                                                       │
 │                                                                     │
-│  "Did any of those feel relevant to what you're working on?"        │
+│  "Did any of those feel close to what you're thinking about?"       │
+│                                                                     │
+│  Agent uses response to refine understanding of Challenges.         │
 └───────────────────────────────┬─────────────────────────────────────┘
                                 │
                                 ▼
 ┌─────────────────────────────────────────────────────────────────────┐
-│  N3: RE-QUALIFICATION [CHAMP: Challenges revisit]                   │
+│  N3: RE-QUALIFICATION [CHAMP revisit]                               │
 │                                                                     │
 │  "What would need to change on your side for this to become         │
-│   something you'd want to explore more concretely?"                 │
+│   something you'd want to move forward on?"                         │
+│                                                                     │
+│  Surfaces blockers. Agent re-evaluates CHAMP signals.               │
 └───────────────────────────────┬─────────────────────────────────────┘
                                 │
                                 ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│  N4: SOFT CALENDLY NUDGE                                            │
-│                                                                     │
-│  "Even if it's just exploratory, a 20-minute call with our team     │
-│   might help clarify things — no commitment needed.                 │
-│   Want me to share the link?"                                       │
-└───────────────────────────────┬─────────────────────────────────────┘
+                  ┌─────────────────────────────┐
+                  │  DID CHAMP SIGNALS IMPROVE? │
+                  └─────────────┬───────────────┘
                                 │
               ┌─────────────────┴─────────────────┐
               │                                   │
               ▼                                   ▼
-     ┌──────────────────┐               ┌──────────────────┐
-     │  ACCEPTED        │               │  DECLINED        │
-     │  → Calendly      │               │  → N5: Warm      │
-     │                  │               │    close         │
-     └──────────────────┘               └────────┬─────────┘
+    ┌───────────────────┐               ┌───────────────────┐
+    │  YES — UPGRADE    │               │  NO — NO UPGRADE  │
+    │                   │               │                   │
+    │  CH + 1 signal    │               │  N4: Soft Calendly│
+    │  confirmed        │               │  nudge            │
+    │  → WARM           │               │                   │
+    │                   │               │  "Even if it's    │
+    │  All 4 confirmed  │               │  just exploratory,│
+    │  → HOT            │               │  a 20-min call    │
+    │                   │               │  might help       │
+    │  Present Calendly │               │  clarify what's   │
+    │  with upgraded    │               │  realistic."      │
+    │  tag.             │               │                   │
+    └───────────────────┘               └────────┬──────────┘
                                                  │
-                                                 ▼
-                                  ┌──────────────────────────┐
-                                  │  N5: WARM CLOSE          │
-                                  │                          │
-                                  │  "Totally understood —   │
-                                  │  feel free to come back  │
-                                  │  when the timing is      │
-                                  │  better. I'll make a     │
-                                  │  note of your situation  │
-                                  │  so our team has context │
-                                  │  if you reach out."      │
-                                  └──────────────────────────┘
+                                   ┌─────────────┴─────────────┐
+                                   │                           │
+                                   ▼                           ▼
+                          ┌──────────────┐           ┌──────────────┐
+                          │  ACCEPTED    │           │  DECLINED    │
+                          │              │           │              │
+                          │  → Calendly  │           │  → N5: Warm  │
+                          │  (tagged     │           │    close     │
+                          │   Nurture)   │           │              │
+                          └──────────────┘           └──────┬───────┘
+                                                            │
+                                                            ▼
+                                          ┌──────────────────────────┐
+                                          │  N5: WARM CLOSE          │
+                                          │                          │
+                                          │  "Totally understood —   │
+                                          │  come back when the      │
+                                          │  timing is better. I'll  │
+                                          │  make a note so our team │
+                                          │  has context if you do   │
+                                          │  reach out."             │
+                                          └──────────────────────────┘
 ```
 
 ---
@@ -375,7 +449,34 @@ Answer from KB.        Answer what you can.        "That's a great
 
 ---
 
-## Recovery Paths (Option A)
+## CHAMP Scoring Quick Reference
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                    CHAMP → CATEGORY MATRIX                          │
+│                                                                     │
+│  CH (Challenges)  A (Authority)  M (Money)  P (Prioritization)      │
+│  ──────────────   ─────────────  ─────────  ────────────────        │
+│                                                                     │
+│   HOT:    ✓              ✓           ✓          ✓                   │
+│                                                                     │
+│   WARM:   ✓         1-2 of A/M/P missing                            │
+│             (at least 1 of A/M/P confirmed)                         │
+│                                                                     │
+│   NURTURE: weak/vague    M/P not established                        │
+│              (or CH confirmed + all 3 of A/M/P missing)             │
+│                                                                     │
+│   DQ:     No relevant need, wrong scope, no sales team,             │
+│             spam, or meeting ICP exclusion criteria                 │
+│             (Adult/18+, Russia-based)                               │
+│                                                                     │
+│  KEY RULE: Without Challenges confirmed → max outcome = Nurture     │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Recovery Paths (Option B)
 
 ### Visitor Goes Off-Topic
 ```
@@ -398,7 +499,11 @@ Agent: "Absolutely! Just a couple quick questions so our team
         can prepare the right approach for you."
      │
      ▼
-Quick discovery (company + use case + timeline) → Calendly
+Quick discovery (company + use case + timeline)
+     │
+     ▼
+Agent scores with available data → Route accordingly
+(Likely Warm due to incomplete signals, but CH may be clear)
 ```
 
 ### Visitor Becomes Unresponsive
@@ -413,15 +518,23 @@ Agent: "Still there? No rush — let me know when you're ready
 Wait for response or offer contact form
 ```
 
-### Visitor Not a Good Fit (Option A = manual DQ)
+### Auto-DQ Scenarios (Option B)
 ```
-[Budget too low / timeline impossible / no clear need]
-     │
-     ▼
-Agent: "Based on what you've shared, let me connect you with
-        our team — they can explore whether there's a way
-        to make this work for your situation."
-     │
-     ▼
-Still offer Calendly. Sales team makes final DQ decision.
+┌─────────────────────────────────────────────────────────────────────┐
+│  AUTOMATIC DISQUALIFICATION TRIGGERS                                │
+│                                                                     │
+│  1. ICP exclusion detected at Step 3:                               │
+│     - Adult/18+ content industry                                    │
+│     - Russia-based company                                          │
+│     → Immediate polite close. No Calendly. No form.                 │
+│                                                                     │
+│  2. CHAMP scoring = DQ at Step 10:                                  │
+│     - No relevant need (visitor has no sales challenge)             │
+│     - Wrong scope (looking for something unrelated)                 │
+│     - No sales team (no one to augment)                             │
+│     - Spam / irrelevant                                             │
+│     → "Thanks for reaching out — based on what you've described,    │
+│        this service may not be the right fit right now."            │
+│     → Polite close. No conversion action.                           │
+└─────────────────────────────────────────────────────────────────────┘
 ```
