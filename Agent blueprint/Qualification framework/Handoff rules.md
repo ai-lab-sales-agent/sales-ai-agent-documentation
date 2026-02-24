@@ -189,7 +189,7 @@ See [Returning visitor routing](#returning-visitor-routing) for the full routing
 ## Disqualification Path
 
 **Trigger:** Any of the following:
-- **ICP exclusion** — Adult/18+ content industry or Russia-based company (detected at Step 3 — immediate close, no further discovery)
+- **ICP exclusion** — Adult/18+ content industry or russia-based company (detected at Step 3 — immediate close, no further discovery)
 - **Insufficient budget** — Budget explicitly stated as less than €5,000 (detected at Step 9)
 - **No relevant need** — Visitor has no sales challenge (Step 10)
 - **Wrong scope** — Visitor is looking for something unrelated to an inbound Sales AI Agent (Step 10)
@@ -225,11 +225,10 @@ For ICP exclusion (detected at Step 3):
 1. **Acknowledge the gap honestly.** The agent does NOT invent an answer.
 2. **Offer an alternative.** Suggest a related topic the agent can help with, or reframe the question.
 3. **Provide a contact email** (not a form). The agent gives the visitor a direct email address for human follow-up.
-4. **State the SLA.** Set response expectations so the visitor isn't left wondering.
-5. **Continue the discovery flow.** Qualification does not stop.
+4. **Continue the discovery flow.** Qualification does not stop.
 
 **Agent language:**
-> "That's a great question — unfortunately, I don't have the details to answer that one. I can help you with [related alternative], or if you'd prefer a direct answer, you can reach our team at [email address]. They typically get back within 1 business day. In the meantime, let's keep going — I'd love to learn more about your project."
+> "That's a great question — unfortunately, I don't have the details to answer that one. I can help you with [related alternative], or if you'd prefer a direct answer, you can reach our team at [email address]. In the meantime, let's keep going — I'd love to learn more about your project."
 
 **Why email, not a form:** The contact form collects structured lead data (name, email, company) and is designed for Calendly-decline scenarios. Knowledge gap escalation is about routing a specific question to a human — an email address is faster, lower-friction, and doesn't interrupt the conversation flow with a form. The visitor already has the agent's attention; the email is a parallel channel, not a replacement.
 
@@ -254,7 +253,7 @@ A consolidated view of every fallback in the system, when it fires, and why that
 | Hot/Warm declines Calendly        | Calendly booking   | Contact form (name, email, company, message)             | Captures lead data for manual outreach + HubSpot sync |
 | Hot/Warm — no Calendly slots      | Calendly booking   | Contact form + `calendly_fallback_used = true`           | Prevents dead-end on scheduling availability          |
 | Nurture declines soft nudge       | Soft Calendly (N4) | Warm close (N5), context saved                           | Low-pressure exit preserves re-engagement             |
-| Knowledge gap                     | Agent continues    | Contact email with SLA ("within 1 business day")         | Low-friction, doesn't interrupt conversation          |
+| Knowledge gap                     | Agent continues    | Contact email for human follow-up                        | Low-friction, doesn't interrupt conversation          |
 | Visitor unresponsive (2+ min)     | Continue chat      | Offer contact email                                      | Graceful timeout, doesn't lose the lead               |
 
 ---
@@ -420,7 +419,7 @@ Ordered by dependency. Complete each item before moving to the next group.
 
 ### Group 4 — Knowledge Gap & Nurture
 
-- [ ] Implement knowledge gap handoff: offer alternative → provide contact email → state SLA ("typically within 1 business day") → continue flow
+- [ ] Implement knowledge gap handoff: offer alternative → provide contact email → continue flow
 - [ ] Verify knowledge gap variables are written: `knowledge_gap_triggered`, `knowledge_gap_question`, `contact_form_question`
 - [ ] Implement full Nurture flow: N1 → N2 → N3 → N4 (upgrade or nudge) → N5 (warm close)
 - [ ] Implement Nurture upgrade logic: if CHAMP signals improve at N3, re-score and route to Warm or Hot
