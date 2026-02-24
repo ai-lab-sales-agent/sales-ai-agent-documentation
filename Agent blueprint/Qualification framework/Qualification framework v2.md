@@ -62,7 +62,7 @@ No equivalent in general flow. Collects leads/month and estimated conversation v
 Inspiration/preferences questions removed — not relevant for a B2B AI development service.
 
 **6. Contact form purpose**
-The contact form is a knowledge-gap escalation tool only — not tied to lead quality. It can appear at any point, for any lead category.
+The contact form serves as a fallback when a Hot or Warm lead declines Calendly — it captures structured lead data (name, email, company) for manual outreach. For knowledge gaps, the agent provides a contact email instead of a form (lower friction, doesn't interrupt the conversation). The form is not tied to lead quality — it can appear for any qualified lead category.
 
 **7. Warm lead conversion path**
 Warm leads go to Calendly tagged as Warm.

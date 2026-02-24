@@ -137,7 +137,7 @@ The Nurture flow is a multi-step sequence designed to upgrade the lead rather th
 **N1 — Share resources**
 > "Let me share a couple of examples of what we've built — these should give you a clearer sense of what's possible." [share case studies]
 
-Agent notes visitor's reaction. Set `nurture_stage = "N1_resources_shared"`. Set `conversion_action = "resources_sent"`.
+Agent notes visitor's reaction. Set `nurture_stage = "N1_resources_shared"`. Set `conversion_action = "resources_sent"`. Populate `resources_shared` with the list of links sent.
 
 **N2 — Check in**
 > "Did any of those feel close to what you're thinking about?"
@@ -184,6 +184,7 @@ See [Returning visitor routing](#returning-visitor-routing) for the full routing
 | `conversation_stage` | `"nurture"` → `"completed"` |
 | `nurture_stage` | Tracks N1–N5 progression |
 | `nurture_upgraded_to` | `"Warm"` or `"Hot"` if upgraded, `null` otherwise |
+| `resources_shared` | Array of case study / resource links sent at N1 |
 | `conversion_action` | `"resources_sent"`, `"meeting_booked"` (if upgraded), or `"none"` |
 
 ---
@@ -296,6 +297,7 @@ The pre-call brief gives the sales team all discovery context before their call 
    Leads/month:     {leads_per_month}
    Expected volume: {expected_volume}
    Current CRM:     {current_crm}
+   Website:         {website_platform}
    Chat tools:      {current_chat_tools}
    Integrations:    {integrations_needed}
 
@@ -314,7 +316,9 @@ The pre-call brief gives the sales team all discovery context before their call 
 
 ### Variable Mappings
 
-All variables in the template map directly to the Conversation Variables schema in [Data points schema v2](./Data%20points%20schema%20(JSON%20formatted)%20v2.md). No new variables are needed for the brief content — only the `pre_call_brief_sent` flag is new (see [Data schema impact](#data-schema-impact)).
+All variables in the template map to fields defined in [Data points schema v2](./Data%20points%20schema%20(JSON%20formatted)%20v2.md). Most map directly by name. The CHAMP signal variables (`ch_challenges`, `a_authority`, `m_money`, `p_prioritization`) are nested under the `champ_signals` object in the Conversation Variables schema but stored as flat columns in the Leads Table schema — use the Leads Table as the source for the brief, or access them as `champ_signals.ch_challenges` etc. from Conversation Variables.
+
+No new variables are needed for the brief content — only the `pre_call_brief_sent` flag is new (see [Data schema impact](#data-schema-impact)).
 
 ---
 
