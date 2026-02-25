@@ -388,6 +388,9 @@ Persistent table where lead data is stored across sessions. `lead_score` is popu
     "conversation_summary": { "type": ["string", "null"] },
     "resources_shared":     { "type": "array", "items": { "type": "string" }, "description": "List of case study / resource links shared with the visitor at Nurture N1. Used by returning visitor logic to skip N1.", "default": [] },
 
+    "qualification_complete": { "type": "boolean", "description": "Whether minimum qualification data was collected.", "default": false },
+    "conversation_stage":   { "type": "string", "enum": ["greeting", "introduction", "discovery_company", "discovery_use_case", "discovery_pain_points", "discovery_volume", "discovery_current_stack", "discovery_timeline", "discovery_budget", "champ_evaluation", "qualification_summary", "handoff_hot", "handoff_warm", "nurture", "knowledge_gap", "dq_closed", "completed"], "description": "Final conversation stage. Used by returning visitor logic to determine where previous conversation ended.", "default": "greeting" },
+
     "icp_exclusion_flag":   { "type": "boolean", "default": false },
     "is_returning_visitor":  { "type": "boolean", "default": false },
     "previous_lead_score":  { "type": "string", "enum": ["unscored", "Hot", "Warm", "Nurture", "DQ"], "description": "Lead score from previous conversation. Defaults to 'unscored' for new visitors.", "default": "unscored" },
