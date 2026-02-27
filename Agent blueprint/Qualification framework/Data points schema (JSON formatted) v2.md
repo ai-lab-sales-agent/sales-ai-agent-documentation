@@ -255,6 +255,13 @@ The agent evaluates CHAMP signals and assigns `lead_score` automatically. Insuff
       "default": null
     },
 
+    "unidentified_objections": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of objections the agent could not classify into known types (Pricing, Timing, Competitors, Scope, Trust). Logged for sales team review and future KB improvement. Agent provides contact email as fallback.",
+      "default": []
+    },
+
     "resources_shared": {
       "type": "array",
       "items": { "type": "string" },
@@ -385,6 +392,7 @@ Persistent table where lead data is stored across sessions. `lead_score` is popu
     "contact_form_question":{ "type": ["string", "null"] },
     "knowledge_gap_triggered":  { "type": "boolean", "default": false, "description": "True if visitor asked a question outside agent's KB." },
     "knowledge_gap_question":   { "type": ["string", "null"], "description": "The question the agent could not answer. Null if no knowledge gap." },
+    "unidentified_objections":  { "type": "array", "items": { "type": "string" }, "description": "Objections the agent could not classify. Logged for sales team review.", "default": [] },
     "conversation_summary": { "type": ["string", "null"] },
     "resources_shared":     { "type": "array", "items": { "type": "string" }, "description": "List of case study / resource links shared with the visitor at Nurture N1. Used by returning visitor logic to skip N1.", "default": [] },
 
