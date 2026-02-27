@@ -74,7 +74,7 @@ flowchart TD
     N1 --> N2["N2: Check in — 'resonate?'"]
     N2 --> N3[N3: Re-qualify — CHAMP recheck]
 
-    N3 --> N3_CHECK{"all CHAMP\nsignals\nimproved?"}
+    N3 --> N3_CHECK{"all CHAMP signals improved?"}
     N3_CHECK -- "Yes" --> QUAL_CHECK_UP{Is qualification_complete true?}
     N3_CHECK -- "No" --> N4_NO[N4: NO UPGRADE]
 
