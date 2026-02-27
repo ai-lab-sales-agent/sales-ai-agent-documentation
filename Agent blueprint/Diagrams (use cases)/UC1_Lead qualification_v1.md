@@ -82,11 +82,11 @@ flowchart TD
     QUAL_CHECK_UP -- "Yes, CH + positive, confirmed 1 of A/M/P" --> WARM
     QUAL_CHECK_UP -- "No, only\nCH = positive" --> S6
 
-    N4_NO --> N4_NUDGE["N4: Soft Calendly nudge - 'exploratory, no commitment'"]
+    N4_NO --> N4_NUDGE["N4: Soft Contact form nudge - 'follow up, no commitment'"]
     N4_NUDGE --> N4_ACC{Accepts?}
-    N4_ACC -- "Yes" --> N4_CAL[Lead tag: Nurture]
+    N4_ACC -- "Yes" --> N4_FORM["Form submitted to Botpress Table. Lead tag: Nurture"]
     N4_ACC -- "No" --> N5[N5: Warm close]
-    N4_CAL --> DONE
+    N4_FORM --> DONE
     N5 --> CLOSED([Closed positively])
     DQ_ICP["DQ: ICP Exclusion = FAIL (adult/russia-based)"] --> DQ_CLOSE
     DQ_BUDGET["DQ: Budget < €5,000 EUR INSUFFICIENT BUDGET - M: NEGATIVE"] --> DQ_CLOSE

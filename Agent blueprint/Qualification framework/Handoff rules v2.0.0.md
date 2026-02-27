@@ -29,7 +29,7 @@ This document is the single reference for what happens **after** the agent compl
 | **Hot**      | All 4 CHAMP signals positive                           | Calendly (tag: Hot)              | Contact form; availability fallback | Botpress Table -> Calendly -> HubSpot |
 | **Warm**     | CH positive, 1-2 of A/M/P missing (>=1 confirmed)     | Calendly (tag: Warm)             | Contact form; availability fallback | Botpress Table -> Calendly -> HubSpot |
 | **Nurture (Early)** | CH unclear/negative after Step 5 (use case + pain points not defined) | Resources -> re-qualify -> resume discovery at Step 6 | Warm close (N5) | Botpress Table |
-| **Nurture (Standard)** | CH positive, but none of A/M/P positive after Step 10 | Resources -> re-qualify -> nudge | Warm close (N5) | Botpress Table |
+| **Nurture (Standard)** | CH positive, but none of A/M/P positive after Step 10 | Resources -> re-qualify -> contact form nudge | Warm close (N5) | Botpress Table |
 | **DQ**       | ICP exclusion, no need, wrong scope, spam, budget <€5k | Polite close                     | --                                  | Botpress Table (tag: DQ)              |
 
 > Agent language for each category is provided in the dedicated section below.
@@ -164,12 +164,12 @@ Surfaces blockers. Agent re-evaluates CHAMP signals. Set `nurture_stage = "N3_re
 - If Challenges become `positive` → agent **resumes discovery at Step 6** (DISCOVERY_VOLUME). Set `nurture_stage = "N4_upgraded"`. Set `conversation_stage = "discovery_volume"`.
 - The agent does NOT present Calendly at this point — full discovery (Steps 6–9) and CHAMP scoring at Step 10 must happen first. After completing discovery, the lead is scored normally.
 
-**N4 (no upgrade)** — Soft Calendly nudge:
-> "Even if it's just exploratory, a 20-minute call might help clarify what's realistic for you — no commitment needed. Want the link?"
+**N4 (no upgrade)** — Soft Contact form nudge:
+> "Even if it's just exploratory — I can have someone follow up with you directly. No commitment needed. Can I take your details?"
 
-If accepted → Calendly (tag: Nurture). Set `nurture_stage = "N4_nudged"`. The booking is exploratory — no pre-call brief is sent, but the post-booking confirmation message is still delivered.
+If accepted → Contact form (tag: Nurture). Set `nurture_stage = "N4_nudged"`. Set `conversion_action = "form_submitted"`. The form captures name, email, company, and optional message — same as the Hot/Warm Calendly-decline fallback form.
 
-**N5 — Warm close** (if Calendly declined):
+**N5 — Warm close** (if contact form declined):
 > "Totally understood — come back when the timing is better. I'll make a note so our team has context if you do reach out."
 
 Set `nurture_stage = "N5_warm_closed"`. Conversation ends positively.
@@ -182,7 +182,7 @@ When a previously Nurture-scored visitor returns, the agent does **not** restart
 2. Skip N1 (resources already shared). Start from N2 — check in on whether anything has changed.
 3. Re-evaluate CHAMP signals with fresh information.
 4. If signals improve → upgrade to Warm or Hot and present Calendly.
-5. If signals haven't changed → offer the soft Calendly nudge (N4) or warm close (N5).
+5. If signals haven't changed → offer the soft contact form nudge (N4) or warm close (N5).
 
 See [Returning visitor routing](#returning-visitor-routing) for the full routing table.
 
@@ -195,7 +195,7 @@ See [Returning visitor routing](#returning-visitor-routing) for the full routing
 | `nurture_stage`       | Tracks N1–N5 progression                                         |
 | `nurture_upgraded_to` | `"Warm"` or `"Hot"` if upgraded, `null` otherwise                |
 | `resources_shared`    | Array of case study / resource links sent at N1                   |
-| `conversion_action`   | `"resources_sent"`, `"meeting_booked"` (if upgraded), or `"none"` |
+| `conversion_action`   | `"resources_sent"`, `"meeting_booked"` (if upgraded), `"form_submitted"` (N4 nudge accepted), or `"none"` |
 
 ---
 
@@ -268,7 +268,7 @@ A consolidated view of every fallback in the system, when it fires, and why that
 |---------------------------------|---------------------|---------------------------------------------------------|---------------------------------------------------------|
 | Hot/Warm declines Calendly      | Calendly booking    | Contact form (name, email, company, message)            | Captures lead data for manual outreach + HubSpot sync   |
 | Hot/Warm -- no Calendly slots   | Calendly booking    | Contact form + `calendly_fallback_used = true`          | Prevents dead-end on scheduling availability            |
-| Nurture declines soft nudge     | Soft Calendly (N4)  | Warm close (N5), context saved                          | Low-pressure exit preserves re-engagement               |
+| Nurture declines soft nudge     | Contact form (N4)   | Warm close (N5), context saved                          | Low-pressure exit preserves re-engagement               |
 | Knowledge gap                   | Agent continues     | Contact email for human follow-up                       | Low-friction, doesn't interrupt conversation            |
 | Visitor unresponsive (2+ min)   | Continue chat       | Soft close: save context, invite to return               | Graceful exit, preserves re-engagement opportunity       |
 
@@ -319,7 +319,7 @@ The pre-call brief gives the sales team all discovery context before their call 
 
 | Attribute            | Detail                                                                                                            |
 |----------------------|-------------------------------------------------------------------------------------------------------------------|
-| **Trigger**          | `conversion_action = "meeting_booked"` for Hot/Warm (incl. upgraded Nurture). Not sent for N4 soft-nudge bookings |
+| **Trigger**          | `conversion_action = "meeting_booked"` for Hot/Warm (incl. upgraded Nurture) |
 | **Delivery channel** | Slack notification to sales channel (email fallback)                                                              |
 | **Timing**           | Immediately after Calendly booking confirmed                                                                      |
 | **Format**           | Structured message with variable mappings (see template below)                                                    |
@@ -395,7 +395,7 @@ The agent updates `lead_score` if the visitor's category changes during the retu
 
 ## Post-booking Confirmation
 
-**Trigger:** Visitor successfully books via Calendly (`conversion_action = "meeting_booked"`). Fires for all booking scenarios: Hot, Warm, upgraded Nurture, and non-upgraded Nurture (N4 soft nudge).
+**Trigger:** Visitor successfully books via Calendly (`conversion_action = "meeting_booked"`). Fires for all booking scenarios: Hot, Warm, and upgraded Nurture. (Non-upgraded Nurture leads are routed to the contact form instead of Calendly — see N4 no upgrade.)
 
 **Message:**
 > "You're all set — [sales team member] will be in touch before your call. In the meantime, I'll share a quick summary of what we discussed so they can hit the ground running."
@@ -406,8 +406,7 @@ The agent updates `lead_score` if the visitor's category changes during the retu
 
 **What happens next:**
 1. For Hot and Warm leads (including upgraded Nurture): pre-call context brief is generated and sent to the sales team. `pre_call_brief_sent` is set to `true`.
-2. For non-upgraded Nurture leads (N4 soft nudge booking): no pre-call brief — the booking is exploratory. `pre_call_brief_sent` remains `false`.
-3. Conversation is marked as completed in Botpress Table.
+2. Conversation is marked as completed in Botpress Table.
 
 ---
 

@@ -390,16 +390,16 @@
     ┌───────────────────┐               ┌───────────────────┐
     │  YES — UPGRADE    │               │  NO — NO UPGRADE  │
     │                   │               │                   │
-    │  STANDARD NURTURE:│               │  N4: Soft Calendly│
-    │  CH + 1 signal    │               │  nudge            │
+    │  STANDARD NURTURE:│               │  N4: Soft Contact │
+    │  CH + 1 signal    │               │  form nudge       │
     │  confirmed → WARM │               │                   │
     │  All 4 → HOT      │               │  "Even if it's    │
-    │  Present Calendly │               │  just exploratory,│
-    │  with upgraded    │               │  a 20-min call    │
-    │  tag.             │               │  might help       │
-    │                   │               │  clarify what's   │
-    │  EARLY NURTURE:   │               │  realistic."      │
-    │  CH becomes       │               │                   │
+    │  Present Calendly │               │  just exploratory  │
+    │  with upgraded    │               │  — I can have     │
+    │  tag.             │               │  someone follow   │
+    │                   │               │  up directly. Can │
+    │  EARLY NURTURE:   │               │  I take your      │
+    │  CH becomes       │               │  details?"        │
     │  positive →       │               │                   │
     │  RESUME DISCOVERY │               │                   │
     │  at Step 6        │               │                   │
@@ -412,8 +412,9 @@
                           ┌──────────────┐           ┌──────────────┐
                           │  ACCEPTED    │           │  DECLINED    │
                           │              │           │              │
-                          │  → Calendly  │           │  → N5: Warm  │
-                          │  (tagged     │           │    close     │
+                          │  → Contact   │           │  → N5: Warm  │
+                          │  form        │           │    close     │
+                          │  (tag:       │           │              │
                           │   Nurture)   │           │              │
                           └──────────────┘           └──────┬───────┘
                                                             │
