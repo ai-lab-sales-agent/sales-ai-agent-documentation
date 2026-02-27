@@ -254,11 +254,11 @@ The system must support returning visitor recognition. Stored per visitor (via B
 
 ### 5.3 HubSpot Contact (Read for MVP)
 
-> **MVP Scope:** HubSpot CRM write operations are **OUT of scope for MVP.**
->
-> Contact creation in HubSpot will be handled via contact form submission (existing website form → HubSpot) or Calendly's native HubSpot sync, not via direct Botpress → HubSpot write integration.
->
-> *Post-MVP (v2): Direct Botpress → HubSpot integration for contact creation, property mapping, lifecycle stage updates, and conversation log attachment.*
+MVP Scope: HubSpot CRM write operations are OUT of scope for MVP.
+
+Contact creation in HubSpot will be handled via contact form submission (existing website form → HubSpot) or Calendly's native HubSpot sync, not via direct Botpress → HubSpot write integration.
+
+Post-MVP (v2): Direct Botpress → HubSpot integration for contact creation, property mapping, lifecycle stage updates, and conversation log attachment.
 
 ---
 
