@@ -1,7 +1,10 @@
-# Sales AI Agent Decision Tree v2 — CHAMP · Scored Flow
+# Sales AI Agent Decision Tree v2.1.0 — CHAMP · Scored Flow
+
+> Updated: February 26, 2026
 
 > Agent evaluates CHAMP signals · Hot + Warm → Calendly (tagged) · Nurture → resources + re-qualify · DQ → polite close
-> Knowledge gap = offer alternative + contact email, then continue discovery
+> Knowledge gap = partial answer OR admit gap → suggest alternative + contact email → resume discovery
+> Early Nurture = CH not established after Step 5 → Nurture flow → if CH improves, resume at Step 6
 
 ---
 
@@ -93,6 +96,32 @@
 └───────────────────────────────┬─────────────────────────────────────┘
                                 │
                                 ▼
+                  ┌─────────────────────────────┐
+                  │  EARLY NURTURE CHECKPOINT   │
+                  │  Are use case + pain points │
+                  │  defined? (CH signal)       │
+                  └─────────────┬───────────────┘
+                                │
+              ┌─────────────────┴─────────────────┐
+              │                                   │
+              ▼                                   ▼
+    ┌───────────────────┐               ┌───────────────────┐
+    │  CH = POSITIVE    │               │  CH = UNCLEAR /   │
+    │  (use case +      │               │  NEGATIVE         │
+    │   pain defined)   │               │  (not defined)    │
+    │                   │               │                   │
+    │  Continue to      │               │  → EARLY NURTURE  │
+    │  Step 6           │               │  Enter Nurture    │
+    │        ↓          │               │  flow (N1–N5).    │
+    └────────┬──────────┘               │                   │
+             │                          │  If CH becomes    │
+             │                          │  positive at N4:  │
+             │                          │  → Resume at      │
+             │                          │    Step 6         │
+             │                          │  (NOT Calendly)   │
+             │                          └───────────────────┘
+             │
+             ▼
 ┌─────────────────────────────────────────────────────────────────────┐
 │  STEP 6: DISCOVERY_VOLUME                                           │
 │                                                                     │
@@ -151,15 +180,15 @@
               ▼                 ▼                 ▼
        ┌────────────┐   ┌────────────┐   ┌────────────┐
        │  ≥ €5,000  │   │  < €5,000  │   │ "Not sure" │
-       │            │   │            │   │ / won't    │
-       │ M signal:  │   │ M signal:  │   │ say        │
-       │ POSITIVE   │   │ NEGATIVE   │   │ M signal:  │
-       │            │   │            │   │ NEGATIVE   │
-       │ Also check │   │            │   │            │
-       │ Authority: │   │ → DQ       │   │            │
+       │            │   │ (explicit) │   │ / won't    │
+       │ M signal:  │   │            │   │ say /      │
+       │ POSITIVE   │   │ M signal:  │   │ undefined  │
+       │            │   │ NEGATIVE   │   │            │
+       │ Also check │   │            │   │ M signal:  │
+       │ Authority: │   │ → DQ       │   │ UNCLEAR    │
        │ Decision-  │   │ trigger:   │   │            │
-       │ maker?     │   │ insufficient│   │            │
-       │ Y → A: POS │   │ budget     │   │            │
+       │ maker?     │   │ insufficient│   │ Does NOT   │
+       │ Y → A: POS │   │ budget     │   │ trigger DQ │
        │ N → A: NEG │   │            │   │            │
        └─────┬──────┘   └─────┬──────┘   └─────┬──────┘
              │                │                 │
@@ -191,9 +220,10 @@
 │  A  — Authority:   Decision-maker or confirmed budget access?       │
 │                    STRONG. Differentiates Hot from Warm.            │
 │                                                                     │
-│  M  — Money:       Budget ≥ €5,000?                                 │
+│  M  — Money:       Budget ≥ €5,000? → positive                      │
+│                    Below €5,000 (explicit) → negative = DQ trigger. │
+│                    "Not sure" / undefined → unclear (no DQ).        │
 │                    STRONG. Differentiates Hot from Warm.            │
-│                    Below €5,000 = DQ trigger.                       │
 │                                                                     │
 │  P  — Prioritiz.:  _+ weeks realistic deadline?                     │
 │                    MODERATE. Differentiates Hot from Warm.          │
@@ -208,17 +238,18 @@
      │          │               │               │          │
      ▼          ▼               ▼               ▼          ▼
 ┌─────────┐ ┌─────────┐  ┌───────────┐  ┌─────────┐ ┌─────────┐
-│   HOT   │ │  WARM   │  │   NURTURE │  │   DQ    │ │   DQ    │
-│         │ │         │  │           │  │ (CHAMP) │ │ (ICP)   │
-│All 4    │ │CH: ✓    │  │CH: weak/  │  │No need  │ │Adult/   │
-│confirmed│ │         │  │  vague    │  │Wrong    │ │18+      │
-│         │ │Missing  │  │           │  │scope    │ │russia-  │
-│CH: ✓    │ │1-2 of:  │  │M / P not  │  │No sales │ │based    │
-│A:  ✓    │ │A, M, P  │  │established│  │team     │ │         │
-│M:  ✓    │ │         │  │           │  │Spam     │ │         │
-│P:  ✓    │ │At least │  │Exploring  │  │ICP excl.│ │Caught   │
-│         │ │1 of 3   │  │options    │  │Budget   │ │at       │
-│         │ │confirmed│  │           │  │< €5,000 │ │Step 3   │
+│   HOT   │ │  WARM   │  │  NURTURE  │  │   DQ    │ │   DQ    │
+│         │ │         │  │ (Standard)│  │ (CHAMP) │ │ (ICP)   │
+│All 4    │ │CH: ✓    │  │           │  │No need  │ │Adult/   │
+│positive │ │         │  │CH: ✓      │  │Wrong    │ │18+      │
+│         │ │1-2 of   │  │A: unclear │  │scope    │ │russia-  │
+│CH: ✓    │ │A, M, P  │  │  /negative│  │No sales │ │based    │
+│A:  ✓    │ │positive │  │M: unclear │  │team     │ │         │
+│M:  ✓    │ │         │  │P: unclear │  │Spam     │ │         │
+│P:  ✓    │ │At least │  │  /negative│  │ICP excl.│ │Caught   │
+│         │ │1 of 3   │  │           │  │Budget   │ │at       │
+│         │ │positive │  │None of    │  │< €5,000 │ │Step 3   │
+│         │ │         │  │A/M/P is ✓ │  │(explicit)│ │         │
 └────┬────┘ └────┬────┘  └─────┬─────┘  └────┬────┘ └────┬────┘
      │          │             │             │           │
      ▼          ▼             ▼             ▼           ▼
@@ -307,8 +338,15 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│  NURTURE: Agent knows this is a Nurture lead from CHAMP scoring.    │
-│  Frames check-in with more intent to upgrade.                       │
+│  NURTURE FLOW                                                       │
+│                                                                     │
+│  Entry conditions:                                                  │
+│  1. EARLY NURTURE: CH unclear/negative after Step 5                 │
+│     (use case + pain points not defined)                            │
+│  2. STANDARD NURTURE: CH positive, but none of A/M/P               │
+│     are positive after Step 10                                      │
+│                                                                     │
+│  Agent frames check-in with intent to upgrade.                      │
 └───────────────────────────────┬─────────────────────────────────────┘
                                 │
                                 ▼
@@ -352,16 +390,20 @@
     ┌───────────────────┐               ┌───────────────────┐
     │  YES — UPGRADE    │               │  NO — NO UPGRADE  │
     │                   │               │                   │
-    │  CH + 1 signal    │               │  N4: Soft Calendly│
-    │  confirmed        │               │  nudge            │
-    │  → WARM           │               │                   │
-    │                   │               │  "Even if it's    │
-    │  All 4 confirmed  │               │  just exploratory,│
-    │  → HOT            │               │  a 20-min call    │
-    │                   │               │  might help       │
-    │  Present Calendly │               │  clarify what's   │
-    │  with upgraded    │               │  realistic."      │
-    │  tag.             │               │                   │
+    │  STANDARD NURTURE:│               │  N4: Soft Calendly│
+    │  CH + 1 signal    │               │  nudge            │
+    │  confirmed → WARM │               │                   │
+    │  All 4 → HOT      │               │  "Even if it's    │
+    │  Present Calendly │               │  just exploratory,│
+    │  with upgraded    │               │  a 20-min call    │
+    │  tag.             │               │  might help       │
+    │                   │               │  clarify what's   │
+    │  EARLY NURTURE:   │               │  realistic."      │
+    │  CH becomes       │               │                   │
+    │  positive →       │               │                   │
+    │  RESUME DISCOVERY │               │                   │
+    │  at Step 6        │               │                   │
+    │  (NOT Calendly)   │               │                   │
     └───────────────────┘               └────────┬──────────┘
                                                  │
                                    ┌─────────────┴─────────────┐
@@ -414,17 +456,20 @@
 └────┬─────┘           └──────┬───────┘           └──────┬───────┘
      │                        │                          │
      ▼                        ▼                          ▼
-Answer from KB.        Answer what you can.        1. Offer an alternative
-                       "Our team can give             the agent CAN help
-                       more detail on a call."        with.
-                                                   2. Provide contact email
-                                                      for human follow-up:
-                                                      "You can reach our
-                                                      team at [email] —
-                                                      they'll get back
-                                                      to you."
-                                                   3. Continue discovery
-                                                      flow.
+Answer from KB.        1. Answer what you can.   1. Acknowledge the gap.
+                       2. Suggest alternative       Do NOT invent an
+                          the agent CAN help        answer.
+                          with.                  2. Suggest alternative
+                       3. Provide contact email     the agent CAN help
+                          for full details:         with.
+                          "You can reach our     3. Provide contact email
+                          team at [email] —         for human follow-up:
+                          they'll get back          "You can reach our
+                          to you."                  team at [email] —
+                       4. Continue discovery         they'll get back
+                          flow.                     to you."
+                                                 4. Continue discovery
+                                                    flow.
      │                        │                          │
      └────────────────────────┴──────────────────────────┘
                               │
@@ -448,15 +493,23 @@ Answer from KB.        Answer what you can.        1. Offer an alternative
 │                                                                     │
 │   HOT:    ✓              ✓           ✓          ✓                   │
 │                                                                     │
-│   WARM:   ✓         1-2 of A/M/P missing                            │
-│             (at least 1 of A/M/P confirmed)                         │
+│   WARM:   ✓         1-2 of A/M/P positive                           │
+│             (at least 1 of A/M/P confirmed as positive)             │
 │                                                                     │
-│   NURTURE: weak/vague    M/P not established                        │
-│              (or CH confirmed + all 3 of A/M/P missing)             │
+│   NURTURE (Early):  unclear/negative (after Step 5)                 │
+│             Use case + pain points not defined                      │
+│             → If CH becomes positive at N4: resume at Step 6        │
+│                                                                     │
+│   NURTURE (Standard): ✓   all of A/M/P unclear or negative         │
+│             CH confirmed but none of A/M/P positive (after Step 10) │
 │                                                                     │
 │   DQ:     No relevant need, wrong scope, no sales team,             │
 │             spam, ICP exclusion (Adult/18+, russia-based),          │
-│             or insufficient budget (< €5,000)                       │
+│             or budget explicitly below €5,000                       │
+│                                                                     │
+│  M (Money) SIGNAL:                                                  │
+│    ≥ €5,000 → positive | < €5,000 explicit → negative (DQ)         │
+│    "Not sure" / undefined → unclear (NO DQ)                         │
 │                                                                     │
 │  KEY RULE: Without Challenges confirmed → max outcome = Nurture     │
 └─────────────────────────────────────────────────────────────────────┘
@@ -499,11 +552,38 @@ Agent scores with available data → Route accordingly
 [No response for 2+ minutes]
      │
      ▼
-Agent: "Still there? No rush — let me know when you're ready
-        to continue, or I can have our team reach out."
+Agent: "Still there? No rush — let me know when you're
+        ready to continue."
      │
      ▼
-Wait for response or offer contact email
+[Still no response]
+     │
+     ▼
+Agent: "No worries — I'll save our conversation so we can
+        pick up where we left off. Feel free to come back
+        anytime."
+     │
+     ▼
+Soft close. Context saved for returning visitor logic.
+```
+
+### Visitor Raises Objection
+```
+Visitor: [objection — price, timing, competition, trust, authority]
+     │
+     ▼
+Agent: 1. Acknowledge the concern
+       2. Address with KB content (case studies, frameworks,
+          social proof)
+       3. Reframe value if appropriate
+     │
+     ▼
+Resume current discovery step or handoff flow
+
+Note: If objection falls outside KB → Knowledge Gap flow
+      (suggest alternative + contact email + resume)
+Agent must NOT: offer discounts, guarantee outcomes,
+                compare competitors by name, pressure visitor.
 ```
 
 ### Auto-DQ Scenarios
@@ -517,8 +597,9 @@ Wait for response or offer contact email
 │     → Immediate polite close. No Calendly. No form.                 │
 │                                                                     │
 │  2. Insufficient budget detected at Step 9:                         │
-│     - Budget explicitly stated as less than €5,000                  │
-│     → DQ trigger. Polite close.                                     │
+│     - Budget EXPLICITLY stated as less than €5,000                  │
+│     - "Not sure" / undefined budget → M: UNCLEAR (NOT DQ)          │
+│     → DQ trigger (explicit < €5k only). Polite close.              │
 │     → "Thanks for reaching out — based on what you've described,    │
 │        this service may not be the right fit right now."            │
 │                                                                     │

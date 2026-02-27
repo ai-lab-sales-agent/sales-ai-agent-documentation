@@ -1,4 +1,6 @@
-# Qualification framework v2
+# Qualification framework v2.1.0
+
+> Updated: February 26, 2026
 
 ## ICP definition
 
@@ -116,6 +118,7 @@ Challenges — what problem do they have?
 **M — Money**
 - **Maps to:** DISCOVERY_BUDGET (Step 9)
 - **What the agent collects:** Budget range for the project. Floor: €5,000. Explored after challenges are established — visitor with a clear problem but uncertain budget is still valuable.
+- **Signal mapping:** Budget ≥ €5,000 → `positive`. Budget explicitly below €5,000 → `negative` (DQ trigger). Budget undefined or "not sure" → `unclear` (does not trigger DQ — lead remains qualifiable).
 
 **P — Prioritization**
 - **Maps to:** DISCOVERY_TIMELINE (Step 8)
@@ -150,6 +153,18 @@ Challenges — what problem do they have?
 - **Key questions / content:** Too slow to respond to leads? Sales team overwhelmed? Low website conversion? No 24/7 coverage? Lost deals to faster competitors?
 - **vs. General flow:** Same intent as general flow. Deepens the Challenges signal from Step 4.
 
+### Early Nurture Checkpoint (After Step 5)
+
+After Step 5, the agent evaluates whether Challenges (CH) have been established. If the visitor's use case and pain points remain unclear or undefined after both Step 4 and Step 5, the agent enters the **Early Nurture flow** instead of continuing to Step 6.
+
+**Trigger:** Use case and pain points not defined after Step 5. CH signal = `unclear` or `negative`.
+
+**Why:** Continuing discovery (volume, stack, timeline, budget) without established Challenges produces low-value data. The Nurture flow helps the visitor clarify their needs through resources and re-engagement before the agent invests in deeper discovery.
+
+**What happens next:** The agent follows the Nurture flow (N1–N5). If CH becomes `positive` during N4 (upgrade path), the agent **resumes discovery at Step 6** — not Calendly — since the remaining discovery steps (volume, stack, timeline, budget) have not been completed.
+
+See [Nurture Flow](#nurture-flow) for details.
+
 **Step 6 — DISCOVERY_VOLUME**
 - **Goal:** Understand scale requirements.
 - **Key questions / content:** How many leads/month does the website currently receive? Expected conversation volume after launch?
@@ -174,20 +189,23 @@ Challenges — what problem do they have?
 
 ## Knowledge Gap Escalation
 
-When the visitor asks a question the agent cannot answer at all, the agent follows this sequence:
+When the visitor asks a question the agent cannot fully answer — either partially or not at all — the agent follows this sequence:
 
-1. **Acknowledge the gap honestly.** The agent does NOT invent an answer.
-2. **Offer an alternative.** The agent suggests a related topic it can help with, or reframes the question to something within its knowledge.
-3. **Provide a contact email.** The agent gives the visitor an email address to reach a human team member for a detailed answer.
-4. **Continue the discovery flow.** The agent resumes the conversation. Qualification does not stop.
+1. **Respond with what it can.** If the agent has partial knowledge, it provides what it knows. If it has no relevant information, it acknowledges the gap honestly. The agent does NOT invent an answer.
+2. **Suggest an alternative.** The agent offers a related topic it can help with, or reframes the question to something within its knowledge.
+3. **Provide a contact email.** The agent gives the visitor an email address to reach a human team member for a detailed or complete answer.
+4. **Resume the discovery flow.** The agent continues the conversation. Qualification does not stop.
 
-**Example language**
+**Example language (partial answer)**
+"I can share some general context on that — [partial answer]. For the full picture, our team can give you more detail. You can reach them at [email address]. In the meantime, let's keep going — I'd love to learn more about your project."
+
+**Example language (no answer)**
 "That's a great question — unfortunately, I don't have the details to answer that one. I can help you with [related alternative], or if you'd prefer a direct answer, you can reach our team at [email address]. They'll get back to you quickly. In the meantime, let's keep going — I'd love to learn more about your project."
 
 **Data captured**
-The unanswered question is noted in the Botpress Table (Leads Table) for sales team follow-up. The visitor receives a contact email for human follow-up.
+The unanswered or partially answered question is noted in the Botpress Table (Leads Table) for sales team follow-up. The visitor receives a contact email for human follow-up.
 
-*Design principle: the agent stays in the conversation after offering the alternative and email. The visitor gets continuity and a clear path to a human; the sales team gets the unanswered question. This prevents both dead-end conversations and hallucinated answers.*
+*Design principle: whether the agent can partially answer or not at all, it always suggests an alternative topic it can help with and provides the contact email. The agent stays in the conversation afterward. The visitor gets continuity and a clear path to a human; the sales team gets the flagged question. This prevents both dead-end conversations and hallucinated answers.*
 
 ---
 
@@ -212,16 +230,18 @@ Introduces automated lead evaluation based on CHAMP signals. After collecting di
 - **Conversion path:** Calendly
 
 **Nurture**
-- **Criteria:** Challenges vague or early-stage. Money/timeline not established. Exploring options.
+- **Criteria:** One of two conditions:
+  1. **Early Nurture (after Step 5):** Use case and pain points not defined — Challenges signal is `unclear` or `negative`. Agent has not yet completed full discovery.
+  2. **Standard Nurture (after Step 10):** Challenges confirmed (`positive`), but none of Authority, Money, or Prioritization are confirmed as `positive` — all remain `unclear` or `negative` (except M `negative` which triggers DQ).
 - **Agent action:** Share resources. Re-qualify. Soft Calendly nudge. See Nurture flow below.
-- **Conversion path:** Resources → re-qualify → soft Calendly nudge
+- **Conversion path:** Resources → re-qualify → upgrade or soft Calendly nudge
 
 **DQ**
 - **Criteria:** No relevant need, wrong scope, no sales team, spam, meeting ICP exclusion criteria, or insufficient budget (less than €5,000).
 - **Agent action:** Politely disengage. No conversion action.
 - **Conversion path:** Thank & close
 
-**Hot vs Warm distinction:** Both go to Calendly — the difference is Botpress Table tagging. Hot = all 4 CHAMP signals confirmed. Warm = Challenges confirmed + 1–2 of Money / Prioritization / Authority missing (at least 1 confirmed). Sales team uses the tag to decide prep and follow-up depth.
+**Hot vs Warm distinction:** Both go to Calendly — the difference is Botpress Table tagging. Hot = all 4 CHAMP signals `positive`. Warm = Challenges `positive` + 1–2 of Authority / Money / Prioritization `positive` (at least 1 of the 3 confirmed, others `unclear` or `negative`). Sales team uses the tag to decide prep and follow-up depth.
 
 ### CHAMP Signal Weights
 
@@ -232,17 +252,20 @@ Introduces automated lead evaluation based on CHAMP signals. After collecting di
 
 **A — Authority**
 - **Positive:** Decision-maker or confirmed budget access
-- **Negative:** Needs manager approval, unclear role
+- **Negative:** Needs manager approval, explicitly no authority
+- **Unclear:** Role not discussed or visitor hasn't clarified decision-making involvement
 - **Weight:** Strong — differentiates Hot from Warm
 
 **M — Money**
 - **Positive:** At or above €5,000 (starting price: €5,000, subject to change)
-- **Negative:** Below €5,000 or undefined. Below €5,000 = DQ trigger.
+- **Negative:** Explicitly below €5,000. Triggers automatic DQ.
+- **Unclear:** Budget not discussed, "not sure", or visitor declines to share. Does not trigger DQ — lead remains qualifiable.
 - **Weight:** Strong — differentiates Hot from Warm
 
 **P — Prioritization**
-- **Positive:** X+ weeks, realistic deadline
-- **Negative:** Under X weeks or "someday"
+- **Positive:** X+ weeks, realistic deadline or trigger event identified
+- **Negative:** Under X weeks (unrealistic) or explicitly "someday" / no priority
+- **Unclear:** Timeline not discussed or visitor hasn't committed to a timeframe
 - **Weight:** Moderate — differentiates Hot from Warm
 
 ### Step 10 — QUALIFICATION_SUMMARY with CHAMP Scoring
@@ -260,9 +283,9 @@ After discovery, the agent internally evaluates the lead against all four CHAMP 
 - **Conversion path:** Calendly → Botpress Table (tag: Warm)
 
 **Nurture**
-- **Situation:** Challenges vague or Money/Prioritization not established.
+- **Situation:** Challenges confirmed but none of Authority, Money, or Prioritization are `positive` — all remain `unclear` or `negative` (except M `negative` = DQ). (Note: Early Nurture is triggered before Step 10 if Challenges are not established after Step 5 — see [Early Nurture Checkpoint](#early-nurture-checkpoint-after-step-5).)
 - **Agent action:** Resources → check in → re-qualification → soft Calendly nudge. See Nurture flow below.
-- **Conversion path:** Resources → re-qualify → soft Calendly nudge
+- **Conversion path:** Resources → re-qualify → upgrade or soft Calendly nudge
 
 **DQ**
 - **Situation:** No relevant need, wrong scope, no sales team, spam, meeting ICP exclusion criteria, or insufficient budget (less than €5,000).
@@ -296,8 +319,9 @@ The agent already knows this is a Nurture lead from its CHAMP scoring — so it 
 - **Outcome:** Surfaces blockers. If CHAMP signals clarified positively, agent can upgrade to Warm or Hot.
 
 **N4 (upgrade path)** — If CHAMP signals improve after N3
-- **Agent action:** Re-evaluates CHAMP. If Challenges + any 1 signal confirmed → Warm. If all 4 confirmed → Hot.
-- **Outcome:** Upgraded to Warm or Hot. Calendly presented.
+- **Standard Nurture (entered at Step 10):** Re-evaluates CHAMP. If Challenges + any 1 signal confirmed → Warm. If all 4 confirmed → Hot. Upgraded lead follows Warm or Hot handoff (Calendly presented).
+- **Early Nurture (entered after Step 5):** If Challenges become `positive`, the agent **resumes discovery at Step 6** (DISCOVERY_VOLUME) to complete the remaining discovery steps. The agent does NOT present Calendly — full discovery and CHAMP scoring at Step 10 must happen first.
+- **Outcome:** Standard Nurture → upgraded to Warm or Hot, Calendly presented. Early Nurture → return to discovery flow at Step 6.
 
 **N4 (no upgrade)** — Soft Calendly nudge if no upgrade
 - **Example:** "Even if it's just exploratory, a 20-minute call might help clarify what's realistic for you — no commitment needed. Want the link?"
@@ -306,6 +330,31 @@ The agent already knows this is a Nurture lead from its CHAMP scoring — so it 
 **N5 — Warm close** *(if Calendly declined)*
 - **Example:** "Totally understood — come back when the timing is better. I'll make a note so our team has context if you do reach out."
 - **Outcome:** Conversation ends positively.
+
+### Objection Handling
+
+During discovery, the visitor may raise objections — concerns about pricing, timing, relevance, or competition. The agent treats objections as part of the natural conversation flow, not as blockers.
+
+**Agent approach:**
+
+1. **Acknowledge** the concern. Do not dismiss or ignore it.
+2. **Address** it using KB content — case studies, social proof, pricing frameworks, or relevant examples.
+3. **Reframe** the value proposition where appropriate: what the Sales AI Agent enables, not just what it costs.
+4. **Continue** the discovery flow. Objections do not stop qualification.
+
+**Common objection categories:**
+
+| Objection Type | Example | Agent Response Strategy |
+|---|---|---|
+| **Price** | "That's too expensive" | Reference pricing frameworks, ROI of automation, cost of inaction |
+| **Timing** | "Not the right time" | Acknowledge, explore trigger events, note for follow-up |
+| **Competition** | "We already use X" | Do not discuss competitors by name. Focus on differentiators and outcomes |
+| **Trust** | "Can you prove this works?" | Share relevant case studies and social proof from KB |
+| **Authority** | "I need to check with my team" | Acknowledge, capture stakeholder info, offer resources to share internally |
+
+**Guardrails:** The agent must NOT offer discounts, guarantee outcomes, make competitive comparisons by name, or be pushy. If the objection falls outside the agent's KB, it follows the [Knowledge Gap Escalation](#knowledge-gap-escalation) flow.
+
+---
 
 ### Pros & Cons
 
