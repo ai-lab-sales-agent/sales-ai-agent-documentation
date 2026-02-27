@@ -1,3 +1,4 @@
+```mermaid
 flowchart TD
     TRIGGER([Visitor raises an objection]) --> CLASSIFY[Classify an objection]
 
@@ -64,3 +65,4 @@ flowchart TD
     style T_NOTE fill:#fff3bf,stroke:#e67700
     style UC2 fill:#a5d8ff,stroke:#1971c2
     style RESUME fill:#a5d8ff,stroke:#1971c2
+```

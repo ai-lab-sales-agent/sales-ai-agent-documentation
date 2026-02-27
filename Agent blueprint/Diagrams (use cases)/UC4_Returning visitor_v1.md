@@ -1,3 +1,4 @@
+```mermaid
 flowchart TD
     LOOKUP["Check from the Users Table for match (internal):1. visitor_name 2. visitor_company 3. previous_lead_score = Hot/Warm/Nurture/DQ/unscored 4. conversation_stage 5. qualification_complete = (boolean) 6. nurture_stage = (N1-N5 or null) 7. resources_shared = (array of links already sent) 8. conversion_action = meeting_booked/form_submitted/resources_sent/none"]
 
@@ -109,3 +110,4 @@ flowchart TD
     style NUR_N1N5 fill:#a5d8ff,stroke:#1971c2
     style NUR_N2N3 fill:#a5d8ff,stroke:#1971c2
     style NUR_NULL fill:#a5d8ff,stroke:#1971c2
+```
