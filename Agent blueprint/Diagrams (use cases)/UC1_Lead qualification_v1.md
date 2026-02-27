@@ -74,7 +74,7 @@ flowchart TD
     N1 --> N2["N2: Check in — 'resonate?'"]
     N2 --> N3[N3: Re-qualify — CHAMP recheck]
 
-    N3 --> N3_CHECK{"all CHAMP\nsignals\nimproved?"}
+    N3 --> N3_CHECK{"all CHAMP signals improved?"}
     N3_CHECK -- "Yes" --> QUAL_CHECK_UP{Is qualification_complete true?}
     N3_CHECK -- "No" --> N4_NO[N4: NO UPGRADE]
 
@@ -82,11 +82,11 @@ flowchart TD
     QUAL_CHECK_UP -- "Yes, CH + positive, confirmed 1 of A/M/P" --> WARM
     QUAL_CHECK_UP -- "No, only\nCH = positive" --> S6
 
-    N4_NO --> N4_NUDGE["N4: Soft Calendly nudge - 'exploratory, no commitment'"]
+    N4_NO --> N4_NUDGE["N4: Soft Contact form nudge - 'follow up, no commitment'"]
     N4_NUDGE --> N4_ACC{Accepts?}
-    N4_ACC -- "Yes" --> N4_CAL[Lead tag: Nurture]
+    N4_ACC -- "Yes" --> N4_FORM["Form submitted to Botpress Table. Lead tag: Nurture"]
     N4_ACC -- "No" --> N5[N5: Warm close]
-    N4_CAL --> DONE
+    N4_FORM --> DONE
     N5 --> CLOSED([Closed positively])
     DQ_ICP["DQ: ICP Exclusion = FAIL (adult/russia-based)"] --> DQ_CLOSE
     DQ_BUDGET["DQ: Budget < €5,000 EUR INSUFFICIENT BUDGET - M: NEGATIVE"] --> DQ_CLOSE

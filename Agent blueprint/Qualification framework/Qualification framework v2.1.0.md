@@ -70,7 +70,7 @@ The contact form serves as a fallback when a Hot or Warm lead declines Calendly 
 Warm leads go to Calendly tagged as Warm.
 
 **8. Nurture outcome**
-Nurture leads receive resources → re-qualification → soft Calendly nudge. Not a dead end as in the current PRD.
+Nurture leads receive resources → re-qualification → soft contact form nudge. Not a dead end as in the current PRD.
 
 ### CHAMP Framework
 
@@ -233,8 +233,8 @@ Introduces automated lead evaluation based on CHAMP signals. After collecting di
 - **Criteria:** One of two conditions:
   1. **Early Nurture (after Step 5):** Use case and pain points not defined — Challenges signal is `unclear` or `negative`. Agent has not yet completed full discovery.
   2. **Standard Nurture (after Step 10):** Challenges confirmed (`positive`), but none of Authority, Money, or Prioritization are confirmed as `positive` — all remain `unclear` or `negative` (except M `negative` which triggers DQ).
-- **Agent action:** Share resources. Re-qualify. Soft Calendly nudge. See Nurture flow below.
-- **Conversion path:** Resources → re-qualify → upgrade or soft Calendly nudge
+- **Agent action:** Share resources. Re-qualify. Soft contact form nudge. See Nurture flow below.
+- **Conversion path:** Resources → re-qualify → upgrade or soft contact form nudge
 
 **DQ**
 - **Criteria:** No relevant need, wrong scope, no sales team, spam, meeting ICP exclusion criteria, or insufficient budget (less than €5,000).
@@ -284,8 +284,8 @@ After discovery, the agent internally evaluates the lead against all four CHAMP 
 
 **Nurture**
 - **Situation:** Challenges confirmed but none of Authority, Money, or Prioritization are `positive` — all remain `unclear` or `negative` (except M `negative` = DQ). (Note: Early Nurture is triggered before Step 10 if Challenges are not established after Step 5 — see [Early Nurture Checkpoint](#early-nurture-checkpoint-after-step-5).)
-- **Agent action:** Resources → check in → re-qualification → soft Calendly nudge. See Nurture flow below.
-- **Conversion path:** Resources → re-qualify → upgrade or soft Calendly nudge
+- **Agent action:** Resources → check in → re-qualification → soft contact form nudge. See Nurture flow below.
+- **Conversion path:** Resources → re-qualify → upgrade or soft contact form nudge
 
 **DQ**
 - **Situation:** No relevant need, wrong scope, no sales team, spam, meeting ICP exclusion criteria, or insufficient budget (less than €5,000).
@@ -323,11 +323,11 @@ The agent already knows this is a Nurture lead from its CHAMP scoring — so it 
 - **Early Nurture (entered after Step 5):** If Challenges become `positive`, the agent **resumes discovery at Step 6** (DISCOVERY_VOLUME) to complete the remaining discovery steps. The agent does NOT present Calendly — full discovery and CHAMP scoring at Step 10 must happen first.
 - **Outcome:** Standard Nurture → upgraded to Warm or Hot, Calendly presented. Early Nurture → return to discovery flow at Step 6.
 
-**N4 (no upgrade)** — Soft Calendly nudge if no upgrade
-- **Example:** "Even if it's just exploratory, a 20-minute call might help clarify what's realistic for you — no commitment needed. Want the link?"
-- **Outcome:** If accepted → Calendly (tagged Nurture). If declined → warm close.
+**N4 (no upgrade)** — Soft Contact form nudge if no upgrade
+- **Example:** "Even if it's just exploratory — I can have someone follow up with you directly. No commitment needed. Can I take your details?"
+- **Outcome:** If accepted → Contact form (tagged Nurture). If declined → warm close.
 
-**N5 — Warm close** *(if Calendly declined)*
+**N5 — Warm close** *(if contact form declined)*
 - **Example:** "Totally understood — come back when the timing is better. I'll make a note so our team has context if you do reach out."
 - **Outcome:** Conversation ends positively.
 
