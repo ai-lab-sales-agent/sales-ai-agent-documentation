@@ -1,5 +1,7 @@
 # Qualification framework v2
 
+> Updated: February 24, 2026
+
 ## ICP definition
 
 **Company type**
