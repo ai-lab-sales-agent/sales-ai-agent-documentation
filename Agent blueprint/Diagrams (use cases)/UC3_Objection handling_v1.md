@@ -31,12 +31,18 @@ flowchart TD
     TRUST --> TR_GUARD["🔴 DO NOT: Guarantee outcomes or results; Promise ROI or revenue growth guarantees; Promise/sell replacement of the sales team"]
     TR_GUARD --> TR_ACTION["Provide case studies and social proof from KB"]
 
+    %% Type 6: Unidentified (fallback)
+    CLASSIFY --> UNKNOWN[Unidentified objection]
+    UNKNOWN --> UNK_LOG["Log objection text to unidentified_objections table"]
+    UNK_LOG --> UNK_CONTACT["Provide contact email for follow-up"]
+
     %% Convergence
     P_ACTION --> DETAIL
     T_ACTION --> DETAIL
     C_ACTION --> DETAIL
     SC_REFINE --> DETAIL
     TR_ACTION --> DETAIL
+    UNK_CONTACT --> DETAIL
 
     DETAIL{Visitor asks for more detail?}
     DETAIL -- "Yes" --> UC2([UC2: Visitor asks questions])
@@ -62,6 +68,9 @@ flowchart TD
     style SC_CLARIFY fill:#a5d8ff,stroke:#1971c2
     style SC_REFINE fill:#a5d8ff,stroke:#1971c2
     style TR_ACTION fill:#a5d8ff,stroke:#1971c2
+    style UNKNOWN fill:#e8d5f5,stroke:#7c3aed
+    style UNK_LOG fill:#fff3bf,stroke:#e67700
+    style UNK_CONTACT fill:#a5d8ff,stroke:#1971c2
     style T_NOTE fill:#fff3bf,stroke:#e67700
     style UC2 fill:#a5d8ff,stroke:#1971c2
     style RESUME fill:#a5d8ff,stroke:#1971c2
