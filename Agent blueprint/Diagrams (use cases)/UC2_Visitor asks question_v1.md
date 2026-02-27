@@ -1,3 +1,4 @@
+```mermaid
 flowchart TD
     TRIGGER([Visitor asks a question]) --> KB["Check Knowledge Base for data (internal)"]
 
@@ -31,3 +32,4 @@ flowchart TD
     style SUGGEST fill:#a5d8ff,stroke:#1971c2
     style STAGE fill:#d0ebff,stroke:#1971c2,stroke-dasharray: 5 5
     style RESUME fill:#a5d8ff,stroke:#1971c2
+```

@@ -1,3 +1,4 @@
+```mermaid
 flowchart TD
     Start([Visitor Opens Chat]) --> NEW{New Visitor?}
     NEW -- "No" --> UC4([move to UC4: Returning Visitor])
@@ -108,3 +109,4 @@ flowchart TD
     style HOT_MSG fill:#b2f2bb,stroke:#2b8a3e
     style WARM_MSG fill:#a5d8ff,stroke:#1971c2
     style N4_NO fill:#ffd8a8,stroke:#e8590c
+```

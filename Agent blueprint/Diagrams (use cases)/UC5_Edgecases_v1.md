@@ -1,3 +1,4 @@
+```mermaid
 flowchart TD
     A_TRIGGER(["Agent detects spam/profanity/abusive behaviour"]) --> A_STAGE{"Is conversation_stage = greeting?"}
 
@@ -69,3 +70,4 @@ flowchart TD
     style D_TRIGGER fill:#a5d8ff,stroke:#1971c2
     style D_RESUME fill:#b2f2bb,stroke:#2b8a3e
     style D_CLOSE fill:#ffc9c9,stroke:#c92a2a
+```
