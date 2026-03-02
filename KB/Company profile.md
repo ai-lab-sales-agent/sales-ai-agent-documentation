@@ -1,5 +1,7 @@
 # Company Profile — Halo Lab
 
+> Created: March 2, 2026 | Updated: March 2, 2026
+
 ## About Halo Lab
 
 Halo Lab is a design and development agency that helps startups and businesses build digital products — from initial concept through launch and growth.

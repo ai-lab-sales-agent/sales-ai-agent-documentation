@@ -1,5 +1,7 @@
 # Sales AI Agent — Service Description
 
+> Created: March 2, 2026 | Updated: March 2, 2026
+
 ## What It Is
 
 A Sales AI Agent is an AI-powered chatbot deployed on a company's website that automates inbound sales interactions. It works as a virtual SDR (Sales Development Representative) — qualifying leads, answering questions, and booking meetings with the sales team, 24/7.

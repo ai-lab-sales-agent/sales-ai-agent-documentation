@@ -1,5 +1,7 @@
 # Sales AI Agent — Who It's For & Expected Outcomes
 
+> Created: March 2, 2026 | Updated: March 2, 2026
+
 ## Who It's For
 
 The Sales AI Agent is designed for B2B companies that:

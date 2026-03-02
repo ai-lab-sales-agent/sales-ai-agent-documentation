@@ -1,5 +1,7 @@
 # Sales AI Agent — Implementation Process & Deliverables
 
+> Created: March 2, 2026 | Updated: March 2, 2026
+
 ## How It Works — Implementation Process
 
 1. **Discovery** — Understand the client's sales process, ICP, qualification criteria, and tech stack

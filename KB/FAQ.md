@@ -1,5 +1,7 @@
 # Sales AI Agent — Frequently Asked Questions
 
+> Created: March 2, 2026 | Updated: March 2, 2026
+
 ## Process & Getting Started
 
 **How does the process work?**

@@ -1,5 +1,7 @@
 # Sales AI Agent — Objection Handling Talking Points
 
+> Created: March 2, 2026 | Updated: March 2, 2026
+
 ## Pricing Objection
 
 "It's too expensive" / "We don't have the budget" / "Can you offer a discount?"
