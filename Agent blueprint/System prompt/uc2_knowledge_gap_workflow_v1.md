@@ -2,6 +2,7 @@
 
 > Botpress Studio → Create workflow: "Knowledge Gap Logger"
 > Standard Node workflow (no Autonomous Node needed).
+
 > Created: March 2, 2026 | Updated: March 2, 2026
 
 ---
