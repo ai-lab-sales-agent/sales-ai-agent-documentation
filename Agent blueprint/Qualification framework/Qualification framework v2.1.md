@@ -1,6 +1,6 @@
-# Qualification framework v2.1.0
+# Qualification Framework
 
-> Updated: February 26, 2026
+> Created: February 26, 2026 | Updated: February 26, 2026
 
 ## ICP definition
 

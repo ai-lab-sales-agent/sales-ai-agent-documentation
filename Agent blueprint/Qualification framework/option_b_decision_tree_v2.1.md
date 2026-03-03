@@ -1,6 +1,6 @@
-# Sales AI Agent Decision Tree v2.1.0 — CHAMP · Scored Flow
+# Sales AI Agent Decision Tree — CHAMP · Scored Flow
 
-> Updated: February 26, 2026
+> Created: February 26, 2026 | Updated: February 26, 2026
 
 > Agent evaluates CHAMP signals · Hot + Warm → Calendly (tagged) · Nurture → resources + re-qualify · DQ → polite close
 > Knowledge gap = partial answer OR admit gap → suggest alternative + contact email → resume discovery

@@ -1,5 +1,6 @@
-# JSON Schemas v2 — Sales AI Agent
+# JSON Schemas — Sales AI Agent
 
+> Created: February 24, 2026 | Updated: February 26, 2026
 > These schemas define the data model for the CHAMP Scored Flow.
 > Use them to configure: (1) Botpress Conversation Variables, (2) Botpress Table columns, (3) batch testing CSV structure.
 

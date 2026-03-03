@@ -2,7 +2,7 @@
 
 > Main Workflow → Early Discovery Autonomous Node → Instructions field.
 > Steps 1–5. Global instructions are inherited.
-> Version: 2.0
+> Created: March 2, 2026 | Updated: March 2, 2026
 
 ---
 

@@ -1,5 +1,6 @@
 # Flows and Nodes Structure
 
+> Created: March 2, 2026 | Updated: March 2, 2026
 > Botpress implementation blueprint. Defines every flow, node, and transition needed for the Sales AI Agent.
 
 ---

@@ -1,6 +1,6 @@
-# PRD: Sales AI Agent v2
+# PRD: Sales AI Agent
 
-> Updated: February 26, 2026
+> Created: February 26, 2026 | Updated: February 26, 2026
 
 ## AI Sales Agent (MVP) — Botpress Implementation
 

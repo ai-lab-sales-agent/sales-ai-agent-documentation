@@ -1,6 +1,6 @@
-# Handoff Rules v2.0.0
+# Handoff Rules
 
-> Updated: February 26, 2026
+> Created: February 26, 2026 | Updated: February 26, 2026
 
 > Post-scoring routing logic for the Sales AI Agent. Covers every path a visitor can take after CHAMP evaluation — from Calendly booking to polite close.
 
