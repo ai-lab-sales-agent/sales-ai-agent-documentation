@@ -1,6 +1,7 @@
 # Few-Shot Examples — Sales AI Agent
 
 > Reference file for conversation examples. Include relevant examples in node instructions.
+
 > Created: March 2, 2026 | Updated: March 3, 2026
 >
 > **Essential examples** are marked with ⭐ — include these in Botpress node instructions.

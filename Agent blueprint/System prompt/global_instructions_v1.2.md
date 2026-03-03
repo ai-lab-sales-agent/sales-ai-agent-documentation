@@ -1,6 +1,7 @@
 # Global Instructions — Sales AI Agent
 
 > Paste into Botpress Studio → Home → Instructions.
+
 > Created: March 2, 2026 | Updated: March 3, 2026
 
 ---
