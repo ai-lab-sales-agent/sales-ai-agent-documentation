@@ -1,4 +1,4 @@
-# Hot/Warm Handoff - Sub-Workflow
+# Hot/Warm Handoff — Sub-Workflow
 
 > Botpress Studio: Create workflow "Handoff"
 > Mixed nodes (Autonomous + Standard).

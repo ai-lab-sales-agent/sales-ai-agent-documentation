@@ -3,15 +3,19 @@
 > Botpress Studio: Create workflow "Nurture Flow"
 > Autonomous Node workflow.
 
-> Created: March 3, 2026 | Updated: March 3, 2026
+> Created: March 3, 2026 | Updated: March 4, 2026
 
 ---
 
 ## Context
 
-Check `qualification_complete` at N4 to determine the upgrade path. If the visitor has been through this workflow before (re-entry after a failed upgrade), start from N3.
+Check `qualification_complete` at N4 to determine the upgrade path.
 
 You have read access to: `visitor_name`, `visitor_company`, `use_case`, `pain_points`. Use these to personalize.
+
+## Entry Condition
+
+If `nurture_stage` is already set (not null), skip N1 and start from N2. This handles returning visitors who already received resources, as well as re-entry after a failed upgrade.
 
 ---
 
@@ -82,6 +86,7 @@ You have read access to: `visitor_name`, `visitor_company`, `use_case`, `pain_po
 | lead_score | yes | yes |
 | resources_shared | yes | yes |
 | conversion_action | yes | yes |
+| lead_score_reason | yes | yes |
 | conversation_stage | yes | yes |
 
 ## Cards
@@ -89,7 +94,7 @@ You have read access to: `visitor_name`, `visitor_company`, `use_case`, `pain_po
 - Query Knowledge Base: for proactively pulling case studies at N1. Knowledge Agent handles reactive visitor questions separately.
 - Execute Workflow: Knowledge Gap Logger (UC2). Card description: "Use this when the Knowledge Base does not fully answer the visitor's question — either a partial answer or no answer at all."
 - Execute Workflow: Handle Objections (UC3). Card description: "Use this when the visitor raises a concern or objection about pricing, timing, competitors, scope, trust, or anything that signals hesitation."
-- Transition: DQ Close workflow (condition: m_money = "negative"). Handles budget disqualification during re-qualification at N3.
+- Transition: DQ Close workflow (condition: m_money = "negative"). Set `lead_score_reason` to `"insufficient_budget"` before transition. Handles budget disqualification during re-qualification at N3.
 - Transition: Deep Discovery node (condition: nurture_stage = "N4_upgraded" AND qualification_complete = false). Routes Early Nurture upgrades back to Step 6.
 - Transition: Hot/Warm Handoff workflow (condition: nurture_stage = "N4_upgraded" AND qualification_complete = true). Routes Standard Nurture upgrades to Calendly.
 

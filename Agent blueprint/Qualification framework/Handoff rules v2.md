@@ -1,6 +1,6 @@
 # Handoff Rules
 
-> Created: February 26, 2026 | Updated: February 26, 2026
+> Created: February 26, 2026 | Updated: March 4, 2026
 
 > Post-scoring routing logic for the Sales AI Agent. Covers every path a visitor can take after CHAMP evaluation — from Calendly booking to polite close.
 
@@ -367,6 +367,8 @@ Meeting: {Calendly booking date/time}
 All variables in the template map to fields defined in [Data points schema v2](./Data%20points%20schema%20(JSON%20formatted)%20v2.md). Most map directly by name. The CHAMP signal variables (`ch_challenges`, `a_authority`, `m_money`, `p_prioritization`) are nested under the `champ_signals` object in the Conversation Variables schema but stored as flat columns in the Leads Table schema — use the Leads Table as the source for the brief, or access them as `champ_signals.ch_challenges` etc. from Conversation Variables.
 
 No new variables are needed for the brief content — only the `pre_call_brief_sent` flag is new (see [Data schema impact](#data-schema-impact)).
+
+**Note:** The Handoff sub-workflow prompt uses Botpress's built-in Summary Agent (`conversation.SummaryAgent.summary`) for the conversation summary field. This was not available when this document was written. The Handoff prompt's template is the canonical reference for the pre-call brief format.
 
 ---
 

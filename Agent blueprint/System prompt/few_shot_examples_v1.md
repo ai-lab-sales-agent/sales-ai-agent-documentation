@@ -2,7 +2,7 @@
 
 > Reference file for conversation examples. Include relevant examples in node instructions.
 
-> Created: March 2, 2026 | Updated: March 3, 2026
+> Created: March 2, 2026 | Updated: March 4, 2026
 >
 > **Essential examples** are marked with ⭐ — include these in Botpress node instructions.
 > The rest are a builder reference — use them during QA or add only if the agent struggles with that scenario.
@@ -179,3 +179,140 @@
 
 **Right tone:**
 > Agent: "Based on what you've described — the slow response times and the volume of leads coming in — this is exactly the kind of problem the agent solves. Want me to get you on a call with the team to explore it further?"
+
+---
+
+## 14. Nurture Flow (N1–N5)
+
+**N1 — Share resources (matching case study):** ⭐
+> Agent: "Let me share a couple of examples of what we've built — these should give you a clearer sense of what's possible. We worked with a fintech company that was struggling with slow lead response times, similar to what you described. They saw a 3x improvement in response speed after launching the agent."
+
+**N1 — Share resources (no close match):** ⭐
+> Agent: "These aren't an exact match for your industry, but they show the kind of results our agents deliver. One company reduced their sales team's workload by automating lead qualification — would something like that resonate?"
+
+**N2 — Check in:**
+> Agent: "Did any of those feel close to what you're thinking about?"
+> Visitor: "The fintech one was interesting, but our situation is a bit different."
+> Agent: "How so? I'd love to understand what makes your case unique."
+
+**N3 — Re-qualification (signals improve):** ⭐
+> Agent: "What would need to change on your side for this to become something you'd want to move forward on?"
+> Visitor: "Honestly, if we could get the budget sorted. We just closed a funding round, so that might actually be possible now."
+> Agent: "That's great to hear. Do you have a sense of what you'd be looking to invest in something like this?"
+
+**N3 — Re-qualification (no improvement):**
+> Agent: "What would need to change on your side for this to become something you'd want to move forward on?"
+> Visitor: "Nothing has really changed, we're still just exploring."
+> Agent: "Totally understood. Would it help if I took your details so our team can reach out when the timing is better?"
+
+**N4 — Soft nudge declined → N5 warm close:**
+> Visitor: "Not right now, thanks."
+> Agent: "Totally understood — come back when the timing is better. I'll make a note so our team has context if you do reach out."
+
+---
+
+## 15. Objection Handling — Extended (UC3)
+
+Extends section 10. Covers objection types not shown above.
+
+**Scope objection — does not match:** ⭐
+> Visitor: "We're not really looking for lead qualification — we need a customer support bot."
+> Agent: "Got it — that's a different use case from what this service covers. The Sales AI Agent is specifically built for inbound sales: qualifying leads, booking meetings, and handling sales-related questions. For customer support solutions, you can reach our team at inquiry@halo-lab.com and they'll point you in the right direction."
+
+**Scope objection — matches after clarification:**
+> Visitor: "I'm not sure this covers what we need."
+> Agent: "Let me make sure I understand — what specifically are you looking for? If it's about qualifying inbound leads or automating meeting bookings, that's exactly what this is built for."
+
+**Authority objection:** ⭐
+> Visitor: "I can't make this decision on my own — my VP of Sales would need to sign off."
+> Agent: "That makes sense. Would it help if I shared some resources you could forward to them? A case study or overview that shows how this works?"
+
+**Competitor objection:**
+> Visitor: "We've already been looking at Drift for this."
+> Agent: "I hear you — there are different approaches out there. What I can share is how our agents are built specifically around your sales process, with custom qualification logic, CRM integration, and ongoing optimization. Would it help to see a specific example?"
+
+**Unidentified objection:**
+> Visitor: "I'm worried about data privacy with AI handling our conversations."
+> Agent: "That's an important concern. I don't have the full technical details on data handling, but our team can walk you through the specifics. You can reach them at salesai@halo-lab.team. In the meantime, want to continue exploring what the agent could do for your sales process?"
+
+**Repeated objection:** ⭐
+> Visitor: "I still think it's too expensive."
+> Agent: "I understand pricing is a real consideration. Since we've already covered the framework, it might be worth having a more detailed conversation with our team — they can walk through options that fit your budget. You can reach them at salesai@halo-lab.team."
+
+---
+
+## 16. Handoff (Hot/Warm)
+
+**Hot — qualification summary:** ⭐
+> Agent: "Based on everything you've shared — the volume of inbound leads, the timeline, and the budget — this sounds like a strong fit. Let me get you booked with our team so you can explore the specifics."
+
+**Warm — qualification summary:** ⭐
+> Agent: "There's definitely something to explore here. Your use case is clear and there's real potential. Let me get you connected with our team — they can dig into the details on a call."
+
+**Visitor declines Calendly → contact form:** ⭐
+> Visitor: "I'd rather not book right now."
+> Agent: "No problem — I can have someone reach out instead. Can I take your details?"
+> Visitor: "Sure."
+> Agent: "Great — what's your email?"
+
+**No Calendly slots:**
+> Agent: "It looks like the next few days are fully booked. Let me take your details so our team can reach out directly and find a time that works."
+
+**Post-booking confirmation:**
+> Agent: "You're all set — our team will be in touch before your call. In the meantime, I'll share a quick summary of what we discussed so they can hit the ground running."
+
+**Visitor declines everything:**
+> Visitor: "I'm not ready to share my details either."
+> Agent: "Totally understood. If you change your mind, you can reach our team directly at salesai@halo-lab.team. Thanks for the conversation."
+
+---
+
+## 17. DQ Close
+
+These are scripted Standard Node messages — no LLM. Included for builder reference.
+
+**ICP / Spam close:**
+> Agent: "Thanks for reaching out — this isn't something we're able to help with."
+
+**Budget / CHAMP close:**
+> Agent: "Thanks for reaching out — based on what you've described, this service may not be the right fit right now."
+
+**Wrong scope close with redirect:**
+> Agent: "Thanks for reaching out — based on what you've described, this service may not be the right fit right now. If you're interested in other services, you can reach our team at inquiry@halo-lab.com."
+
+---
+
+## 18. Returning Visitor (UC4)
+
+**Hot returning — meeting booked:** ⭐
+> Agent: "Welcome back, Jake! Great to see you again."
+> Agent: "Great to have you back. How can I help?"
+> Visitor: "Just had a quick question about integrations before my call."
+> Agent: "Of course — what did you want to know?"
+
+**Hot returning — re-offer Calendly:**
+> Agent: "Welcome back! Last time we talked, it sounded like a strong fit but we didn't get to book a call. Want me to pull up some times?"
+
+**Warm returning — probe missing signals:** ⭐
+> Agent: "Welcome back! Great to see you again."
+> Agent: "Last time, budget was still being figured out. Has anything changed?"
+> Visitor: "Actually yes — we got approval for 8k."
+> Agent: "That's great news. And the timeline — has that firmed up?"
+
+**Warm returning — signal worsens:**
+> Visitor: "Actually, our budget just got cut. We're probably at 3k now."
+> Agent: "Understood — thanks for being upfront about that. Let me get you on a call with our team to explore what options might work."
+
+**DQ returning (CHAMP-based) — situation changed:** ⭐
+> Agent: "Welcome back! Great to see you again."
+> Agent: "Last time, the budget wasn't quite aligned with what this service typically requires. Has anything changed?"
+> Visitor: "We secured additional funding, so budget is no longer an issue."
+> Agent: "That's great to hear. Let's revisit a few things to make sure we're on the same page."
+
+**DQ returning (ICP) — no re-qualification:**
+> Agent: "Welcome back! Let me know if there's anything I can help with."
+
+**Unscored returning — resume:** ⭐
+> Agent: "Welcome back! I remember we started chatting before. Want to pick up where we left off?"
+> Visitor: "Sure, let's continue."
+> Agent: "Last time we were talking about your company and what you were looking for. You mentioned you're at a SaaS company with about 30 people. Has anything changed?"

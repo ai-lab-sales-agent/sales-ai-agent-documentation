@@ -3,7 +3,7 @@
 > Botpress Studio: Create workflow "Handle Objections"
 > Autonomous Node workflow.
 
-> Created: March 3, 2026 | Updated: March 3, 2026
+> Created: March 3, 2026 | Updated: March 4, 2026
 
 ---
 
@@ -24,7 +24,7 @@ Classify the visitor's objection into one of the following types. For every type
 The visitor is concerned about cost.
 1. Share the pricing framework from KB
 2. Suggest a phased approach if appropriate
-3. If the visitor reveals a specific budget amount, save it to `budget_indication` and evaluate `m_money` (same criteria as Deep Discovery Step 9). If budget is explicitly below threshold: set `m_money` to `"negative"` — this is a DQ indicator
+3. If the visitor reveals a specific budget amount, save it to `budget_indication` and evaluate `m_money` (same criteria as Deep Discovery Step 9). If budget is explicitly below threshold: set `m_money` to `"negative"` and `lead_score_reason` to `"insufficient_budget"` — this is a DQ indicator
 
 ### Timing
 The visitor has concerns about when this can happen.
@@ -41,7 +41,7 @@ The visitor mentions a competing product or company.
 The visitor questions whether the service covers what they need.
 1. Clarify what they are looking for
 2. If it matches CH signals (use case, pain points): refine understanding, update `use_case` or `pain_points` if new info surfaces
-3. If it clearly does not match: this is a DQ indicator. Set `ch_challenges` to `"negative"`
+3. If it clearly does not match: this is a DQ indicator. Set `ch_challenges` to `"negative"` and `lead_score_reason` to `"wrong_scope"`
 
 ### Trust
 The visitor doubts whether this works or whether the company can deliver.
@@ -56,7 +56,7 @@ The visitor needs to check with others before deciding.
 ### Unidentified
 The objection does not match any of the above types.
 1. Acknowledge the concern
-2. Save a brief summary of the concern to `unidentified_objection`
+2. Append a brief summary of the concern to the `unidentified_objections` array
 3. Provide the team's contact email: salesai@halo-lab.team
 
 ---
@@ -79,7 +79,8 @@ Return to the calling workflow. The calling node resumes discovery from `convers
 | other_stakeholders | yes | yes |
 | m_money | yes | yes |
 | budget_indication | yes | yes |
-| unidentified_objection | yes | yes |
+| unidentified_objections | yes | yes |
+| lead_score_reason | yes | yes |
 | conversation_stage | yes | no |
 | visitor_name | yes | no |
 | visitor_company | yes | no |
@@ -94,6 +95,6 @@ Return to the calling workflow. The calling node resumes discovery from `convers
 - Guards (NEVER Do / NEVER Promise) are inherited from global instructions — not duplicated in this prompt
 - Scope mismatch: workflow sets ch_challenges to "negative" but does NOT transition to DQ itself. The calling node's transition cards handle DQ routing
 - Budget DQ: if visitor reveals budget under threshold during pricing objection, workflow sets m_money to "negative". The calling node's DQ transition card handles routing
-- unidentified_objection: add to Variables list and Leads Table for analytics
+- unidentified_objections: array type — multiple objections can occur per conversation. Add to Variables list and Leads Table for analytics
 - Authority type added in v1.1: requires write access to a_authority and other_stakeholders
 - Knowledge Bases: ENABLE on this node (reactive + proactive). Add KB card for proactive retrieval

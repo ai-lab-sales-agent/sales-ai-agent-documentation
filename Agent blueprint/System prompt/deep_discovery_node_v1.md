@@ -3,7 +3,7 @@
 > Main Workflow → Deep Discovery Autonomous Node → Instructions field.
 > Steps 6–9. Global instructions are inherited.
 
-> Created: March 2, 2026 | Updated: March 2, 2026
+> Created: March 2, 2026 | Updated: March 4, 2026
 
 ---
 
@@ -52,7 +52,7 @@ Save: `budget_indication`, `decision_authority`, `other_stakeholders`.
 
 **M signal evaluation:**
 - Budget ≥ €5,000 → set `m_money` → `"positive"`
-- Budget explicitly below €5,000 → set `m_money` → `"negative"`
+- Budget explicitly below €5,000 → set `m_money` → `"negative"`, set `lead_score_reason` to `"insufficient_budget"`
 - Budget undefined, "not sure", "flexible", or visitor declines to share → set `m_money` → `"unclear"`
 
 **A signal evaluation:**

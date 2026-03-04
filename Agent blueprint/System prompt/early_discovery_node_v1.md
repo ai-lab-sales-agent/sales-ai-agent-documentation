@@ -3,7 +3,7 @@
 > Main Workflow → Early Discovery Autonomous Node → Instructions field.
 > Steps 1–5. Global instructions are inherited.
 
-> Created: March 2, 2026 | Updated: March 2, 2026
+> Created: March 2, 2026 | Updated: March 4, 2026
 
 ---
 
@@ -25,7 +25,7 @@ Example: "Tell me about your company — what do you do, and what's your role th
 Save: `visitor_company`, `visitor_role`, `visitor_industry` (infer from company description — if unclear, leave null), `visitor_team_size` (if mentioned), `visitor_name` (if shared), `visitor_location` (if mentioned or inferred — needed for ICP check).
 
 **ICP Exclusion (silent — never announce):**
-If Adult/18+ content industry or Russia-based company → set `icp_exclusion_flag` = true. Use: "Thanks for reaching out — this isn't something we're able to help with."
+If Adult/18+ content industry or Russia-based company → set `icp_exclusion_flag` = true, set `lead_score_reason` to `"icp_exclusion"`. Use: "Thanks for reaching out — this isn't something we're able to help with."
 
 Set `conversation_stage` → `"discovery_company"`
 

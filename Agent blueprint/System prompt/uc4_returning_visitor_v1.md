@@ -1,9 +1,9 @@
-# UC4: Returning Visitor - Flow
+# UC4: Returning Visitor — Sub-Workflow
 
 > Botpress Studio: Create workflow "Returning Visitor"
 > Mixed nodes (Standard + Autonomous).
 
-> Created: March 3, 2026 | Updated: March 3, 2026
+> Created: March 3, 2026 | Updated: March 4, 2026
 
 ---
 
@@ -201,7 +201,7 @@ Check `lead_score_reason`:
 
 - R0 lookup uses visitor_id (browser cookie). If cookie cleared, visitor appears new
 - R3 split into 3 nodes: R3a (Standard routing), R3b (Autonomous for meeting follow-up), R3c (Autonomous for re-offer conversation)
-- R4: if signals worsen during probing, update the variable honestly but do NOT route to DQ. The visitor came back showing intent. Sales team sees the flag in the pre-call brief and handles it on the call
+- R4: if signals worsen during probing, update the variable honestly but do NOT route to DQ. Sales team sees the flag in the pre-call brief and handles it on the call
 - R4 and R6 are Autonomous Nodes. Knowledge Bases: ENABLE on R3b, R3c, R4, R6
 - R5 Nurture entry: Nurture Flow needs a condition at the start of N1 — if nurture_stage is already set (not null), skip to N2. This is how returning visitors bypass N1
 - R4 and R5 route to R3a (not Handoff) because these visitors were already offered Calendly/form during their previous visit. R3 checks what conversion action already happened
