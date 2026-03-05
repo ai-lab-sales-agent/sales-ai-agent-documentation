@@ -1,6 +1,6 @@
 # JSON Schemas — Sales AI Agent
 
-> Created: February 24, 2026 | Updated: February 26, 2026
+> Created: February 24, 2026 | Updated: March 4, 2026
 
 > These schemas define the data model for the CHAMP Scored Flow.
 > Use them to configure: (1) Botpress Conversation Variables, (2) Botpress Table columns, (3) batch testing CSV structure.
@@ -239,6 +239,18 @@ The agent evaluates CHAMP signals and assigns `lead_score` automatically. Insuff
       "default": "none"
     },
 
+    "calendly_fallback_used": {
+      "type": "boolean",
+      "description": "True if Calendly had no available slots or failed, and the agent fell back to the contact form. Set during Handoff Step 3C.",
+      "default": false
+    },
+
+    "pre_call_brief_sent": {
+      "type": "boolean",
+      "description": "True if pre-call brief was delivered to the sales team via Slack (or email fallback). Set at Handoff Outcome A when conversion_action = meeting_booked.",
+      "default": false
+    },
+
     "contact_form_question": {
       "type": ["string", "null"],
       "description": "Question captured via knowledge-gap escalation. Null if no knowledge gap occurred.",
@@ -391,6 +403,8 @@ Persistent table where lead data is stored across sessions. `lead_score` is popu
     "nurture_upgraded_to":  { "type": ["string", "null"], "enum": ["Warm", "Hot", null], "description": "If lead upgraded from Nurture after re-qualification. Null if no upgrade." },
 
     "conversion_action":    { "type": "string",  "enum": ["meeting_booked", "form_submitted", "resources_sent", "none"] },
+    "calendly_fallback_used": { "type": "boolean", "default": false, "description": "True if Calendly had no slots or failed, agent fell back to contact form." },
+    "pre_call_brief_sent":  { "type": "boolean", "default": false, "description": "True if pre-call brief was delivered to sales team." },
     "contact_form_question":{ "type": ["string", "null"] },
     "knowledge_gap_triggered":  { "type": "boolean", "default": false, "description": "True if visitor asked a question outside agent's KB." },
     "knowledge_gap_question":   { "type": ["string", "null"], "description": "The question the agent could not answer. Null if no knowledge gap." },
