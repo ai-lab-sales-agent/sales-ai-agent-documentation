@@ -56,7 +56,7 @@ This is the Nurture Flow. The visitor either has unclear/negative challenges (ea
 ### N5: Warm Close
 1. "Totally understood — come back when the timing is better. I'll make a note so our team has context if you do reach out."
 2. Set {{conversation.nurture_stage}} to "N5_warm_closed"
-3. Set {{conversation.conversion_action}} to "none"
+3. Set {{conversation.conversion_action}} to "resources_shared"
 
 ---
  
