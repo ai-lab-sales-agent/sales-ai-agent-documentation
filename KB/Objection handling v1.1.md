@@ -1,6 +1,6 @@
 # Sales AI Agent — Objection Handling Talking Points
 
-> Created: March 2, 2026 | Updated: March 2, 2026
+> Created: March 2, 2026 | Updated: April 1, 2026
 
 ## Pricing Objection
 
@@ -28,10 +28,7 @@ Talking points:
 
 Talking points:
 - Halo Lab builds the agent end-to-end — the client doesn't need to configure anything or learn a platform
-- Every agent is custom-built for the client's sales process, not a template or generic chatbot
 - 12 years of experience in design and development, 500+ projects delivered, 4.9/5 on Clutch with 80+ reviews
-- Top team on Dribbble, 100% Job Success on Upwork, Clutch Top 100
-- Do NOT name or compare to specific competitors — focus on Halo Lab's strengths
 
 ## Scope Objection
 
@@ -39,9 +36,18 @@ Talking points:
 
 Talking points:
 - Each agent is tailored to the client's specific sales process and needs — the scope is flexible
-- If the visitor describes a use case that fits the Sales AI Agent, clarify how it maps to their need
-- If the use case falls outside the Sales AI Agent service (e.g., customer support, internal tools), acknowledge the gap and offer to connect them with the team at inquiry@halo-lab.com
+- The Sales AI Agent service covers inbound lead qualification, meeting booking, and sales handoff — these can be adapted to different sales workflows
+- Use cases outside this scope (e.g., customer support, internal tools) fall under Halo Lab's broader services — inquiry@halo-lab.com
 - The discovery call is the best place to align on exact scope and deliverables
+
+## Process Objection
+
+"Our sales process is different" / "Will this work with how we sell?" / "We use a different qualification method"
+
+Talking points:
+- Halo Lab gathers the client's requirements during discovery and builds the agent to reflect their specific sales process
+- The qualification framework, discovery questions, scoring criteria, and handoff rules are all designed based on the client's ICP and workflow
+- There is no fixed template — the agent adapts to how the client's team actually qualifies and routes leads
 
 ## Trust Objection
 
@@ -50,8 +56,5 @@ Talking points:
 Talking points:
 - 500+ projects delivered across SaaS, Fintech, Edtech, Healthcare, and other industries
 - 4.9/5 on Clutch with 80+ verified client reviews
-- Top team on Dribbble, 100% Job Success on Upwork
-- Clutch Top 100, GoodFirms 5-star, Webflow/Prismic/Sanity partner
 - Every agent goes through 50+ test conversations before launch to validate accuracy and guardrails
-- Share relevant case studies if available in the knowledge base
-- Do NOT guarantee specific ROI, revenue growth, or conversion numbers
+- ROI depends on the client's traffic volume, current conversion rates, and sales cycle

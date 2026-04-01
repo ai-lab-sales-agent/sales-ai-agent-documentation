@@ -19,7 +19,7 @@ No. Halo Lab handles the full build end-to-end — from conversation design to d
 ## Integrations & Tech
 
 **What tools does it integrate with?**
-The agent can integrate with CRMs (e.g., HubSpot), calendar tools (e.g., Calendly), website platforms, Slack for notifications, and other tools depending on your stack. Specific integrations are scoped during discovery.
+The agent can integrate with CRMs (e.g., HubSpot), calendar tools (e.g., Cal.com), website platforms, Slack for notifications, and other tools depending on your stack. Specific integrations are scoped during discovery.
 
 **Will it work on our website?**
 Yes. The agent is deployed as a chat widget that can be embedded on any website — regardless of the platform (WordPress, Webflow, custom-built, etc.).

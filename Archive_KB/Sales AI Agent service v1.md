@@ -32,9 +32,9 @@ Halo Lab builds and deploys custom Sales AI Agents tailored to each client's bus
 - Ensures the sales manager walks into the call fully prepared
 
 ### Returning Visitor Recognition
-- Recognizes visitors who return to the website
-- Retains context from previous conversations
-- Continues the conversation without repeating questions the visitor has already answered
+- Recognizes visitors who come back to the website
+- Remembers previous conversations and qualification status
+- Picks up where the last conversation left off — no repeated questions
 
 ## What It Is NOT
 

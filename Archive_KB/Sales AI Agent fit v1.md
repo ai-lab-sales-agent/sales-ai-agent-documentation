@@ -23,18 +23,9 @@ SaaS, Fintech, Edtech, Healthcare, Real Estate, Logistics, Marketplace, ML/AI co
 - **Fewer wasted calls** — Unqualified leads are filtered out before they consume sales time
 - **Consistent experience** — Every visitor gets the same professional, consultative interaction
 
-## When It's Not the Right Fit
-
-The Sales AI Agent service is not designed for:
-- **Customer support or post-sale ticketing** — The agent handles pre-sales conversations, not support workflows
-- **Outbound sales automation** — The agent engages visitors who come to the website, not cold outreach
-- **Internal tools or employee-facing bots** — The agent is built for external, customer-facing use
-- **Companies without inbound website traffic** — The agent works best with a steady flow of visitors to engage
-
-For other types of AI or digital product projects, Halo Lab's team can be reached at inquiry@halo-lab.com.
-
-## Limitations
+## Limitations the Agent Should Communicate Honestly
 
 - Exact pricing depends on the scope and is discussed on a discovery call
 - Timelines depend on the complexity of the sales process and integrations needed
 - ROI depends on the client's traffic volume, current conversion rates, and sales cycle
+- The agent works best with a steady flow of inbound website traffic
