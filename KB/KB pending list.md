@@ -9,3 +9,6 @@
 | Case Study — AI Workforce Platform | Commercial project — platform where businesses create an AI workforce for lead generation, content creation, advertising | Waiting — data collection questions sent, see `Agent blueprint/Case study questions — AI workforce platform.md` |
 | Post-Launch / Retainer Details | What the monthly retainer (EUR 500-1,000/mo) includes: review frequency, metrics tracked, prompt tuning scope, communication cadence, SLA | Waiting — define after current implementation is finalized |
 | Case Study — WillWise update | Fill in TBD sections: Our Approach (discovery/research, feature prioritization, tech stack, testing) and Results (usage stats, adoption, Slack App Directory presence) | Waiting — data needed from the team |
+| Analytics & Reporting | What data the client can access: conversation logs, qualification rates, booking rates, lead scores. How to review agent performance | Waiting |
+| Chat Widget Customization | Whether the client can customize branding, colors, placement, greeting message on the chat widget | Waiting |
+| Maintenance & Updates | What happens when the client's services, pricing, or team structure changes. How quickly the KB can be updated, who handles it | Waiting |
