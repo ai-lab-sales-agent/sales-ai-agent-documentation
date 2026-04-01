@@ -26,6 +26,9 @@ Halo Lab builds and deploys custom Sales AI Agents tailored to each client's bus
 - Surfaces relevant case studies matched to the visitor's industry or need
 - Provides accurate, knowledge-base-grounded responses — never makes things up
 
+### Knowledge Boundaries
+- If a question falls outside the knowledge base, the agent communicates that it doesn't have the answer and offers to connect the visitor with the team via email or a call
+
 ### Lead Handoff
 - Sends a structured pre-call brief to the sales team before the meeting
 - Includes conversation summary, qualification data, and key signals
