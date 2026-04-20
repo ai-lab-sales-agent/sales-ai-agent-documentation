@@ -24,7 +24,7 @@ This phased approach lets the client launch faster and invest in expansion based
 
 ## Traffic Volume
 
-The agent runs on a cloud-hosted platform and handles unlimited concurrent conversations. There are no queue limits — multiple visitors can interact with the agent simultaneously without delays or degraded performance.
+The agent runs on a cloud-hosted platform and supports multiple concurrent conversations. There are no queue limits for typical B2B inbound traffic volumes.
 
 ## Adding Integrations Post-Launch
 

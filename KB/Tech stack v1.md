@@ -33,3 +33,18 @@ The agent can connect to:
 - Website platforms (WordPress, Webflow, custom-built)
 - Messaging tools (Slack, email)
 - Other tools depending on the client's stack — scoped during discovery
+
+## Specifications Not Available
+
+The following specifications are not standardized and depend on the client's configuration, traffic patterns, and platform setup. These are discussed on the discovery call:
+
+- Response latency (depends on model selection, conversation complexity, and platform load)
+- Uptime SLA or uptime percentages
+- API rate limits or throughput benchmarks
+- Knowledge base size limits or document count limits
+- Model accuracy rates or qualification accuracy percentages
+- Concurrent user capacity beyond typical B2B volumes
+- Processing speeds for specific operations
+- Implementation timelines and delivery dates
+
+For questions about any of these, the team can provide details based on the client's specific requirements: salesai@halo-lab.team.

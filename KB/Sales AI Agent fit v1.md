@@ -16,7 +16,7 @@ SaaS, Fintech, Edtech, Healthcare, Real Estate, Logistics, Marketplace, ML/AI co
 
 ## Key Outcomes
 
-- **Instant response** — Every lead gets a response in under 3 seconds, 24/7
+- **Instant response** — Every lead gets a response in seconds, not hours, 24/7
 - **Higher qualification rate** — Only qualified leads reach the sales team
 - **More booked meetings** — Frictionless booking directly from the chat
 - **Better-prepared calls** — Sales managers receive a pre-call brief with full context

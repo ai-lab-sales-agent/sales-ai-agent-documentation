@@ -13,6 +13,14 @@
 7. **Launch** — Deploy the chat widget on the production website
 8. **Optimization** — Monitor conversations, tune prompts, expand the knowledge base over time
 
+## Typical Timeline
+
+Timeline depends on the complexity of the client's sales process, number of integrations, and knowledge base scope. These details are scoped during the discovery call.
+
+General range for a standard implementation: several weeks from kickoff to launch. Factors that affect timeline: number of conversation flows, CRM/calendar integration complexity, knowledge base size, and testing requirements.
+
+Exact timelines and phase-by-phase breakdowns are discussed on the discovery call.
+
 ## What's Included
 
 - Custom conversation flow design (discovery, qualification, handoff)
