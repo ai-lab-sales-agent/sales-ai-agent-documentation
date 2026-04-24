@@ -24,6 +24,8 @@ Conversational AI platforms are accessible, but building an effective sales agen
 - **Qualification framework design** — Defining scoring criteria, data points, and decision rules that match the client's sales process
 - **Testing and iteration** — Running 50+ test conversations to find failure modes and tune the agent before it talks to real leads
 
+Accuracy rates and qualification percentages vary per project and are not published as standardized metrics.
+
 ### vs. Other Agencies or Freelancers
 
 Many agencies and freelancers build chatbots or AI assistants as part of a broader offering. The difference:

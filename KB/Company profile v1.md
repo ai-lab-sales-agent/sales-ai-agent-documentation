@@ -11,6 +11,10 @@ Halo Lab is a design and development agency that helps startups and businesses b
 - **Projects delivered:** 500+ across design, development, branding, and other digital services
 - **Clutch rating:** 4.9 / 5 (80+ reviews)
 
+Team composition per project depends on scope. Details are shared on the discovery call.
+
+Halo Lab has delivered projects across the listed industries. Most engagements are under NDA, but relevant experience can be discussed on the discovery call.
+
 ## Services Overview
 
 ### Design Services

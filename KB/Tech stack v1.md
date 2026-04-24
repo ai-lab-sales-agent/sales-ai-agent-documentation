@@ -24,14 +24,16 @@ Model selection is tailored per flow based on:
 - **Model characteristics** — accuracy, rule adherence, response style, and consistency vary across models
 - **Client's allocated budget** — model providers have different pricing tiers, and the selection balances performance with cost efficiency
 
+Model selection is handled by Halo Lab during the build based on each flow's requirements. Clients do not need to choose or manage models.
+
 ## Integrations
 
 The agent can connect to:
 
-- CRM systems (e.g., HubSpot, Salesforce)
-- Calendar tools (e.g., Cal.com, Calendly)
-- Website platforms (WordPress, Webflow, custom-built)
-- Messaging tools (Slack, email)
+- CRM systems (e.g., HubSpot, Salesforce). CRM integration depends on the client's stack and requirements. Compatibility and scope are assessed during discovery
+- Calendar tools (e.g., Cal.com, Calendly). Calendar tool integration depends on the client's stack and requirements. Compatibility and scope are assessed during discovery
+- Website platforms (WordPress, Webflow, custom-built). The chat widget can be embedded on any website that supports custom JavaScript, which covers most platforms
+- Messaging tools (Slack, email). Notification channels depend on the client's stack and requirements. Compatibility and scope are assessed during discovery
 - Other tools depending on the client's stack — scoped during discovery
 
 ## Specifications Not Available

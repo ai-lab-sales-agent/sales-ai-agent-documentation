@@ -11,6 +11,7 @@ All conversation data (messages, visitor inputs, qualification data) is stored w
 - The platform is SOC 2 certified
 - The platform is GDPR compliant
 - Conversation data is not used to train AI models
+- Other compliance requirements (HIPAA, ISO 27001, etc.) can be discussed on the discovery call
 
 ## Data Ownership
 

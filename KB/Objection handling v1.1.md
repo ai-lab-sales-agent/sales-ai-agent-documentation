@@ -9,7 +9,7 @@
 Talking points:
 - The project fee starts from EUR 5,000 and scales based on scope — many clients start with a focused MVP and expand later
 - A phased approach lets you launch with core functionality first and add integrations or flows over time
-- Compare the cost to hiring an SDR: the agent works 24/7, never takes time off, and handles unlimited conversations simultaneously
+- The agent is a one-time build with 24/7 availability, compared to a recurring headcount cost with limited hours for a human SDR
 - The agent pays for itself once it starts converting leads that would otherwise be lost to slow response times
 
 ## Timing Objection
@@ -57,4 +57,4 @@ Talking points:
 - 500+ projects delivered across SaaS, Fintech, Edtech, Healthcare, and other industries
 - 4.9/5 on Clutch with 80+ verified client reviews
 - Every agent goes through 50+ test conversations before launch to validate accuracy and guardrails
-- ROI depends on the client's traffic volume, current conversion rates, and sales cycle
+- ROI depends on the client's traffic volume, current response times, and conversion rates. Generic ROI figures or conversion lift percentages are not available because results vary significantly across clients

@@ -15,6 +15,7 @@ Halo Lab builds and deploys custom Sales AI Agents tailored to each client's bus
 - Asks discovery questions to understand the visitor's business, challenges, and goals
 - Collects qualification data: company info, use case, budget range, timeline, decision authority
 - Scores leads automatically (Hot, Warm, Nurture, or Disqualified) based on fit
+- The scoring framework is designed during discovery based on the client's ICP and qualification criteria. Specific signals, weights, and thresholds are tailored per project
 
 ### Meeting Booking
 - Presents a booking link to qualified leads directly in the chat
@@ -38,6 +39,7 @@ Halo Lab builds and deploys custom Sales AI Agents tailored to each client's bus
 - Recognizes visitors who return to the website
 - Retains context from previous conversations
 - Continues the conversation without repeating questions the visitor has already answered
+- Returning visitor recognition works within the same browser session. Technical details depend on platform configuration and are discussed during scoping
 
 ## What It Is NOT
 

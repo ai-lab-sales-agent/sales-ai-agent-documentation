@@ -11,6 +11,10 @@ The Sales AI Agent is delivered as a **one-time project** with an optional month
 
 The monthly retainer is recommended for best results but not required. Clients can manage the agent independently after launch if they prefer.
 
+The project fee covers discovery, design, build, integrations, testing, and launch as a single package. The exact allocation between these components depends on the client's scope and is provided in the project proposal after the discovery call.
+
+Retainer scope is tailored per client based on optimization needs. Review frequency, prompt tuning cadence, and KB update schedule are discussed on the discovery call.
+
 ## Price Ranges
 
 - **Project fee:** Starting from EUR 5,000, typically EUR 5,000–10,000 depending on scope
@@ -26,4 +30,6 @@ The final project cost depends on:
 - **Number of integrations** — CRM (e.g., HubSpot), calendar tool, Slack, email, website platform, and any custom connectors
 - **Knowledge base size** — Amount of content to build: services, FAQ, pricing frameworks, case studies, objection responses
 - **Ongoing optimization scope** — How much post-launch tuning, testing, and KB expansion is included
+
+Individual line-item pricing per factor (e.g., cost of a single integration) is not available separately. The factors influence where the total lands within the range.
 
