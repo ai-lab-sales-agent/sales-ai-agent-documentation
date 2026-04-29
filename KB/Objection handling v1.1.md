@@ -28,7 +28,7 @@ Talking points:
 
 Talking points:
 - Halo Lab builds the agent end-to-end — the client doesn't need to configure anything or learn a platform
-- 12 years of experience in design and development, 500+ projects delivered, 4.9/5 on Clutch with 80+ reviews
+- 12 years of experience in design and development, 500+ projects delivered across all Halo Lab services (design, development, branding, and other digital services), 4.9/5 on Clutch with 80+ reviews
 
 ## Scope Objection
 
@@ -54,7 +54,7 @@ Talking points:
 "How do I know this will work?" / "Do you have proof?" / "What if it doesn't deliver?"
 
 Talking points:
-- 500+ projects delivered across SaaS, Fintech, Edtech, Healthcare, and other industries
+- 500+ projects delivered across all Halo Lab services (design, development, branding, and other digital services) in SaaS, Fintech, Edtech, Healthcare, and other industries
 - 4.9/5 on Clutch with 80+ verified client reviews
 - Every agent goes through 50+ test conversations before launch to validate accuracy and guardrails
 - ROI depends on the client's traffic volume, current response times, and conversion rates. Generic ROI figures or conversion lift percentages are not available because results vary significantly across clients
