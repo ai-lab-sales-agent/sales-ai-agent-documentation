@@ -1,6 +1,6 @@
 # Sales AI Agent — Botpress Build Summary
 
-> Created: March 17, 2026
+> Created: March 17, 2026 | Updated: April 29, 2026
 > Status: MVP in progress
 > Platform: Botpress Cloud Studio (no-code)
 > Client: Halo Lab (B2B design agency)
@@ -35,15 +35,15 @@ Target sectors: SaaS, Fintech, Healthcare (B2B). Hard exclusions: Adult/18+ cont
 
 Global instructions are split across two Agents that apply to every autonomous node:
 
-**Personality Agent** — identity, tone (professional, friendly, consultative, not pushy), service scope, knowledge boundary, data collection rules, objection handling patterns, conversation continuity, and global DQ triggers (ICP exclusions + budget floor).
+**Personality Agent (v4)** — identity, tone (professional, friendly, consultative, not pushy), message rewriting rules (preserve intent, preserve questions, never modify visitor data). Service scope and knowledge boundary moved to node-level prompts.
 
-**Policy Agent** — hard limits on what the bot must never do (provide exact pricing, guarantee outcomes, discuss competitors by name, fabricate URLs) and never promise (fixed timelines, ROI guarantees, discounts, specific deliverables without a call).
+**Policy Agent (v3)** — hard limits on what the bot must never do (provide exact pricing, guarantee outcomes, discuss competitors by name, fabricate URLs, modify visitor data, recommend external services) and never promise (fixed timelines, ROI guarantees, discounts, specific deliverables without a call, response times for the team).
 
 **Knowledge Agent** — DISABLED globally. Caused duplicate answers when enabled. Individual nodes use Search Knowledge cards to pull from the KB instead.
 
-**Summary Agent** — generates a conversation summary (used in conversation context).
+**Summary Agent (v1)** — generates a pre-call brief for the sales manager. Strict rules: only visitor-stated info, never attribute bot responses as visitor data, never fabricate emails from name + company.
 
-**Knowledge Base** — 8 documents loaded covering services, case studies, pricing frameworks, FAQs, and objection responses.
+**Knowledge Base** — 13 documents loaded with YAML front-matter metadata (type + topic) covering company profile, service info, sales info, technical details, and case studies.
 
 ---
 
@@ -51,43 +51,49 @@ Global instructions are split across two Agents that apply to every autonomous n
 
 ### Architecture
 
-Start → Discovery → Scoring Engine → Handoff / Nurture / DQ
+Start → Discovery (AN) → Scoring Engine (SN) → DQ Bridge / Nurture Bridge / Handoff Bridge
 
 ### Discovery Node
 
-Single combined **Autonomous Node** covering Steps 1–9 of the discovery process:
+Single combined **Autonomous Node** covering the full discovery process:
 
-- Steps 1–2: Greeting, introduction
-- Step 3: Company info, role, industry, location (ICP check here)
-- Steps 4–5: Use case, pain points (CH signal evaluation)
-- Steps 6–7: Lead volume, tech stack
-- Step 8: Timeline, trigger events
-- Step 9: Budget, decision authority
+- 2.1 Opening (REQUIRED)
+- 2.2 Company Profile (REQUIRED)
+- 2.3 Challenges (REQUIRED — CHAMP)
+- 2.4 Timeline (REQUIRED — CHAMP)
+- 2.5 Budget (REQUIRED — CHAMP)
+- 2.6 Authority (REQUIRED — CHAMP)
+- 2.7 Technical Context (optional — after all required topics)
+- 2.8 Qualification Complete
 
-**Prompt structure:** Topic-based (Conversation Style, Scope, Guardrails, When to Use Tools) — not step-based.
+**Prompt structure:** Topic-based (Conversation Style, Scope, Guardrails) — not step-based. Tool references inline in Scope section.
 
 **Cards on this node:**
 - Search Knowledge (Main KB)
-- Execute Workflow: Knowledge Gap Logger (UC2)
-- Execute Workflow: Handle Objections (UC3)
+- Conversation_LogsTable (Execute Table card — replaced Knowledge Gap Logger workflow)
+- Execute Workflow: Handle Objections
+- Execute Workflow: Edge Cases
 
 **Early Nurture logic (handled inside Discovery node):**
-If `ch_challenges` is set to `"unclear"` or `"negative"`, the agent uses the Main KB to share a service overview and expected outcomes verbally (one piece of information at a time, no links). It asks if the content resonated. If the visitor confirms → update `ch_challenges` to `"positive"` and continue to the next discovery question. If the visitor denies → `ch_challenges` stays as-is, don't push, ask if they have other questions and use the KB to answer them. There is no separate Nurture Bridge or Early Nurture transition for this.
+If `ch_challenges` is set to `"unclear"` or `"negative"`, the agent uses the Main KB to share a service overview and expected outcomes verbally (one piece of information at a time, no links). It asks if the content resonated. If the visitor confirms → update `ch_challenges` to `"positive"` and continue to the next discovery question. If the visitor denies → `ch_challenges` stays as-is, don't push, ask if they have other questions and use the KB to answer them.
 
-**Transition conditions:**
-- `icp_exclusion_flag = true` → DQ_Bridge
-- `m_money = "negative"` (budget explicitly below €5K) → DQ_Bridge
-- `qualification_complete = true` → Scoring_Engine
+**Transition:**
+- `workflow.discovery_complete === true` → Scoring Engine (Standard Node)
+
+**DQ triggers (inside Discovery):**
+- Budget explicitly < €5,000: set `m_money = "negative"`, `discovery_complete = true`, provide `salesai@halo-lab.team`, close gracefully → transition to Scoring Engine
+- ICP exclusion (Adult/18+ or Russia-based): set `icp_exclusion_flag = true`, `discovery_complete = true`, close gracefully → transition to Scoring Engine
 
 **CHAMP signal defaults:** All set to `"none"` in Botpress variable configuration.
 
 ### Scoring Engine
 
-**Type:** Standard Node
+**Type:** Standard Node (used in both Discovery and Nurture flows)
 
 **Cards:**
-- Execute Code — counts positive CHAMP signals, assigns `lead_score` and `lead_score_reason`, sets `champ_positive_count` and `qualification_complete = true`
-- AI Transition — routes to Hot, Warm, Nurture, or DQ
+- AI Task — fills in any missed CHAMP variables from conversation context
+- Execute Code — sets `lead_score` (unchanged scoring rules)
+- AI Transition — routes based on `lead_score`
 
 **Scoring rules:**
 - All 4 positive → Hot
@@ -95,14 +101,10 @@ If `ch_challenges` is set to `"unclear"` or `"negative"`, the agent uses the Mai
 - CH negative/unclear, OR CH positive but 0 of A/M/P positive → Nurture
 - No need / wrong scope / spam → DQ
 
-### DQ Close
-
-**Type:** Standard Node with variable-based differentiated messages.
-
-- ICP exclusion (`icp_exclusion_flag = true`): "Thanks for reaching out — this isn't something we're able to help with."
-- All other DQ: "Thanks for reaching out — based on what you've described, this service may not be the right fit right now."
-
-Sets `lead_score = "DQ"`, `lead_score_reason`, `conversation_stage = "dq_closed"`, `conversion_action = "none"`.
+**AI Transition routes to:**
+- DQ → DQ Bridge (Execute Code card sets `conversation_stage = "dq_closed"`) → End
+- Nurture → Nurture Bridge
+- Hot/Warm → Handoff Bridge
 
 ---
 
@@ -110,35 +112,34 @@ Sets `lead_score = "DQ"`, `lead_score_reason`, `conversation_stage = "dq_closed"
 
 ### Flow
 
-Entry Guard → Booking (Autonomous) → Completed_Lead_Converted → Handoff_Bridge → End
+Handoff Bridge → Handoff AN → Standard Node (AI Transition) → DQ Bridge + End / Exit
 
 ### Node Details
 
-**Entry Guard (Standard Node):**
-Verifies `lead_score` is "Hot" or "Warm". If not, redirects to Nurture or DQ Close.
-
-**Booking (Autonomous Node):**
-The LLM generates a natural qualification summary message — confident framing for Hot, exploratory for Warm. Never announces the score or mentions CHAMP. Then presents the Cal.com event link. Collects `visitor_email` if not already captured.
+**Handoff (Autonomous Node):**
+The LLM generates a natural qualification summary message — confident framing for Hot, exploratory for Warm. Never announces the score or mentions CHAMP. Then presents the Cal.com event link.
 
 Cards:
 - Search Knowledge (Main KB)
-- Execute Workflow: Knowledge Gap Logger (UC2)
-- Execute Workflow: Handle Objections (UC3)
+- Conversation_LogsTable (Execute Table card — replaced Knowledge Gap Logger workflow)
+- Execute Workflow: Edge Cases
+- Execute Workflow: Handle Objections
+
+**Transition:** `workflow.handoff_completed === true` → Standard Node with AI Transition
+
+**AI Transition routes based on `conversation.lead_score`:**
+- DQ → DQ Bridge → End
+- Hot/Warm → Exit
 
 **Outcomes after presenting Cal.com link:**
 
 | Scenario | What happens | conversion_action |
 |----------|-------------|-------------------|
-| Visitor clicks the link | Bot confirms, moves to Completed | `"booking_link_shared"` |
-| Visitor declines booking | Bot offers contact form ("Can I take your details?") | `"form_submitted"` if accepted |
+| Visitor confirms they will book | Bot confirms warmly, sets handoff_completed | `"booking_link_shared"` |
+| Visitor asks for alternative | Bot offers contact form ("Can I take your details?") | `"form_submitted"` if accepted |
 | Visitor declines everything | Bot provides salesai@halo-lab.team, closes positively | `"none"` |
 
 **Important:** The bot shares the Cal.com link but does NOT book the meeting itself. It cannot confirm whether the visitor actually completed the booking. `conversion_action` is set to `"booking_link_shared"` (not `"meeting_booked"`).
-
-**Completed_Lead_Converted (Standard Node):**
-Sets `conversation_stage = "completed"`. No pre-call brief is triggered (since the bot can't confirm booking completion).
-
-**Handoff_Bridge → End.**
 
 ### Pre-Call Brief — Currently Not Active
 
@@ -148,115 +149,150 @@ The pre-call brief was designed to send a structured summary to the sales team v
 
 ## 6. Nurture Workflow
 
-A separate sub-workflow called from the Main Flow when the Scoring Engine routes a lead as Nurture (standard entry — after full discovery, CH positive but none of A/M/P confirmed).
+A separate sub-workflow called from the Main Flow when the Scoring Engine routes a lead as Nurture (CH positive but A/M/P signals are unclear or negative).
 
 ### Node Structure
 
-Single **Autonomous Node** covering steps N1–N5.
+Two **Autonomous Nodes** with a **Scoring Engine** (Standard Node) between them.
 
-### Cards
+**Node 1: Nurture + Requalify (AN)** → Scoring Engine (SN) → Node 2: Nurture Close (AN) or Handoff Bridge or DQ Bridge
 
-- Search Knowledge (Query KB) — proactive case study retrieval at N1 + reactive visitor questions
-- Execute Workflow: Knowledge Gap Logger (UC2)
-- Execute Workflow: Handle Objections (UC3)
+### Node 1 Cards (N1–N2)
 
-### Transitions
+- Search Knowledge (Main KB)
+- Conversation_LogsTable (Execute Table card — replaced Knowledge Gap Logger workflow)
+- Execute Workflow: Edge Cases
+- Execute Workflow: Handle Objections
 
-- `m_money = "negative"` → DQ Close (with `lead_score_reason = "insufficient_budget"`)
-- `nurture_stage = "N4_upgraded"` AND `qualification_complete = false` → Exit to Deep Discovery (Step 6)
-- `nurture_stage = "N4_upgraded"` AND `qualification_complete = true` → Hot/Warm Handoff workflow
+### Node 1 Steps
 
-### Entry Logic
+**N1 — Ask What Matters:**
+Identifies which CHAMP signals (A, M, P only — CH is always positive) are unclear or negative. Offers the visitor topic choices based on their weak signals (timeline/pricing/talking points for manager). Sets `nurture_stage = "N1_topics_offered"`.
 
-If `nurture_stage` is already set (not null), skip N1 and start from N2. This handles returning visitors who already received resources.
+**N2 — Address + Requalify:**
+Shares KB content on the visitor's chosen topic conversationally. Asks: "What would need to change on your side for this to become something you'd want to move forward on?"
 
-### Steps
+Three scenarios:
+- **Factual question (no signal change):** Answer from KB, re-ask requalification question.
+- **No signal change:** Acknowledge with one sentence (no email, no closing, no next steps). Set `nurture_requalified = true`.
+- **Improved signals:** Update CHAMP variables, acknowledge progress in one sentence (no email, no booking link). Set `nurture_requalified = true`.
 
-**N1 — Share Resources:**
-Agent pulls 1–2 case studies from KB relevant to visitor's industry/use case. If no close match, shares the most related and is transparent. Saves `resources_shared` (JSON array). Sets `nurture_stage = "N1_resources_shared"`.
+### Node 1 Transition
 
-**N2 — Check In:**
-Asks if the resources resonated. Sets `nurture_stage = "N2_checked_in"`.
+`workflow.nurture_requalified === true` → Scoring Engine (same Standard Node as Discovery)
 
-**N3 — Re-qualification (CHAMP Revisit):**
-Asks what would need to change for them to move forward. Updates CHAMP signals that become clearer. Sets `nurture_stage = "N3_requalified"`.
+### Scoring Engine (between Node 1 and Node 2)
 
-**N4 — Evaluate Upgrade:**
+AI Task fills missed variables → Execute Code sets `lead_score` → AI Transition routes:
+- DQ → DQ Bridge → End
+- Hot/Warm → Handoff Bridge
+- Nurture (signals did not improve) → Node 2 (N3 Nudge + Close)
 
-| Condition | Action |
-|-----------|--------|
-| Signals improved AND `qualification_complete = true` | Set `nurture_upgraded_to` ("Warm"/"Hot"), update `lead_score`, set `nurture_stage = "N4_upgraded"` → redirect to Handoff |
-| CH became positive AND `qualification_complete = false` | Set `nurture_stage = "N4_upgraded"`, `conversation_stage = "discovery_volume"` → redirect to Deep Discovery (Step 6) |
-| Signals did NOT improve | Soft contact form nudge → if accepted: `nurture_stage = "N4_nudged"`, `conversion_action = "form_submitted"`. If declined → N5 |
+### Node 2: Nurture Close (AN)
 
-**N5 — Warm Close:**
-Positive close message. Sets `nurture_stage = "N5_warm_closed"`, `conversion_action = "resources_sent"`.
+**N3 — Nudge + Close:**
+Offers to collect visitor details: "Would it help if I took your details so our team can follow up when the timing is better?"
 
-### Variables
+- If accepted: confirm already-captured details, ask only for missing (email). Set `conversion_action = "form_submitted"`.
+- If declined: acknowledge warmly. Set `conversion_action = "none"`.
 
-The Nurture node has read+write access to all CHAMP signals, `lead_score`, `nurture_stage`, `nurture_upgraded_to`, `resources_shared`, `conversion_action`, and `conversation_stage`. At N3, the LLM re-evaluates CHAMP signals from conversation context. For Standard Nurture upgrades, the LLM sets `nurture_upgraded_to` AND `lead_score` directly.
+Set `nurture_stage = "N3_closed"`, `workflow.n3_closed = true`.
 
-### Known Bug
+### Node 2 Cards
 
-`nurture_stage` variable gets stuck at `N1` and can jump to `N4`, skipping N2 (check-in) and N3 (re-qualification). Under investigation.
+- Search Knowledge (Main KB)
+- Conversation_LogsTable (Execute Table card)
+- Execute Workflow: Edge Cases
+- Execute Workflow: Handle Objections
+
+### Node 2 Transition
+
+`workflow.n3_closed === true` → Exit
 
 ---
 
 ## 7. Objection Handling (UC3)
 
-Implemented as a separate sub-workflow called via Execute Workflow cards from Discovery, Nurture, and Handoff Booking nodes.
+Implemented as a separate sub-workflow called via Execute Workflow cards from Discovery, Nurture, Handoff, and Edge Cases nodes.
 
 ### Trigger
 
-Visitor raises a concern about pricing, timing, competitors, scope, trust, authority, or anything signaling hesitation.
+Visitor raises a concern about pricing, timing, competitors, scope, trust, authority, process, or anything signaling hesitation.
 
-### Key Principle
+### Pattern: Check → Close
 
-Objections do NOT change routing or lead score. The agent handles them inline and resumes the current flow.
+After addressing any objection, ask if that addresses the concern. If confirmed → brief sentence, set `objection_addressed = true`, exit. If pushback → address with different KB content, ask again. If visitor signals readiness to move forward → exit immediately.
 
-### Handling Sequence
+### Cards
 
-1. **Acknowledge** — validate the concern without dismissing it
-2. **Address** — use KB content (case studies, pricing frameworks, social proof)
-3. **Reframe** — redirect to value proposition or suggest phased approach
-4. **Resume** — return to wherever the conversation was
+- Search Knowledge (Main KB)
+- Conversation_LogsTable (Execute Table card — knowledge gap logs)
+- Execute Workflow: Edge Cases
+- Conversation_LogsTable (Execute Table card — unidentified objection logs)
+
+### Transition
+
+`workflow.objection_addressed === true` → Standard Node with AI Transition based on `conversation.lead_score`:
+- DQ → DQ Bridge → End
+- All other scores → Exit (return to caller)
 
 ### By Objection Type
 
 | Type | Agent behavior | Hard limits |
 |------|---------------|-------------|
-| Pricing | Share pricing framework from KB, suggest phased approach | NEVER provide exact pricing or promise discounts |
+| Pricing | Share pricing framework from KB, suggest phased approach. Save budget if revealed, evaluate M signal | NEVER provide exact pricing or promise discounts |
 | Timing | Note the concern, re-check P signal, suggest phased approach | NEVER promise fixed timelines or SLA commitments |
-| Competitor | Redirect to Halo Lab's strengths, case studies, client results | NEVER discuss competitors by name |
-| Scope | Clarify needs, refine CH signals. If scope doesn't match → DQ | NEVER promise specific deliverables |
+| Competitor | NEVER repeat competitor names — replace with "other tools"/"other solutions". Redirect to strengths from KB | NEVER discuss competitors by name |
+| Scope | Clarify needs, refine CH signals. If scope doesn't match → set DQ + wrong_scope | NEVER promise specific deliverables |
 | Trust | Provide case studies and social proof from KB | NEVER guarantee outcomes, ROI, or sales team replacement |
-| Unidentified | Log objection to `unidentified_objections` array, provide salesai@halo-lab.team | — |
-| Repeated | Acknowledge concern is significant, suggest direct conversation with sales team | Provide contact email |
+| Authority | Ask who else is involved, evaluate A signal, offer shareable materials | — |
+| Process | Acknowledge preference, ask how they evaluate. Offer options or route to "skip to human" edge case | — |
+| Unidentified | Log objection to Conversation_LogsTable, address from KB or acknowledge gap, provide salesai@halo-lab.team | — |
 
 ---
 
-## 8. Knowledge Gap Handling (UC2)
+## 8. Knowledge Gap Handling
 
-Implemented as a separate sub-workflow called via Execute Workflow cards from Discovery, Nurture, and Handoff Booking nodes.
+**No longer a separate workflow.** Knowledge gap logging is now handled via Conversation_LogsTable Execute Table cards directly on each Autonomous Node.
 
 ### Trigger
 
-Visitor asks a question that the KB cannot fully answer (partial or no answer).
+All three conditions must be true:
+1. Search Knowledge was called in this turn
+2. KB returned no answer, incomplete answer, or content that doesn't address the question
+3. The bot already sent a response acknowledging the gap
 
-### Handling Sequence
+### Data Written to Conversation_LogsTable
 
-1. Check KB first
-2. If fully answerable → answer from KB
-3. If partially answerable → answer what's available, note the gap, suggest a call for more detail
-4. If not answerable → acknowledge honestly, suggest alternative topic, provide salesai@halo-lab.team for human follow-up
-
-### Data Written
-
-- `knowledge_gap_triggered = true`
-- `knowledge_gap_question` — the specific question
-- `contact_form_question` — same question (for table / sales follow-up)
+- `visitor_id`: {{event.userId}}
+- `knowledge_gap_question`: the visitor's question (quoted as closely as possible)
+- `unidentified_objections`: empty string ""
 
 Knowledge gaps do NOT change lead score. Qualification continues after the gap is handled.
+
+## 8b. Edge Cases Workflow
+
+Implemented as a separate sub-workflow called via Execute Workflow cards from Discovery, Nurture, Handoff, and Handle Objections nodes.
+
+### Trigger
+
+Spam/abuse, off-topic/gibberish, request to skip to human or book a call, prior conversation reference, sensitive data shared, out-of-scope request (services outside Sales AI Agent).
+
+### Cards
+
+- Search Knowledge (Main KB)
+- Conversation_LogsTable (Execute Table card — knowledge gap logs)
+- Execute Workflow: Handle Objections
+
+### Transition
+
+`workflow.edge_case_handled === true` → Standard Node with AI Transition:
+- `workflow.edge_case_soft_close === true` → End
+- `workflow.edge_case_soft_close === false` → Exit (return to caller)
+
+### Already DQ'd Visitors
+
+If `conversation.lead_score` is already "DQ" when entering this node, always set `edge_case_soft_close = true` after handling — do not return to the caller.
 
 ---
 
@@ -332,13 +368,15 @@ Knowledge gaps do NOT change lead score. Qualification continues after the gap i
 
 - **Option B (Scored Flow):** Bot automatically evaluates CHAMP signals and routes leads (not manual scoring by sales team)
 - **Global instructions split:** Personality Agent (behavior) / Policy Agent (hard limits)
-- **Transition routing:** Lives in cards, not LLM prompts
-- **Guard instructions:** Live in Global Instructions (agents), not individual node prompts
-- **Bridge Standard Nodes:** Connect autonomous node transitions to sub-workflows
+- **Transition routing:** AN → SN (AI Transition) pattern across all flows. AN sets a workflow boolean, SN routes based on lead_score or soft_close
+- **Bridge Standard Nodes:** Connect autonomous node transitions to sub-workflows (DQ Bridge, Nurture Bridge, Handoff Bridge)
 - **Single Discovery node:** Early + Deep Discovery combined to eliminate double-message UX and transition failures
 - **Early Nurture absorbed into Discovery:** No separate Nurture Bridge — handled inline within the Discovery node prompt
-- **Prompt structure:** Topic-based (Conversation Style, Scope, Guardrails, When to Use Tools) preferred over step-based
-- **`nurture_entry` variable skipped:** `qualification_complete` handles routing instead
+- **Prompt structure:** Topic-based (Conversation Style, Scope, Guardrails) — "When to Use Tools" section removed, tool references inline in Scope
+- **Knowledge Gap Logger workflow replaced:** All nodes now use Conversation_LogsTable Execute Table cards directly instead of a separate UC2 workflow
+- **Nurture split into 2 ANs:** Node 1 (N1-N2 nurture + requalify) → Scoring Engine → Node 2 (N3 nudge + close). Scoring engine shared with Discovery
+- **Consistent Data Collection guardrails:** All nodes use the same 4-step process (identify → save → tools → respond)
+- **Consistent DQ triggers:** All nodes handle budget DQ and ICP exclusion inline with graceful close
 
 ---
 
@@ -346,7 +384,7 @@ Knowledge gaps do NOT change lead score. Qualification continues after the gap i
 
 | Issue | Status | Details |
 |-------|--------|---------|
-| Nurture `nurture_stage` variable bug | Open | Stops at N1, can jump to N4 skipping N2/N3 |
+| Nurture `nurture_stage` variable bug | Likely resolved | Was skipping N2/N3 in single-node setup. Nurture now split into 2 ANs with scoring engine between — needs re-testing |
 | Pre-call brief not active | By design | Can't trigger without booking confirmation from Cal.com |
 | Publish Failed error (variable description limit) | Resolved | Root cause: `lead_score` description exceeded Botpress 256-char limit |
 | CHAMP signals defaulting to "unclear" | Resolved | Fixed by setting variable defaults to `"none"` in Botpress |
