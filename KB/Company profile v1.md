@@ -8,7 +8,7 @@ Halo Lab is a design and development agency that helps startups and businesses b
 
 - **Founded:** 12 years ago
 - **Team size:** 120+ people
-- **Projects delivered:** 500+ across design, development, branding, and other digital services
+- **Projects delivered:** 500+ across design, development, branding, and other digital services (company-wide, not AI-agent-specific).
 - **Clutch rating:** 4.9 / 5 (80+ reviews)
 
 Team composition per project depends on scope. Details are shared on the discovery call.
