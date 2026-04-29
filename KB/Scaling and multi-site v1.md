@@ -1,3 +1,8 @@
+---
+type: "technical"
+topic: "scaling and multi-site deployment"
+---
+
 # Sales AI Agent — Scaling & Multi-Site
 
 > Created: April 1, 2026 | Updated: April 1, 2026

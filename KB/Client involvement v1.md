@@ -1,3 +1,8 @@
+---
+type: "service_info"
+topic: "client involvement and collaboration"
+---
+
 # Sales AI Agent — Client Involvement
 
 > Created: April 1, 2026 | Updated: April 1, 2026

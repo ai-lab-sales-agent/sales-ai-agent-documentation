@@ -1,3 +1,8 @@
+---
+type: "sales_info"
+topic: "pricing and cost"
+---
+
 # Sales AI Agent — Pricing Frameworks
 
 > Created: March 2, 2026 | Updated: March 2, 2026

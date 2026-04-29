@@ -1,3 +1,8 @@
+---
+type: "case_study"
+topic: "AI Slack assistant project"
+---
+
 # Case Study — WillWise
 
 WillWise is an AI-powered Slack assistant that summarizes threads, drafts announcements, answers questions, and generates ideas — all without leaving Slack. Built by Halo Lab and published on the Slack Marketplace.

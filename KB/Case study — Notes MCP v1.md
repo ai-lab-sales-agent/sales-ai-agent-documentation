@@ -1,3 +1,8 @@
+---
+type: "case_study"
+topic: "AI knowledge management project"
+---
+
 # Case Study — Notes MCP
 
 Halo Lab's internal AI project — a Slack app that connects Notion knowledge bases with OpenAI to give the team instant answers without leaving Slack. Built and launched in-house, demonstrating hands-on AI development experience.

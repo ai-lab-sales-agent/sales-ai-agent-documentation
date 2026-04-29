@@ -1,3 +1,8 @@
+---
+type: "sales_info"
+topic: "objection handling and common concerns"
+---
+
 # Sales AI Agent — Objection Handling Talking Points
 
 > Created: March 2, 2026 | Updated: April 1, 2026

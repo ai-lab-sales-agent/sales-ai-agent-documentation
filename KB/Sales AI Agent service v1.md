@@ -1,3 +1,8 @@
+---
+type: "service_info"
+topic: "service description and what the agent does"
+---
+
 # Sales AI Agent — Service Description
 
 > Created: March 2, 2026 | Updated: March 2, 2026

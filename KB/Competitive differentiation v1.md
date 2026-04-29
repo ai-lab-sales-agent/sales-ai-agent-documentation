@@ -1,3 +1,8 @@
+---
+type: "sales_info"
+topic: "competitive differentiation and alternatives"
+---
+
 # Competitive Differentiation
 
 > Created: April 1, 2026 | Updated: April 1, 2026

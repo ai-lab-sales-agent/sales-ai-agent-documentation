@@ -1,3 +1,8 @@
+---
+type: "service_info"
+topic: "ideal client fit and expected outcomes"
+---
+
 # Sales AI Agent — Who It's For & Expected Outcomes
 
 > Created: March 2, 2026 | Updated: March 2, 2026

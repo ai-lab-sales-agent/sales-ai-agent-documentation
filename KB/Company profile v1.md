@@ -1,3 +1,8 @@
+---
+type: "company_info"
+topic: "company background and credentials"
+---
+
 # Company Profile — Halo Lab
 
 > Created: March 2, 2026 | Updated: March 2, 2026

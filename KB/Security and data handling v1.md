@@ -1,3 +1,8 @@
+---
+type: "technical"
+topic: "security and data handling"
+---
+
 # Sales AI Agent — Security & Data Handling
 
 > Created: April 1, 2026 | Updated: April 1, 2026

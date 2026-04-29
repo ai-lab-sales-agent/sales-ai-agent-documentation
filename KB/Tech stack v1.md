@@ -1,3 +1,8 @@
+---
+type: "technical"
+topic: "tech stack and platform capabilities"
+---
+
 # Sales AI Agent — Tech Stack
 
 > Created: April 1, 2026 | Updated: April 1, 2026

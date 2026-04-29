@@ -1,3 +1,8 @@
+---
+type: "service_info"
+topic: "implementation process and deliverables"
+---
+
 # Sales AI Agent — Implementation Process & Deliverables
 
 > Created: March 2, 2026 | Updated: March 2, 2026
