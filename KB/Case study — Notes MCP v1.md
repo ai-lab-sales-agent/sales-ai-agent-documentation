@@ -23,7 +23,7 @@ Notes MCP is a Slack application that combines the capabilities of artificial in
 
 ## Challenges
 
-Halo Lab's internal processes are based on usage of both Slack for team communication and client interactions, and Notion for internal documentation. Team members had to constantly switch between the two tools to find information, update records, or answer work questions. This context switching slowed down daily operations and created friction in workflows that relied on both platforms. The main idea was to make operations in Notion easier to conduct directly from Slack chats, so the team could operate in one tool and leverage AI capabilities instead of navigating between two separate platforms.
+The team uses Slack for communication and client interactions, and Notion for documentation. Team members had to constantly switch between the two tools to find information, update records, or answer work questions. This context switching slowed down daily operations and created friction in workflows that relied on both platforms. The main idea was to make operations in Notion easier to conduct directly from Slack chats, so the team could operate in one tool and leverage AI capabilities instead of navigating between two separate platforms.
 
 ## Our Approach
 
