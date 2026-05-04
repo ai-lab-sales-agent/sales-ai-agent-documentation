@@ -5,7 +5,7 @@ topic: "AI Slack assistant project"
 
 # Case Study — WillWise
 
-WillWise is an AI-powered Slack assistant that summarizes threads, drafts announcements, answers questions, and generates ideas — all without leaving Slack. Built by Halo Lab and published on the Slack Marketplace.
+An AI-powered Slack assistant that summarizes threads, drafts announcements, answers questions, and generates ideas — all without leaving Slack. Built by Halo Lab and published on the Slack Marketplace.
 
 > Created: March 2, 2026 | Updated: April 20, 2026
 
@@ -20,7 +20,7 @@ WillWise is an AI-powered Slack assistant that summarizes threads, drafts announ
 
 ## About the Project
 
-WillWise is an AI-powered assistant for Slack built and released by Halo Lab as an internal product. It helps teams work smarter without leaving Slack by summarizing threads, drafting announcements, answering questions, and generating ideas.
+WillWise is an AI-powered assistant for Slack built and released by Halo Lab. It helps teams work smarter without leaving Slack by summarizing threads, drafting announcements, answering questions, and generating ideas.
 
 The project started in 2024 as an AI assistant connected to Gmail, designed to search emails, analyze correspondence, and help draft replies. During implementation, the team found that LLM models at the time were not stable enough for that scenario, with hallucinations and incomplete context being a serious limitation. This led to a pivot toward a Slack-native product focused on practical communication workflows.
 
@@ -44,7 +44,7 @@ Teams lose time scrolling through long Slack threads to find key decisions, cont
 
 WillWise was published on the Slack Marketplace in September 2025 after four review rounds. Before publication, the app had been installed and tested in 10+ Slack workspaces.
 
-The team did not collect detailed usage analytics for this version. This was partly a conscious decision due to Slack's strict requirements for collecting and processing user data. The product was used internally for summarization and drafting communication inside Slack, but without systematic performance measurement.
+The team did not collect detailed usage analytics for this version. This was partly a conscious decision due to Slack's strict requirements for collecting and processing user data. The product was used for summarization and drafting communication inside Slack, but without systematic performance measurement.
 
 After the release, a follow-up version with Stripe connectivity and company-managed keys was considered but not shipped, in part because the market shifted: Slack introduced its own AI functions and new integration tools.
 

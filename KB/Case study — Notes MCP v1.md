@@ -5,7 +5,7 @@ topic: "AI knowledge management project"
 
 # Case Study — Notes MCP
 
-Halo Lab's internal AI project — a Slack app that connects Notion knowledge bases with OpenAI to give the team instant answers without leaving Slack. Built and launched in-house, demonstrating hands-on AI development experience.
+A Slack app that connects Notion knowledge bases with OpenAI to give teams instant answers without leaving Slack. Built and launched by Halo Lab, demonstrating end-to-end AI integration and product delivery.
 
 > Created: April 1, 2026 | Updated: April 1, 2026
 
@@ -19,7 +19,7 @@ Halo Lab's internal AI project — a Slack app that connects Notion knowledge ba
 
 ## About the Project
 
-Notes MCP is a Slack application that combines the capabilities of artificial intelligence (OpenAI) and a knowledge management system (Notion). It is built for teams that want to automate routine work, effectively interact with corporate databases, and quickly get answers to work questions — all without leaving Slack. The application automates interaction with corporate knowledge bases in Notion through Slack, provides AI-powered answers to work questions without context switching, and simplifies the management of integrations with Notion and OpenAI. Built by Halo Lab as an internal product to increase team productivity through quick access to information.
+Notes MCP is a Slack application that combines the capabilities of artificial intelligence (OpenAI) and a knowledge management system (Notion). It is built for teams that want to automate routine work, effectively interact with corporate databases, and quickly get answers to work questions — all without leaving Slack. The application automates interaction with corporate knowledge bases in Notion through Slack, provides AI-powered answers to work questions without context switching, and simplifies the management of integrations with Notion and OpenAI.
 
 ## Challenges
 
@@ -41,4 +41,4 @@ The app is live and pending Slack App Directory approval.
 - Halo Lab builds AI-powered integrations that connect existing tools (Slack + Notion) into a unified workflow
 - Experience with OpenAI integration, event-driven architecture, and Slack app development
 - Ability to ship a complete product — from AI architecture to public website
-- Internal product built to solve a real team productivity problem
+- Built to solve a real team productivity problem: reducing context switching between communication and documentation tools
