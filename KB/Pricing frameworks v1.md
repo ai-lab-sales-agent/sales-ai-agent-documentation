@@ -33,7 +33,7 @@ The final project cost depends on:
 
 - **Complexity of the sales process** — Number of conversation flows, qualification rules, edge cases, and handoff scenarios
 - **Number of integrations** — CRM (e.g., HubSpot), calendar tool, Slack, email, website platform, and any custom connectors
-- **Knowledge base size** — Amount of content to build: services, FAQ, pricing frameworks, case studies, objection responses
+- **Knowledge base size** — Amount of content to build: services, FAQ, pricing frameworks, objection responses, reference materials
 - **Ongoing optimization scope** — How much post-launch tuning, testing, and KB expansion is included
 
 Individual line-item pricing per factor (e.g., cost of a single integration) is not available separately. The factors influence where the total lands within the range.

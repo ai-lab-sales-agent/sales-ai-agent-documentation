@@ -29,7 +29,7 @@ Halo Lab builds and deploys custom Sales AI Agents tailored to each client's bus
 
 ### FAQ & Pre-Sales Consultation
 - Answers common questions about the client's services, pricing frameworks, process, and timelines
-- Surfaces relevant case studies matched to the visitor's industry or need
+- Surfaces relevant project examples matched to the visitor's industry or need
 - Provides accurate, knowledge-base-grounded responses — never makes things up
 
 ### Knowledge Boundaries

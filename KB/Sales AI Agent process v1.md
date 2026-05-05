@@ -11,7 +11,7 @@ topic: "implementation process and deliverables"
 
 1. **Discovery** — Understand the client's sales process, ICP, qualification criteria, and tech stack
 2. **Design** — Map out conversation flows, qualification logic, and handoff rules
-3. **Knowledge Base** — Build the agent's knowledge: services, FAQ, pricing frameworks, case studies
+3. **Knowledge Base** — Build the agent's knowledge: services, FAQ, pricing frameworks, reference materials
 4. **Build** — Configure the agent on a conversational AI platform with all flows, nodes, and integrations
 5. **Integration** — Connect to the client's CRM (e.g., HubSpot), calendar tool, and website
 6. **Testing** — Run 50+ test conversations to validate qualification accuracy and guardrails
@@ -30,7 +30,7 @@ Exact timelines and phase-by-phase breakdowns are discussed on the discovery cal
 
 - Custom conversation flow design (discovery, qualification, handoff)
 - Qualification framework tailored to the client's ICP and sales process
-- Knowledge base creation (services, FAQ, pricing frameworks, case studies)
+- Knowledge base creation (services, FAQ, pricing frameworks, reference materials)
 - Platform configuration and deployment
 - CRM and calendar integration setup
 - Chat widget installation on the website

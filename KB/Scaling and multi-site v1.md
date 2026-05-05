@@ -22,7 +22,7 @@ The key factor is whether the inbound sales process and the information the agen
 The agent can start as an MVP with core functionality (qualification and meeting booking) and expand over time:
 
 - Additional conversation flows (e.g., objection handling, nurture sequences, edge case handling)
-- New knowledge base content (case studies, updated pricing, new services)
+- New knowledge base content (project references, updated pricing, new services)
 - More advanced qualification logic as the client's sales process evolves
 
 This phased approach lets the client launch faster and invest in expansion based on real conversation data.
