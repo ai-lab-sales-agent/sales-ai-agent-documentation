@@ -48,11 +48,10 @@ The team did not collect detailed usage analytics for this version. This was par
 
 After the release, a follow-up version with Stripe connectivity and company-managed keys was considered but not shipped, in part because the market shifted: Slack introduced its own AI functions and new integration tools.
 
-## What This Demonstrates
+## Why This Is Relevant to Sales AI Agent Projects
 
-- Halo Lab builds and ships production-ready AI products end-to-end
-- Experience with conversational AI that understands context and generates natural responses
-- Ability to integrate AI into existing tools (Slack) that teams already use
-- Full product lifecycle: concept, pivot based on technical learnings, build, Marketplace review, publication
-- Practical experience with LLM evaluation tooling (Promptfoo) and prompt-driven architecture
-- Navigating platform review processes (Slack Marketplace approval)
+- Demonstrates conversational AI that understands context and generates natural responses — the same capability that powers a Sales AI Agent's lead conversations
+- Experience with prompt-driven architecture and LLM evaluation tooling (Promptfoo) — the same techniques used to ensure a Sales AI Agent responds accurately and follows qualification flows
+- Proven ability to integrate AI into tools teams already use — Sales AI Agents similarly plug into a company's existing website, CRM, and calendar
+- Full product lifecycle from concept through platform review and publication, showing Halo Lab delivers production-ready AI products, not prototypes
+- Hands-on experience with model limitations (hallucinations, incomplete context) and how to solve them — directly applicable to building reliable Sales AI Agents

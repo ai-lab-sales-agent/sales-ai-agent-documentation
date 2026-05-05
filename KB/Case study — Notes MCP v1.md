@@ -36,9 +36,9 @@ The team uses Slack for communication and client interactions, and Notion for do
 
 The app is live and pending Slack App Directory approval.
 
-## What This Demonstrates
+## Why This Is Relevant to Sales AI Agent Projects
 
-- Halo Lab builds AI-powered integrations that connect existing tools (Slack + Notion) into a unified workflow
-- Experience with OpenAI integration, event-driven architecture, and Slack app development
-- Ability to ship a complete product — from AI architecture to public website
-- Built to solve a real team productivity problem: reducing context switching between communication and documentation tools
+- Demonstrates the same core capabilities used in Sales AI Agents: LLM integration, knowledge base connectivity, and building AI that retrieves accurate answers from company data
+- Experience connecting AI to business tools and databases — the same approach used to connect a Sales AI Agent to a company's CRM, calendar, or knowledge base
+- Proven ability to ship a complete AI product end-to-end: architecture, development, testing, and launch
+- Shows Halo Lab's hands-on experience with AI-powered automation that reduces manual work and speeds up workflows
