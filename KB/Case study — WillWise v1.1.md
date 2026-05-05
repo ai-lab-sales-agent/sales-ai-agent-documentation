@@ -9,23 +9,6 @@ A conversational AI agent built by Halo Lab that processes natural language requ
 
 > Created: March 2, 2026 | Updated: May 5, 2026
 
-## What Was Built
-
-A conversational AI agent that:
-- Understands context from ongoing conversations and generates natural responses
-- Classifies incoming requests into different workflows (summarization, announcements, open-ended Q&A)
-- Uses prompt-driven architecture to route and respond accurately
-- Supports multiple LLM providers (OpenAI, Gemini) with configurable parameters
-- Published on the Slack Marketplace after passing four review rounds on security, functionality, and data handling
-
-## Why This Is Relevant to AI Agent Projects
-
-- Demonstrates conversational AI that understands context and generates natural responses — the same capability that powers a Sales AI Agent's lead conversations
-- Experience with prompt-driven architecture and LLM evaluation tooling (Promptfoo) — the same techniques used to ensure a Sales AI Agent responds accurately and follows qualification flows
-- Proven ability to integrate AI into tools teams already use — Sales AI Agents similarly plug into a company's existing website, CRM, and calendar
-- Full product lifecycle from concept through platform review and publication, showing Halo Lab delivers production-ready AI agents, not prototypes
-- Hands-on experience with model limitations (hallucinations, incomplete context) and how to solve them — directly applicable to building reliable Sales AI Agents
-
 ## Metadata
 
 - **Industry:** AI, SaaS
@@ -35,21 +18,35 @@ A conversational AI agent that:
 - **Website:** https://willwise.ai/
 - **Team:** Backend engineer, QA specialist (hourly), PM support
 
+## What Was Built
+
+A conversational AI agent that:
+- Understands context from ongoing conversations and generates natural responses
+- Classifies incoming requests into different workflows (summarization, announcements, open-ended Q&A)
+- Uses prompt-driven architecture to route and respond accurately
+- Supports multiple LLM providers (OpenAI, Gemini) with configurable parameters
+
+## Why This Is Relevant to AI Agent Projects
+
+- Demonstrates conversational AI that understands context and generates natural responses — the same capability that powers a Sales AI Agent's lead conversations
+- Experience with prompt-driven architecture and LLM evaluation tooling (Promptfoo) — the same techniques used to ensure a Sales AI Agent responds accurately and follows qualification flows
+- Proven ability to integrate AI into tools teams already use — Sales AI Agents similarly plug into a company's existing website, CRM, and calendar
+- Full product lifecycle from concept through marketplace publication, showing Halo Lab delivers production-ready AI agents, not prototypes
+- Hands-on experience with model limitations (hallucinations, incomplete context) and how to solve them — directly applicable to building reliable Sales AI Agents
+
 ## About the Project
 
-WillWise is a conversational AI agent built and released by Halo Lab. It helps teams work smarter by processing conversations, summarizing threads, drafting announcements, answering questions, and generating ideas — all through a conversational interface.
+WillWise is a conversational AI agent built and released by Halo Lab. It helps teams work smarter by summarizing threads, drafting announcements, answering questions, and generating ideas — all through a conversational interface.
 
-The project started in 2024 as an AI agent connected to Gmail, designed to search emails, analyze correspondence, and help draft replies. During implementation, the team found that LLM models at the time were not stable enough for that scenario, with hallucinations and incomplete context being a serious limitation. This led to a pivot toward a conversational AI agent focused on practical communication workflows.
-
-Users can connect their own OpenAI or Gemini keys, choose a model, and use the agent for summarizing threads, creating announcements, generating ideas, and answering open-ended requests.
+The project started in 2024 as an AI agent connected to Gmail, designed to search emails, analyze correspondence, and help draft replies. During implementation, the team found that LLM models were not stable enough for that scenario, with hallucinations and incomplete context being a serious limitation. This led to a pivot toward a conversational AI agent focused on practical communication workflows.
 
 ## Challenges
 
-Important information gets buried in team conversations. Writing announcements, finding key decisions, and answering repeated questions pulls people away from focused work. The goal: build an AI agent that processes conversations, extracts what matters, and generates useful responses — without requiring users to leave their workflow.
+Important information gets buried in team conversations. Writing announcements, finding key decisions, and answering repeated questions pulls people away from focused work. The goal: build an AI agent that processes conversations, extracts what matters, and generates useful responses.
 
 ## Our Approach
 
-**Discovery and feature prioritization.** The team researched existing conversational agents to understand interaction patterns and expectations. Product direction was shaped with a key stakeholder. The project started as an email-connected AI agent but pivoted after discovering LLM limitations (hallucinations, incomplete context) — leading to a conversational agent focused on practical workflows.
+**Discovery and feature prioritization.** The team researched existing conversational agents to understand interaction patterns and expectations. Product direction was shaped with a key stakeholder.
 
 **Architecture.** NestJS (TypeScript), PostgreSQL, OpenAI API. Prompt-driven architecture with core logic centered on classifying requests into workflows. Users could configure models (OpenAI and Gemini) at workspace or individual level, including parameters like temperature and max tokens. API keys stored encrypted, accessible only server-side.
 
@@ -59,8 +56,4 @@ Important information gets buried in team conversations. Writing announcements, 
 
 ## Results
 
-The AI agent was published on the Slack Marketplace in September 2025 after four review rounds. Tested in 10+ workspaces before publication. The team gained hands-on experience with:
-- Handling LLM limitations (hallucinations, incomplete context) and designing solutions
-- Prompt-driven architecture for reliable request classification
-- LLM evaluation tooling (Promptfoo) for quality assurance
-- Navigating platform review processes for production deployment
+The AI agent was published on the Slack Marketplace in September 2025 after four review rounds. Tested in 10+ workspaces before publication.
