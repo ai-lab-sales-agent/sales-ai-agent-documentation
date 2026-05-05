@@ -1,11 +1,11 @@
 ---
 type: "case_study"
-topic: "AI Slack assistant project"
+topic: "Halo Lab AI project — conversational AI, prompt engineering, production delivery"
 ---
 
 # Case Study — WillWise
 
-An AI-powered Slack assistant that summarizes threads, drafts announcements, answers questions, and generates ideas — all without leaving Slack. Built by Halo Lab and published on the Slack Marketplace.
+A production conversational AI product built by Halo Lab and published on the Slack Marketplace. Demonstrates the same capabilities used in Sales AI Agents: natural language understanding, context-aware responses, prompt-driven architecture, and LLM evaluation testing.
 
 > Created: March 2, 2026 | Updated: April 20, 2026
 

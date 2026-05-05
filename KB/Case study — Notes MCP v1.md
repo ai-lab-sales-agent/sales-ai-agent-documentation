@@ -1,11 +1,11 @@
 ---
 type: "case_study"
-topic: "AI knowledge management project"
+topic: "Halo Lab AI project — LLM integration, knowledge base connectivity, production delivery"
 ---
 
 # Case Study — Notes MCP
 
-A Slack app that connects Notion knowledge bases with OpenAI to give teams instant answers without leaving Slack. Built and launched by Halo Lab, demonstrating end-to-end AI integration and product delivery.
+A production AI product built by Halo Lab that connects knowledge bases with LLMs to deliver instant, accurate answers. Demonstrates the same core capabilities used in Sales AI Agents: knowledge base retrieval, LLM integration, and AI-powered automation.
 
 > Created: April 1, 2026 | Updated: April 1, 2026
 
