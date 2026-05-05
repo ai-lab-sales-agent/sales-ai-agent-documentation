@@ -20,7 +20,8 @@ An AI agent built by Halo Lab that retrieves answers from a company knowledge ba
 ## What Was Built
 
 An AI agent that:
-- Connects to a company knowledge base (Notion) and retrieves accurate answers on demand
+- Uses Model Context Protocol (MCP) to connect to a company knowledge base (Notion)
+- Retrieves accurate answers on demand through the MCP connection
 - Uses LLM (OpenAI) to understand questions and generate contextual responses
 - Delivers answers through a conversational interface without requiring users to leave their workspace
 - Automates knowledge retrieval that previously required manual searching across multiple tools
@@ -33,7 +34,7 @@ An AI agent that:
 
 ## About the Project
 
-Notes MCP is an AI agent that combines artificial intelligence (OpenAI) with a knowledge management system (Notion). It is built for teams that want to automate routine work, effectively interact with corporate databases, and quickly get answers to work questions — all without leaving their communication tool.
+Notes MCP is an AI agent that uses Model Context Protocol (MCP) to connect artificial intelligence (OpenAI) with a knowledge management system (Notion). MCP is a standardized protocol for connecting AI models to external tools and data sources — the same approach used to connect AI agents to CRMs, calendars, databases, and other business tools. The agent is built for teams that want to automate routine work, effectively interact with corporate databases, and quickly get answers to work questions — all without leaving their communication tool.
 
 ## Challenges
 
@@ -42,8 +43,8 @@ Team members had to constantly switch between communication and documentation to
 ## Our Approach
 
 - Built an AI agent with OpenAI integration for natural language understanding and response generation
-- Connected the agent to a Notion knowledge base for accurate, grounded retrieval
-- Architecture: User question → AI Agent → Knowledge Base search → Response generation → Conversational delivery
+- Implemented MCP (Model Context Protocol) to connect the agent to a Notion knowledge base for accurate, grounded retrieval
+- Architecture: User question → AI Agent → MCP → Knowledge Base search → Response generation → Conversational delivery
 - Delivered as MVP with load testing and manual QA
 
 ## Results
