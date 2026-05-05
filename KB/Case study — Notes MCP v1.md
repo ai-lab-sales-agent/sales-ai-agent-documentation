@@ -7,7 +7,14 @@ topic: "Halo Lab AI project — LLM integration, knowledge base connectivity, pr
 
 A production AI product built by Halo Lab that connects knowledge bases with LLMs to deliver instant, accurate answers. Demonstrates the same core capabilities used in Sales AI Agents: knowledge base retrieval, LLM integration, and AI-powered automation.
 
-> Created: April 1, 2026 | Updated: April 1, 2026
+> Created: April 1, 2026 | Updated: May 5, 2026
+
+## Why This Is Relevant to Sales AI Agent Projects
+
+- Demonstrates the same core capabilities used in Sales AI Agents: LLM integration, knowledge base connectivity, and building AI that retrieves accurate answers from company data
+- Experience connecting AI to business tools and databases — the same approach used to connect a Sales AI Agent to a company's CRM, calendar, or knowledge base
+- Proven ability to ship a complete AI product end-to-end: architecture, development, testing, and launch
+- Shows Halo Lab's hands-on experience with AI-powered automation that reduces manual work and speeds up workflows
 
 ## Metadata
 
@@ -35,10 +42,3 @@ The team uses Slack for communication and client interactions, and Notion for do
 ## Results
 
 The app is live and pending Slack App Directory approval.
-
-## Why This Is Relevant to Sales AI Agent Projects
-
-- Demonstrates the same core capabilities used in Sales AI Agents: LLM integration, knowledge base connectivity, and building AI that retrieves accurate answers from company data
-- Experience connecting AI to business tools and databases — the same approach used to connect a Sales AI Agent to a company's CRM, calendar, or knowledge base
-- Proven ability to ship a complete AI product end-to-end: architecture, development, testing, and launch
-- Shows Halo Lab's hands-on experience with AI-powered automation that reduces manual work and speeds up workflows

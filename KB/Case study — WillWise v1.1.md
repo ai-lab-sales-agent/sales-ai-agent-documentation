@@ -7,7 +7,15 @@ topic: "Halo Lab AI project — conversational AI, prompt engineering, productio
 
 A production conversational AI product built by Halo Lab and published on the Slack Marketplace. Demonstrates the same capabilities used in Sales AI Agents: natural language understanding, context-aware responses, prompt-driven architecture, and LLM evaluation testing.
 
-> Created: March 2, 2026 | Updated: April 20, 2026
+> Created: March 2, 2026 | Updated: May 5, 2026
+
+## Why This Is Relevant to Sales AI Agent Projects
+
+- Demonstrates conversational AI that understands context and generates natural responses — the same capability that powers a Sales AI Agent's lead conversations
+- Experience with prompt-driven architecture and LLM evaluation tooling (Promptfoo) — the same techniques used to ensure a Sales AI Agent responds accurately and follows qualification flows
+- Proven ability to integrate AI into tools teams already use — Sales AI Agents similarly plug into a company's existing website, CRM, and calendar
+- Full product lifecycle from concept through platform review and publication, showing Halo Lab delivers production-ready AI products, not prototypes
+- Hands-on experience with model limitations (hallucinations, incomplete context) and how to solve them — directly applicable to building reliable Sales AI Agents
 
 ## Metadata
 
@@ -47,11 +55,3 @@ WillWise was published on the Slack Marketplace in September 2025 after four rev
 The team did not collect detailed usage analytics for this version. This was partly a conscious decision due to Slack's strict requirements for collecting and processing user data. The product was used for summarization and drafting communication inside Slack, but without systematic performance measurement.
 
 After the release, a follow-up version with Stripe connectivity and company-managed keys was considered but not shipped, in part because the market shifted: Slack introduced its own AI functions and new integration tools.
-
-## Why This Is Relevant to Sales AI Agent Projects
-
-- Demonstrates conversational AI that understands context and generates natural responses — the same capability that powers a Sales AI Agent's lead conversations
-- Experience with prompt-driven architecture and LLM evaluation tooling (Promptfoo) — the same techniques used to ensure a Sales AI Agent responds accurately and follows qualification flows
-- Proven ability to integrate AI into tools teams already use — Sales AI Agents similarly plug into a company's existing website, CRM, and calendar
-- Full product lifecycle from concept through platform review and publication, showing Halo Lab delivers production-ready AI products, not prototypes
-- Hands-on experience with model limitations (hallucinations, incomplete context) and how to solve them — directly applicable to building reliable Sales AI Agents
