@@ -17,6 +17,13 @@ An AI agent that:
 - Delivers answers through a conversational interface without requiring users to leave their workspace
 - Automates knowledge retrieval that previously required manual searching across multiple tools
 
+## Why This Is Relevant to AI Agent Projects
+
+- Demonstrates the same core capabilities used in Sales AI Agents: LLM integration, knowledge base connectivity, and building AI that retrieves accurate answers from company data
+- Experience connecting AI to business tools and databases — the same approach used to connect a Sales AI Agent to a company's CRM, calendar, or knowledge base
+- Proven ability to ship a complete AI agent end-to-end: architecture, development, testing, and launch
+- Shows Halo Lab's hands-on experience with AI-powered automation that reduces manual work and speeds up workflows
+
 ## Metadata
 
 - **Industry:** AI, SaaS
@@ -24,6 +31,10 @@ An AI agent that:
 - **Duration:** May 2025 — October 2025
 - **Project Type:** AI Agent
 - **Website:** https://notesmcp.com/
+
+## About the Project
+
+Notes MCP is an AI agent that combines the capabilities of artificial intelligence (OpenAI) and a knowledge management system (Notion). It is built for teams that want to automate routine work, effectively interact with corporate databases, and quickly get answers to work questions — all without leaving their communication tool. The agent automates interaction with corporate knowledge bases through a conversational interface, provides AI-powered answers to work questions without context switching, and simplifies the management of integrations with Notion and OpenAI.
 
 ## Challenges
 

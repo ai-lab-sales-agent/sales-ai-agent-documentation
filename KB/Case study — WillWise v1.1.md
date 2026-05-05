@@ -18,6 +18,14 @@ A conversational AI agent that:
 - Supports multiple LLM providers (OpenAI, Gemini) with configurable parameters
 - Published on the Slack Marketplace after passing four review rounds on security, functionality, and data handling
 
+## Why This Is Relevant to AI Agent Projects
+
+- Demonstrates conversational AI that understands context and generates natural responses — the same capability that powers a Sales AI Agent's lead conversations
+- Experience with prompt-driven architecture and LLM evaluation tooling (Promptfoo) — the same techniques used to ensure a Sales AI Agent responds accurately and follows qualification flows
+- Proven ability to integrate AI into tools teams already use — Sales AI Agents similarly plug into a company's existing website, CRM, and calendar
+- Full product lifecycle from concept through platform review and publication, showing Halo Lab delivers production-ready AI agents, not prototypes
+- Hands-on experience with model limitations (hallucinations, incomplete context) and how to solve them — directly applicable to building reliable Sales AI Agents
+
 ## Metadata
 
 - **Industry:** AI, SaaS
@@ -26,6 +34,14 @@ A conversational AI agent that:
 - **Project Type:** AI Agent
 - **Website:** https://willwise.ai/
 - **Team:** Backend engineer, QA specialist (hourly), PM support
+
+## About the Project
+
+WillWise is a conversational AI agent built and released by Halo Lab. It helps teams work smarter by processing conversations, summarizing threads, drafting announcements, answering questions, and generating ideas — all through a conversational interface.
+
+The project started in 2024 as an AI agent connected to Gmail, designed to search emails, analyze correspondence, and help draft replies. During implementation, the team found that LLM models at the time were not stable enough for that scenario, with hallucinations and incomplete context being a serious limitation. This led to a pivot toward a conversational AI agent focused on practical communication workflows.
+
+Users can connect their own OpenAI or Gemini keys, choose a model, and use the agent for summarizing threads, creating announcements, generating ideas, and answering open-ended requests.
 
 ## Challenges
 
