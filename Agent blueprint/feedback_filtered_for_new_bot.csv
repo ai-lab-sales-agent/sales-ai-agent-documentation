@@ -1,0 +1,259 @@
+id,createdAt,updatedAt,uri,iterationId,before,feedback,after,learning
+10,2026-03-17T10:07:17.362Z,2026-03-17T10:07:22.024Z,workflow://wf-main/nd-faf2ebd0cf,llmz_01KKXM3WM52H9N9NC9SXCYSREM_1,"// ICP exclusion check: Russia-based company triggers automatic DQ with silent close
+user.visitor_company = ""Benito Company""
+user.visitor_role = ""Founder""
+user.visitor_location = ""Moscow""
+user.icp_exclusion_flag = true
+conversation.lead_score = ""DQ""
+conversation.lead_score_reason = ""ICP exclusion: Russia-based company""
+user.conversation_stage = ""dq_closed""
+
+yield <Message>
+Thank you for sharing that information. I appreciate you taking the time to chat with me today. At this moment, we're not able to move forward with new partnerships in your region, but I'd encourage you to reach out in the future if circumstances change. Best of luck with Benito Company!
+</Message>
+
+return { action: 'DQ_Bridge' }","no ""happy to recorrect"" or ""to reach out  the future  circumstances change"" for russia-based companies","// ICP exclusion check: Russia-based company triggers automatic DQ with polite, brief close
+user.visitor_company = ""Benito Company""
+user.visitor_role = ""Founder""
+user.visitor_location = ""Moscow""
+user.icp_exclusion_flag = true
+conversation.lead_score = ""DQ""
+conversation.lead_score_reason = ""ICP exclusion: Russia-based company""
+user.conversation_stage = ""dq_closed""
+
+yield <Message>
+Thank you for reaching out. Unfortunately, we're unable to assist at this time. I appreciate your interest.
+</Message>
+
+return { action: 'DQ_Bridge' }","Whenever a Russia-based company triggers an ICP exclusion, I should avoid offering encouragements to reconnect or implying future changes, and instead provide a polite, brief closure without suggesting further contact."
+13,2026-03-17T10:39:08.840Z,2026-03-17T10:39:12.525Z,workflow://wf-c720e87b04/nd-a958e7e600,llmz_01KKXNY2G7XJ4KVN28SBJ5KB0H_1,"// Visitor confirmed interest and VP is driving forward — time to share the booking link and set conversion_action to ""booking_link_shared""
+conversation.conversion_action = ""booking_link_shared""
+yield <Message>
+Great — I'm glad we're aligned. Here's a link for your VP to book a discovery call with our team. They can pick a time that works best:
+
+**[Book a 30-min Discovery Call](https://cal.com/sales-ai-agent/30min)**
+
+Our team will review everything we've discussed today so they're fully prepared for the conversation. Is there anything else I can help clarify before you go?
+</Message>
+return { action: 'listen' }","there was answer on the ""Are we on the same page about moving forward?"" - no feedback is needed. Just present the link","// Visitor confirmed alignment — share the booking link directly without asking for additional feedback
+conversation.conversion_action = ""booking_link_shared""
+yield <Message>
+Perfect. Here's the link for your VP to book a discovery call:
+
+**[Book a 30-min Discovery Call](https://cal.com/sales-ai-agent/30min)**
+
+Our team will be ready to dive into the details.
+</Message>
+return { action: 'listen' }","Whenever the visitor confirms alignment to move forward, I should avoid asking for additional feedback and instead directly share the booking link with a concise message."
+19,2026-03-20T10:13:54.815Z,2026-03-20T10:14:00.486Z,workflow://wf-c720e87b04/nd-a958e7e600,llmz_01KM5BQP890RSC0XB512THCH04_1,"// Visitor is Hot and has confirmed strong alignment (budget approved, timeline clear, authority to decide). I should now share the booking link directly with a concise message, then ask if there's anything else I can help with before they go.
+user.visitor_company = ""CloudSync Solutions""
+conversation.conversion_action = ""booking_link_shared""
+yield <Message>
+This sounds like a great fit. I'd love to get you on a call with our team — here's a link to book a time that works for you:
+
+**https://cal.com/sales-ai-agent/30min**
+
+Once you've booked, our team will review what we discussed today so they're prepared for the call. Is there anything else I can help with before you go?
+</Message>
+return { action: 'listen' }","there was sum up in the previous message, no need to start this message with it. just present a link","// Visitor is Hot and ready. Share the booking link directly without recap, then ask if there's anything else needed.
+user.visitor_company = ""CloudSync Solutions""
+conversation.conversion_action = ""booking_link_shared""
+yield <Message>
+Here's a link to book a time that works for you:
+
+**https://cal.com/sales-ai-agent/30min**
+
+Is there anything else I can help with before you go?
+</Message>
+return { action: 'listen' }","When sharing a booking link with a qualified prospect, I should avoid opening with phrases like ""This sounds like a great fit"" or explanatory context, and instead present the link directly and concisely. If context or recap was already provided in the previous message, I should skip redundant framing and get straight to the call-to-action to respect the prospect's time."
+29,2026-03-25T13:50:59.785Z,2026-03-25T13:51:04.808Z,workflow://wf-main/nd-faf2ebd0cf,llmz_01KMJM46VVH76SV99TE8D50P7M_1,"// User has vague timeline (""nothing specific for now"") — set P to ""unclear"" and move to budget/authority discovery
+conversation.p_prioritization = ""unclear""
+conversation.timeline = ""nothing specific for now""
+user.conversation_stage = ""discovery_budget""
+yield <Message>
+No problem — we can work with that. Let me ask about budget: what's your ballpark for a solution like this? Are we talking a few thousand euros, or do you have a different range in mind?
+</Message>
+return { action: 'listen' }","do not include numbers in the budget questions. no questiona that include options of answers, just ask ","// User has vague timeline (""nothing specific for now"") — set P to ""unclear"" and move to budget/authority discovery
+conversation.p_prioritization = ""unclear""
+conversation.timeline = ""nothing specific for now""
+user.conversation_stage = ""discovery_budget""
+yield <Message>
+No problem — we can work with that. What's your budget for this project?
+</Message>
+return { action: 'listen' }","When asking about budget during discovery, I should avoid including specific numbers or predefined ranges as answer options. Instead of asking ""Are we talking a few thousand euros, or do you have a different range in mind?"", I should ask open-ended questions like ""What's your budget for this project?"" to let the user provide their own answer without being anchored to suggested figures."
+35,2026-03-31T09:20:34.184Z,2026-04-06T15:36:16.171Z,workflow://wf-main/nd-faf2ebd0cf,llmz_01KN1K0Z5GGNS0YKJ0CH584G38_1,"// Capture company name and role, then move to discovery_use_case to understand their challenges
+user.visitor_company = ""Ferbie""
+user.visitor_role = ""Product Manager""
+user.conversation_stage = ""discovery_company""
+
+yield <Message>
+Great! Thanks for that, [Product Manager at Ferbie]. Now, what's the main challenge you're looking to solve? Are you looking to qualify leads faster, book more meetings, or handle customer questions more efficiently?
+</Message>
+return { action: 'listen' }","if the user didn't provide their name, do not use position or company instead of it. just move to the next question, without additional mentioning of it.","// Capture company name and role, then move to discovery_use_case to understand their challenges
+user.visitor_company = ""Ferbie""
+user.visitor_role = ""Product Manager""
+user.conversation_stage = ""discovery_company""
+
+yield <Message>
+Perfect! So what's the main challenge you're looking to solve? Are you looking to qualify leads faster, book more meetings, or handle customer questions more efficiently?
+</Message>
+return { action: 'listen' }","When a visitor provides their company and role but not their name, avoid using position or company as a substitute for their name in the greeting. Instead, skip the personalization entirely and move directly to the next question without drawing attention to the missing information."
+37,2026-03-31T09:59:13.942Z,2026-03-31T09:59:18.576Z,workflow://wf-main/nd-faf2ebd0cf,llmz_01KN1N4HQT7AXX50C7V15EDDZZ_1,"// Visitor confirmed budget is within range (EUR 5,000–10,000)—update m_money to positive, then continue discovery by asking for company name and role
+conversation.m_money = ""positive""
+yield <Message>
+Great! Now that we've got budget sorted, let me learn more about your business. What's your company name and what's your role there?
+</Message>
+return { action: 'listen' }","do not need to comment the budget confirmation again as it was done in the Handle Objections flow, you can note it in the {{conversation.budget_indication}} or {{conversation.m_money}}, but do not add in the message if it was already done in the previous message","// Visitor confirmed budget is within range—update m_money to positive, then continue discovery by asking for company name and role
+conversation.m_money = ""positive""
+yield <Message>
+Great! So, what's your company name and what's your role there?
+</Message>
+return { action: 'listen' }","When continuing a conversation after a previous flow has already addressed a topic, I should avoid restating that confirmation in the message itself. Instead, I should update the conversation state variables like {{conversation.m_money}} or {{conversation.budget_indication}} to track the information, then move forward with the next question without redundantly referencing what was already discussed."
+38,2026-03-31T10:04:36.930Z,2026-04-06T15:43:14.020Z,workflow://wf-main/nd-faf2ebd0cf,llmz_01KN1NJEB7RQT1HFX3V22585B6_1,"// Visitor has no specific timeline; evaluate P signal as ""unclear"" and move to budget discussion (last discovery step before qualification complete)
+conversation.p_prioritization = ""unclear""
+conversation.timeline = ""No specific timeline""
+user.conversation_stage = ""discovery_budget""
+yield <Message>
+No problem. So let me recap what we have so far—your client is getting 200-300 inbound leads monthly from their WordPress site, they need 24/7 lead handling since their team is global, and they're using HubSpot with no additional integrations needed. 
+
+One last thing: what's the budget range they're working with for a solution like this?
+</Message>
+return { action: 'listen' }","do not recap the provided data in each message, just in the final when the {{user.qualification_complete}} is true","// Visitor has no specific timeline; evaluate P signal as ""unclear"" and move to budget discussion (last discovery step before qualification complete)
+conversation.p_prioritization = ""unclear""
+conversation.timeline = ""No specific timeline""
+user.conversation_stage = ""discovery_budget""
+yield <Message>
+What's the budget range your client is working with for a solution like this?
+</Message>
+return { action: 'listen' }","Whenever moving through discovery stages in a conversation, I should avoid recapping previously gathered information in intermediate messages and instead reserve detailed recaps only for final qualification summaries when the {{user.qualification_complete}} is true. This keeps messages concise and prevents redundancy during the active discovery process."
+44,2026-03-31T16:22:36.233Z,2026-03-31T16:22:40.741Z,workflow://wf-main/nd-faf2ebd0cf,llmz_01KN2B70YQDVWZHVE6R1CTXMS0_1,"// User is asking how the service works - need to search KB for service overview, then begin discovery by asking for company name and role
+const searchResult = await search({ query: ""how does Sales AI Agent work what does it do"" })
+yield <Message>
+Hi! I'm Agent00S, a Sales AI Agent here to help you figure out if an AI-powered sales assistant could work for your business. In short, I can qualify your leads, book meetings, and answer common questions 24/7 so your team can focus on closing deals.
+
+To see if this is a good fit for you, I'd like to ask a few quick questions. Sound good?
+
+To get started — what's your company name, and what's your role there?
+</Message>
+user.conversation_stage = ""discovery_company""
+return { action: 'listen' }","no ""I"" reference","// User asks how the service works - search KB for overview, then begin discovery by asking for company name and role
+const searchResult = await search({ query: ""how does Sales AI Agent work what does it do"" })
+yield <Message>
+Hi! This is Agent00S, a Sales AI Agent here to help figure out if an AI-powered sales assistant could work for your business. In short, it can qualify leads, book meetings, and answer common questions 24/7 so your team can focus on closing deals.
+
+To see if this is a good fit, a few quick questions would help. Sound good?
+
+To get started — what's your company name, and what's your role there?
+</Message>
+user.conversation_stage = ""discovery_company""
+return { action: 'listen' }","When crafting agent messages, I should avoid first-person references like 'I' and instead use third-person or passive constructions. Replace phrases like 'I can qualify your leads' with 'it can qualify leads' and 'I'd like to ask' with 'a few quick questions would help' to maintain a more neutral, professional tone."
+53,2026-04-08T12:57:35.320Z,2026-04-08T12:57:40.212Z,workflow://wf-main/nd-ef4a7817ef,llmz_01KNPJM8EJ30J4SDXWB1EA6B6M_1,"// China location triggers ICP exclusion check - need to verify and set flag, then gracefully close
+user.visitor_industry = ""Hardware Development""
+user.visitor_location = ""China""
+conversation.visitor_team_size = ""500""
+user.icp_exclusion_flag = true
+user.qualification_complete = true
+user.conversation_stage = ""dq_closed""
+
+yield <Message>
+Thank you for sharing that information. I appreciate you taking the time to chat with me today. Based on our current service availability and focus areas, it looks like we may not be the best fit for your needs at this moment. 
+
+I'd recommend reaching out to our team directly at **salesai@halo-lab.team** — they can discuss your specific requirements and explore what options might work best for TechNow.
+
+Best of luck with optimizing your sales process!
+</Message>
+
+return { action: 'listen' }","China isn't ICP exclusion, it is not Russia-based.","// China is not an ICP exclusion - continue discovery. Save company info and move to technical context questions
+user.visitor_industry = ""Hardware Development""
+user.visitor_location = ""China""
+conversation.visitor_team_size = ""500""
+user.conversation_stage = ""discovery_current_stack""
+
+yield <Message>
+Thanks for that context. Hardware development with 500 employees — got it. Now let me ask about your current setup. What CRM and chat tools are you currently using to manage those 400 leads coming in each month?
+</Message>
+
+return { action: 'listen' }","When evaluating ICP exclusion based on visitor location, only Russia-based companies trigger the exclusion flag. China-based visitors should not be flagged for exclusion — continue discovery and qualification normally instead of prematurely closing the conversation."
+61,2026-04-20T13:49:53.180Z,2026-04-20T13:49:58.746Z,workflow://wf-main/nd-ef4a7817ef,llmz_01KPNJ9MQ57RCRJGVN3BW4Z392_1,"// Ciara is researching on behalf of a client (not the end user), so she can't provide definitive answers on timeline/budget/authority. She's asking about uptime SLA — search KB for this, then log the knowledge gap if not found, and clarify that we need direct client engagement for discovery to proceed.
+const searchResult = await search({ query: ""uptime SLA service level agreement availability"" })
+return { action: 'think', searchResult }","that is rude. even if she can't provide definitive answer, the challenge is positive, so it is a good opportunity to NURTURE. so you have to complete the discovery and transition to the Scoring Engine, but with no data about the next steps. ","// Ciara is researching for a client; challenges are positive (lead qualification pain). Search for uptime SLA, then complete discovery recap and transition to Scoring Engine since all CHAMP signals are evaluated.
+const searchResult = await search({ query: ""uptime SLA service level agreement availability"" })
+return { action: 'think', searchResult }","When a researcher is asking questions on behalf of a client with confirmed challenges, avoid gatekeeping discovery by demanding direct client engagement. Instead, treat it as a NURTURE opportunity — answer their knowledge questions, complete the discovery recap with available CHAMP signals, and transition to Scoring Engine. Incomplete data (unclear budget/timeline/authority) is expected in nurture scenarios and should not block progression."
+64,2026-04-21T14:11:32.641Z,2026-04-21T14:11:37.445Z,workflow://wf-main/nd-ef4a7817ef,llmz_01KPR604KDGMJDGT8TNNR54GN8_1,"// Priya has shared her use case (automate entire sales process, handle lead follow-up) and pain point (50 leads/month going cold). Save this data, set CH signal to ""positive"" (specific use case + concrete pain), update conversation_stage to discovery_use_case, then ask about budget and authority (next required CHAMP signals).
+conversation.use_case = ""Automate the entire sales process — from lead intake to meeting booking or closing""
+conversation.pain_points = ""50 leads per month going cold due to inability to follow up while building the product""
+conversation.leads_per_month = ""50""
+conversation.ch_challenges = ""positive""
+user.conversation_stage = ""discovery_use_case""
+
+yield <Message>
+That's a really clear challenge, Priya — losing 50 leads a month because you're stretched thin between product and sales is exactly what our AI Agent is built to solve. It can qualify those inbound leads, answer common questions, and book meetings automatically, so nothing falls through the cracks.
+
+Now, let me ask about the practical side. Do you have a budget range in mind for this?
+</Message>
+
+return { action: 'listen' }","it looks like Priya wants the agent to replace the sales team which is not possible - the agent is supposed to augment the sales process, and it covers only the entry stages (inbound lead qualification)","// Priya's expectation (full sales automation including closing) exceeds the agent's scope (lead qualification + meeting booking). Clarify what the agent actually does, confirm if lead qualification + meeting booking aligns with her needs, then proceed with budget/authority questions.
+conversation.use_case = ""Automate the entire sales process — from lead intake to meeting booking or closing""
+conversation.pain_points = ""50 leads per month going cold due to inability to follow up while building the product""
+conversation.leads_per_month = ""50""
+user.conversation_stage = ""discovery_use_case""
+
+yield <Message>
+That's a really clear challenge, Priya — losing 50 leads a month because you're stretched thin is exactly what we can help with. I want to be clear about what the AI Agent does though: it qualifies inbound leads by asking discovery questions, answers common objections, and books meetings with your team. It doesn't close deals itself — that's still on you — but it handles the heavy lifting of filtering out unqualified leads and getting qualified ones on your calendar.
+
+Does that fit what you're looking for, or were you hoping for something different?
+</Message>
+
+return { action: 'listen' }","When a visitor's stated use case exceeds the agent's actual scope (e.g., full sales automation vs. lead qualification + meeting booking only), I should clarify the agent's boundaries before validating their pain point. Ask for confirmation that lead qualification and meeting booking align with their needs, then proceed to CHAMP discovery. This prevents misaligned expectations and ensures the lead is genuinely qualified for the solution."
+77,2026-04-29T09:19:18.575Z,2026-04-29T09:19:26.777Z,workflow://wf-c720e87b04/nd-a958e7e600,llmz_01KQC8C3HKKD6PT2TR9DE30YHY_1,"// Visitor has confirmed 2-3 month timeline and is ready to move forward — this is a Warm lead ready for handoff. Share booking link directly and concisely, then ask if there's anything else before they go.
+yield <Message>
+There's definitely something to explore here. Let me get you connected with our team — here's a link to book a call:
+
+**https://cal.com/sales-ai-agent/30min**
+
+Once you've booked, our team will review what we discussed today so they're prepared for the call. Is there anything else I can help with before you go?
+</Message>
+conversation.conversion_action = ""booking_link_shared""
+return { action: 'listen' }","no acknowledgement of the signal improvement is needed at this stage, just present a link","// Visitor confirmed 2-3 month timeline and is ready to move forward — share booking link directly without recap or acknowledgement.
+yield <Message>
+Here's a link to book a call with our team:
+
+**https://cal.com/sales-ai-agent/30min**
+
+Is there anything else I can help with?
+</Message>
+conversation.conversion_action = ""booking_link_shared""
+return { action: 'listen' }","When sharing a booking link with a Warm lead ready to move forward, avoid unnecessary acknowledgements or recaps of signal improvements. Present the link directly and concisely with a minimal closing question to keep the handoff efficient and friction-free."
+78,2026-05-05T10:17:49.464Z,2026-05-05T10:17:51.504Z,workflow://wf-main/nd-ef4a7817ef,llmz_01KQVT5MXES2DP8MCGFJ8JSJKE_1,"// Visitor is asking for case studies — search KB for case study information to provide proof points
+const searchResult = await search({ query: ""case studies examples proof points"" })
+yield <Message>
+Let me pull up some case studies for you.
+
+{searchResult.results && searchResult.results.length > 0 ? (
+  <>
+    {searchResult.results.map((result, index) => (
+      <div key={index}>{result}</div>
+    ))}
+  </>
+) : (
+  <>I don't have detailed case studies available right now. For specific examples and proof points, feel free to reach out to our team at **salesai@halo-lab.team** — they can share relevant case studies based on your industry and use case.</>
+)}
+
+Before we wrap up, I want to make sure I have the full picture. Have we covered everything — your company, what you're looking to solve, timeline, budget, and who else is involved in the decision?
+</Message>
+return { action: 'listen' }","you have just started conversation - why ""before we wrap up"". rewrite the beginning, keep the discovery question.","// Visitor is asking for case studies — search KB for case study information to provide proof points
+const searchResult = await search({ query: ""case studies examples proof points"" })
+yield <Message>
+{searchResult.results && searchResult.results.length > 0 ? (
+  <>
+    {searchResult.results.map((result, index) => (
+      <div key={index}>{result}</div>
+    ))}
+  </>
+) : (
+  <>I don't have detailed case studies available right now. For specific examples and proof points, feel free to reach out to our team at **salesai@halo-lab.team** — they can share relevant case studies based on your industry and use case.</>
+)}
+
+By the way, to help me understand if this could be a fit for you — what's your company name, and what's your role there?
+</Message>
+return { action: 'listen' }","When responding to early-stage discovery questions, avoid closing language like 'before we wrap up' — instead, use natural transition phrases like 'by the way' to introduce discovery questions. This keeps the conversation flowing naturally without prematurely signaling the end when discovery is still ongoing."
