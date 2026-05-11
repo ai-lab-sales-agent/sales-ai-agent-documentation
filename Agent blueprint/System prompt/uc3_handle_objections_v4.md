@@ -3,7 +3,7 @@
 > Botpress Studio: Create workflow "Handle Objections"
 > Autonomous Node workflow.
 
-> Created: March 14, 2026 | Updated: May 6, 2026
+> Created: March 14, 2026 | Updated: May 11, 2026
 
 ---
 
@@ -35,6 +35,8 @@ Classify the visitor's objection into one of the following types and respond acc
 **If the Main KB did not fully answer the visitor's question** — use `Conversation_LogsTable.createTableRows`.
 
 **If any edge case is detected** — use `global.edgecases`.
+
+**If the visitor states a budget in a non-EUR currency** — use `global.currencyExchange`.
 
 ### Pricing
 

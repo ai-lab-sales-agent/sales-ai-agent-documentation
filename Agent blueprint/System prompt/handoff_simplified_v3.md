@@ -3,7 +3,7 @@
 > Botpress Studio: Create workflow "Handoff"
 > Autonomous Node workflow.
 
-> Created: March 16, 2026 | Updated: May 6, 2026
+> Created: March 16, 2026 | Updated: May 11, 2026
 
 ---
 
@@ -24,6 +24,8 @@ The visitor has been qualified. Offer a discovery call via a booking link and ha
 **If the visitor raises a concern or objection** — use `global.handleObjections`.
 
 **If any edge case is detected** — use `global.edgecases`.
+
+**If the visitor states a budget in a non-EUR currency** — use `global.currencyExchange`.
 
 ### Qualification Summary
 

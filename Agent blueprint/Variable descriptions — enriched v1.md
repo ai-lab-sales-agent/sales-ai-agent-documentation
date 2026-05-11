@@ -120,7 +120,7 @@ Industry or vertical of the visitor's company. Provides context for tailoring th
 Company location or country. Used for ICP exclusion check (Russia-based = automatic DQ). Capture at Discovery step 2.2 or whenever the visitor mentions their location.
 
 **visitor_email**
-Visitor's email address. Collected when the visitor shares it directly, or requested by the bot for form_submitted scenarios (Handoff booking fallback, Edge Cases skip-to-human, Nurture close).
+Visitor's email address. Collected when the visitor shares it directly, or requested by the bot for form_submitted scenarios (Handoff booking fallback, Edge Cases skip-to-human, Nurture close). Before saving, verify the email includes an @ symbol and a domain with a TLD (e.g., .com, .org). If it looks incomplete (e.g., "tes@gmail"), ask the visitor to double-check before saving.
 
 **conversation_stage**
 Current stage in the conversation flow. USER scope variable — must be written to user scope only. Updated at each discovery step to track progress and enable resumption after sub-workflows. Allowed values for Discovery: "introduction", "discovery_company", "discovery_use_case", "discovery_timeline", "discovery_budget", "discovery_authority", "discovery_current_stack". Values used by other workflows: "handoff_hot", "handoff_warm", "nurture", "dq_closed".

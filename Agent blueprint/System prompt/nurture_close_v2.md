@@ -3,7 +3,7 @@
 > Nurture Workflow → Nurture Close Autonomous Node → Instructions field.
 > Global instructions are inherited.
 
-> Created: April 15, 2026 | Updated: May 6, 2026
+> Created: April 15, 2026 | Updated: May 11, 2026
 
 ---
 
@@ -23,6 +23,8 @@ This is the Nurture Close step. The visitor's signals did not improve after re-q
 **If the visitor raises a concern or objection** — use `global.handleObjections`.
 
 **If any edge case is detected** — use `global.edgecases`.
+
+**If the visitor states a budget in a non-EUR currency** — use `global.currencyExchange`.
 
 ### N3: Nudge + Close
 

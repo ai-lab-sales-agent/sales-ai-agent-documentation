@@ -2,7 +2,7 @@
 
 > Botpress Studio: These prompts are set on individual tool cards (Search Knowledge, Execute Workflow, Create Table Row) within Autonomous Nodes. Each tool has its own instruction field.
 
-> Created: April 29, 2026 | Updated: April 29, 2026
+> Created: April 29, 2026 | Updated: May 11, 2026
 
 ---
 
@@ -105,3 +105,26 @@ Use this tool to log an unidentified objection to Conversation_LogsTable.
 - `knowledge_gap_question`: set to empty string "" (this column belongs to the knowledge gap flow but the tool's input schema requires the field).
 
 Do not invent columns. Do not add fields not listed above.
+
+---
+
+## Convert to EUR (Custom Action)
+
+Use when the visitor states a budget in a non-EUR currency and you need to evaluate it against the €5,000 threshold.
+
+### Inputs
+
+- `currencyCode`: the three-letter currency code from the visitor's stated budget (e.g., USD, GBP, UAH). If the visitor doesn't specify a currency code but names a currency (e.g., "dollars"), use the most likely ISO code.
+- `amount`: the numeric budget amount the visitor stated, without currency symbols or formatting.
+
+### How to use the result
+
+- **success: true, meetsThreshold: true** — use `eurAmount` for the budget. Set m_money to "positive". Mention the approximate EUR equivalent naturally.
+- **success: true, meetsThreshold: false** — this is a DQ case. Set m_money to "negative". Do not continue discovery.
+- **success: false** — do not guess the conversion. Accept the visitor's stated amount as-is and tell them you'll confirm the EUR equivalent with the team. Set m_money to "unclear".
+
+### Do NOT call if
+
+- The visitor already stated their budget in EUR.
+- The visitor hasn't mentioned a budget yet.
+- You already called this action for the same budget amount in this conversation.

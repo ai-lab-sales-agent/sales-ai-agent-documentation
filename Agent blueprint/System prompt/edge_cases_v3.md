@@ -3,7 +3,7 @@
 > Botpress Studio: Create workflow "Edge Cases"
 > Autonomous Node workflow.
 
-> Created: March 20, 2026 | Updated: May 6, 2026
+> Created: March 20, 2026 | Updated: May 11, 2026
 
 ---
 
@@ -23,6 +23,8 @@ You are handling an edge case in the Sales AI Agent qualification flow. Identify
 **If the Main KB did not fully answer the visitor's question** — use `Conversation_LogsTable.createTableRows`.
 
 **If the visitor raises a concern or objection** — use `global.handleObjections`.
+
+**If the visitor states a budget in a non-EUR currency** — use `global.currencyExchange`.
 
 ### Already DQ'd visitors
 

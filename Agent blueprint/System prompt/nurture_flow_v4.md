@@ -3,7 +3,7 @@
 > Main Workflow → Nurture Autonomous Node → Instructions field.
 > Global instructions are inherited.
 
-> Created: March 18, 2026 | Updated: May 6, 2026
+> Created: March 18, 2026 | Updated: May 11, 2026
 
 ---
 
@@ -25,6 +25,8 @@ This is the Nurture Flow. The visitor completed discovery but didn't qualify as 
 **If the visitor raises a concern or objection** — use `global.handleObjections`.
 
 **If any edge case is detected** — use `global.edgecases`.
+
+**If the visitor states a budget in a non-EUR currency** — use `global.currencyExchange`.
 
 ### N1: Ask What Matters
 
