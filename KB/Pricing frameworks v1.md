@@ -5,7 +5,7 @@ topic: "pricing and cost"
 
 # Sales AI Agent — Pricing Frameworks
 
-> Created: March 2, 2026 | Updated: March 2, 2026
+> Created: March 2, 2026 | Updated: May 11, 2026
 
 ## Pricing Model
 
@@ -37,4 +37,6 @@ The final project cost depends on:
 - **Ongoing optimization scope** — How much post-launch tuning, testing, and KB expansion is included
 
 Individual line-item pricing per factor (e.g., cost of a single integration) is not available separately. The factors influence where the total lands within the range.
+
+The project fee and monthly retainer cover Halo Lab's work only. Platform subscriptions, AI model usage, and third-party integration costs are not included — these are paid separately by the client through their own platform accounts.
 
