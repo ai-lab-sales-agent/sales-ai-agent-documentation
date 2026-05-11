@@ -1,5 +1,5 @@
 id,createdAt,updatedAt,uri,iterationId,before,feedback,after,learning
-10,2026-03-17T10:07:17.362Z,2026-03-17T10:07:22.024Z,,,"// ICP exclusion check: Russia-based company triggers automatic DQ with silent close
+10,2026-03-17T10:07:17.362Z,2026-03-17T10:07:22.024Z,n/a,n/a,"// ICP exclusion check: Russia-based company triggers automatic DQ with silent close
 user.visitor_company = ""Benito Company""
 user.visitor_role = ""Founder""
 user.visitor_location = ""Moscow""
@@ -25,8 +25,8 @@ yield <Message>
 Thank you for reaching out. Unfortunately, we're unable to assist at this time. I appreciate your interest.
 </Message>
 
-return { action: 'DQ_Bridge' }",
-13,2026-03-17T10:39:08.840Z,2026-03-17T10:39:12.525Z,,,"// Visitor confirmed interest and VP is driving forward — time to share the booking link and set conversion_action to ""booking_link_shared""
+return { action: 'DQ_Bridge' }",n/a
+13,2026-03-17T10:39:08.840Z,2026-03-17T10:39:12.525Z,n/a,n/a,"// Visitor confirmed interest and VP is driving forward — time to share the booking link and set conversion_action to ""booking_link_shared""
 conversation.conversion_action = ""booking_link_shared""
 yield <Message>
 Great — I'm glad we're aligned. Here's a link for your VP to book a discovery call with our team. They can pick a time that works best:
@@ -44,8 +44,8 @@ Perfect. Here's the link for your VP to book a discovery call:
 
 Our team will be ready to dive into the details.
 </Message>
-return { action: 'listen' }",
-19,2026-03-20T10:13:54.815Z,2026-03-20T10:14:00.486Z,,,"// Visitor is Hot and has confirmed strong alignment (budget approved, timeline clear, authority to decide). I should now share the booking link directly with a concise message, then ask if there's anything else I can help with before they go.
+return { action: 'listen' }",n/a
+19,2026-03-20T10:13:54.815Z,2026-03-20T10:14:00.486Z,n/a,n/a,"// Visitor is Hot and has confirmed strong alignment (budget approved, timeline clear, authority to decide). I should now share the booking link directly with a concise message, then ask if there's anything else I can help with before they go.
 user.visitor_company = ""CloudSync Solutions""
 conversation.conversion_action = ""booking_link_shared""
 yield <Message>
@@ -65,8 +65,8 @@ Here's a link to book a time that works for you:
 
 Is there anything else I can help with before you go?
 </Message>
-return { action: 'listen' }",
-29,2026-03-25T13:50:59.785Z,2026-03-25T13:51:04.808Z,,,"// User has vague timeline (""nothing specific for now"") — set P to ""unclear"" and move to budget/authority discovery
+return { action: 'listen' }",n/a
+29,2026-03-25T13:50:59.785Z,2026-03-25T13:51:04.808Z,n/a,n/a,"// User has vague timeline (""nothing specific for now"") — set P to ""unclear"" and move to budget/authority discovery
 conversation.p_prioritization = ""unclear""
 conversation.timeline = ""nothing specific for now""
 user.conversation_stage = ""discovery_budget""
@@ -80,8 +80,8 @@ user.conversation_stage = ""discovery_budget""
 yield <Message>
 No problem — we can work with that. What's your budget for this project?
 </Message>
-return { action: 'listen' }",
-35,2026-03-31T09:20:34.184Z,2026-04-06T15:36:16.171Z,,,"// Capture company name and role, then move to discovery_use_case to understand their challenges
+return { action: 'listen' }",n/a
+35,2026-03-31T09:20:34.184Z,2026-04-06T15:36:16.171Z,n/a,n/a,"// Capture company name and role, then move to discovery_use_case to understand their challenges
 user.visitor_company = ""Ferbie""
 user.visitor_role = ""Product Manager""
 user.conversation_stage = ""discovery_company""
@@ -97,8 +97,8 @@ user.conversation_stage = ""discovery_company""
 yield <Message>
 Perfect! So what's the main challenge you're looking to solve? Are you looking to qualify leads faster, book more meetings, or handle customer questions more efficiently?
 </Message>
-return { action: 'listen' }",
-37,2026-03-31T09:59:13.942Z,2026-03-31T09:59:18.576Z,,,"// Visitor confirmed budget is within range (EUR 5,000–10,000)—update m_money to positive, then continue discovery by asking for company name and role
+return { action: 'listen' }",n/a
+37,2026-03-31T09:59:13.942Z,2026-03-31T09:59:18.576Z,n/a,n/a,"// Visitor confirmed budget is within range (EUR 5,000–10,000)—update m_money to positive, then continue discovery by asking for company name and role
 conversation.m_money = ""positive""
 yield <Message>
 Great! Now that we've got budget sorted, let me learn more about your business. What's your company name and what's your role there?
@@ -108,8 +108,8 @@ conversation.m_money = ""positive""
 yield <Message>
 Great! So, what's your company name and what's your role there?
 </Message>
-return { action: 'listen' }",
-38,2026-03-31T10:04:36.930Z,2026-04-06T15:43:14.020Z,,,"// Visitor has no specific timeline; evaluate P signal as ""unclear"" and move to budget discussion (last discovery step before qualification complete)
+return { action: 'listen' }",n/a
+38,2026-03-31T10:04:36.930Z,2026-04-06T15:43:14.020Z,n/a,n/a,"// Visitor has no specific timeline; evaluate P signal as ""unclear"" and move to budget discussion (last discovery step before qualification complete)
 conversation.p_prioritization = ""unclear""
 conversation.timeline = ""No specific timeline""
 user.conversation_stage = ""discovery_budget""
@@ -125,8 +125,8 @@ user.conversation_stage = ""discovery_budget""
 yield <Message>
 What's the budget range your client is working with for a solution like this?
 </Message>
-return { action: 'listen' }",
-44,2026-03-31T16:22:36.233Z,2026-03-31T16:22:40.741Z,,,"// User is asking how the service works - need to search KB for service overview, then begin discovery by asking for company name and role
+return { action: 'listen' }",n/a
+44,2026-03-31T16:22:36.233Z,2026-03-31T16:22:40.741Z,n/a,n/a,"// User is asking how the service works - need to search KB for service overview, then begin discovery by asking for company name and role
 const searchResult = await search({ query: ""how does Sales AI Agent work what does it do"" })
 yield <Message>
 Hi! I'm Agent00S, a Sales AI Agent here to help you figure out if an AI-powered sales assistant could work for your business. In short, I can qualify your leads, book meetings, and answer common questions 24/7 so your team can focus on closing deals.
@@ -146,8 +146,8 @@ To see if this is a good fit, a few quick questions would help. Sound good?
 To get started — what's your company name, and what's your role there?
 </Message>
 user.conversation_stage = ""discovery_company""
-return { action: 'listen' }",
-53,2026-04-08T12:57:35.320Z,2026-04-08T12:57:40.212Z,,,"// China location triggers ICP exclusion check - need to verify and set flag, then gracefully close
+return { action: 'listen' }",n/a
+53,2026-04-08T12:57:35.320Z,2026-04-08T12:57:40.212Z,n/a,n/a,"// China location triggers ICP exclusion check - need to verify and set flag, then gracefully close
 user.visitor_industry = ""Hardware Development""
 user.visitor_location = ""China""
 conversation.visitor_team_size = ""500""
@@ -173,13 +173,13 @@ yield <Message>
 Thanks for that context. Hardware development with 500 employees — got it. Now let me ask about your current setup. What CRM and chat tools are you currently using to manage those 400 leads coming in each month?
 </Message>
 
-return { action: 'listen' }",
-61,2026-04-20T13:49:53.180Z,2026-04-20T13:49:58.746Z,,,"// Ciara is researching on behalf of a client (not the end user), so she can't provide definitive answers on timeline/budget/authority. She's asking about uptime SLA — search KB for this, then log the knowledge gap if not found, and clarify that we need direct client engagement for discovery to proceed.
+return { action: 'listen' }",n/a
+61,2026-04-20T13:49:53.180Z,2026-04-20T13:49:58.746Z,n/a,n/a,"// Ciara is researching on behalf of a client (not the end user), so she can't provide definitive answers on timeline/budget/authority. She's asking about uptime SLA — search KB for this, then log the knowledge gap if not found, and clarify that we need direct client engagement for discovery to proceed.
 const searchResult = await search({ query: ""uptime SLA service level agreement availability"" })
 return { action: 'think', searchResult }","that is rude. even if she can't provide definitive answer, the challenge is positive, so it is a good opportunity to NURTURE. so you have to complete the discovery and transition to the Scoring Engine, but with no data about the next steps. ","// Ciara is researching for a client; challenges are positive (lead qualification pain). Search for uptime SLA, then complete discovery recap and transition to Scoring Engine since all CHAMP signals are evaluated.
 const searchResult = await search({ query: ""uptime SLA service level agreement availability"" })
-return { action: 'think', searchResult }",
-64,2026-04-21T14:11:32.641Z,2026-04-21T14:11:37.445Z,,,"// Priya has shared her use case (automate entire sales process, handle lead follow-up) and pain point (50 leads/month going cold). Save this data, set CH signal to ""positive"" (specific use case + concrete pain), update conversation_stage to discovery_use_case, then ask about budget and authority (next required CHAMP signals).
+return { action: 'think', searchResult }",n/a
+64,2026-04-21T14:11:32.641Z,2026-04-21T14:11:37.445Z,n/a,n/a,"// Priya has shared her use case (automate entire sales process, handle lead follow-up) and pain point (50 leads/month going cold). Save this data, set CH signal to ""positive"" (specific use case + concrete pain), update conversation_stage to discovery_use_case, then ask about budget and authority (next required CHAMP signals).
 conversation.use_case = ""Automate the entire sales process — from lead intake to meeting booking or closing""
 conversation.pain_points = ""50 leads per month going cold due to inability to follow up while building the product""
 conversation.leads_per_month = ""50""
@@ -204,8 +204,8 @@ That's a really clear challenge, Priya — losing 50 leads a month because you'r
 Does that fit what you're looking for, or were you hoping for something different?
 </Message>
 
-return { action: 'listen' }",
-77,2026-04-29T09:19:18.575Z,2026-04-29T09:19:26.777Z,,,"// Visitor has confirmed 2-3 month timeline and is ready to move forward — this is a Warm lead ready for handoff. Share booking link directly and concisely, then ask if there's anything else before they go.
+return { action: 'listen' }",n/a
+77,2026-04-29T09:19:18.575Z,2026-04-29T09:19:26.777Z,n/a,n/a,"// Visitor has confirmed 2-3 month timeline and is ready to move forward — this is a Warm lead ready for handoff. Share booking link directly and concisely, then ask if there's anything else before they go.
 yield <Message>
 There's definitely something to explore here. Let me get you connected with our team — here's a link to book a call:
 
@@ -223,8 +223,8 @@ Here's a link to book a call with our team:
 Is there anything else I can help with?
 </Message>
 conversation.conversion_action = ""booking_link_shared""
-return { action: 'listen' }",
-78,2026-05-05T10:17:49.464Z,2026-05-05T10:17:51.504Z,,,"// Visitor is asking for case studies — search KB for case study information to provide proof points
+return { action: 'listen' }",n/a
+78,2026-05-05T10:17:49.464Z,2026-05-05T10:17:51.504Z,n/a,n/a,"// Visitor is asking for case studies — search KB for case study information to provide proof points
 const searchResult = await search({ query: ""case studies examples proof points"" })
 yield <Message>
 Let me pull up some case studies for you.
@@ -256,4 +256,4 @@ yield <Message>
 
 By the way, to help me understand if this could be a fit for you — what's your company name, and what's your role there?
 </Message>
-return { action: 'listen' }",
+return { action: 'listen' }",n/a
