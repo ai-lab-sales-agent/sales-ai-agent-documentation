@@ -4,10 +4,11 @@
 
 ---
 
-## Phase 1: Design Prep
+## Phase 1: Prep
 
-- Get landing page design tokens from the designer (colors, fonts, spacing, border radius, shadows)
-- Get the Client ID from Botpress Dashboard → Webchat → Advanced Settings
+- Get the Client ID from Botpress Dashboard → Webchat → Features → Advanced Settings
+- Store it as an environment variable (`BOTPRESS_CLIENT_ID`) in the website repo
+- No other Botpress configuration needed — the React library doesn't use Dashboard webchat settings
 
 ## Phase 2: Setup
 
@@ -102,7 +103,8 @@ This project's sales AI chatbot runs on Botpress. The chat UI needs to be embedd
 - A `ChatSidebar` React component using individual Botpress webchat components (`Container`, `Header`, `MessageList`, `Composer`) from `@botpress/webchat`
 - Use `useWebchat` hook for connection management
 - Wrap in `StylesheetProvider`, override CSS to match site design
-- Styled to match the landing page design system (colors, fonts, spacing)
+- Extract design tokens (colors, fonts, spacing, border radius) from the existing website codebase and use them for the chat UI
+- Styled to match the existing landing page design
 
 **Entry points (how chat opens):**
 
@@ -124,7 +126,7 @@ The Botpress `Composer` component has built-in speech-to-text and a `disableComp
 
 **Botpress connection:**
 
-- Client ID: [will be provided from Botpress Dashboard → Webchat → Advanced Settings]
+- Client ID: stored in `.env` as `BOTPRESS_CLIENT_ID`
 - Package: `@botpress/webchat` (requires React 18+)
 
 **Docs:**
