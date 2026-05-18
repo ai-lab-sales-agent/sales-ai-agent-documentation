@@ -5,7 +5,7 @@ topic: "ideal client fit and expected outcomes"
 
 # Sales AI Agent — Who It's For & Expected Outcomes
 
-> Created: March 2, 2026 | Updated: March 2, 2026
+> Created: March 2, 2026 | Updated: May 18, 2026
 
 ## Who It's For
 
@@ -19,14 +19,14 @@ The Sales AI Agent is designed for B2B companies that:
 ### Typical Industries
 SaaS, Fintech, Edtech, Healthcare, Real Estate, Logistics, Marketplace, ML/AI companies — and any B2B business with an inbound sales motion.
 
-## Key Outcomes
+## Common Challenges and Key Outcomes
 
-- **Instant response** — Every lead gets a response in seconds, not hours, 24/7
-- **Higher qualification rate** — Only qualified leads reach the sales team
-- **More booked meetings** — Frictionless booking directly from the chat
-- **Better-prepared calls** — Sales managers receive a pre-call brief with full context
-- **Fewer wasted calls** — Unqualified leads are filtered out before they consume sales time
-- **Consistent experience** — Every visitor gets the same professional, consultative interaction
+- **Low website-to-lead conversion** — if less than 2% of website visitors become leads (the B2B average is 2-3%), it often means visitors aren't finding answers or reasons to engage → the agent engages visitors in real time, answers their questions from a knowledge base, builds trust through consultative dialogue, and captures qualification data that a contact form never would
+- **Slow response time** — leads go cold when response takes hours or days → the agent responds in seconds, 24/7, so no lead waits for a reply
+- **Sales team overwhelmed by volume** — reps spend time on every inquiry regardless of fit → the agent pre-qualifies visitors and only passes qualified leads to the team
+- **No engagement outside business hours** — leads that arrive after hours get no response at all → the agent covers all hours without additional headcount
+- **Unqualified leads consuming sales time** — reps walk into calls without knowing whether the prospect is a fit → the agent delivers a pre-call brief with qualification data and conversation context
+- **Inconsistent qualification** — different reps ask different questions and apply different criteria → every visitor gets the same structured discovery process based on the client's ICP
 
 ## When It's Not the Right Fit
 
