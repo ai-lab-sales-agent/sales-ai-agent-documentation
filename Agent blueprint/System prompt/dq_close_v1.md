@@ -32,7 +32,7 @@ DQ triggers:
 
 1. "Thanks for reaching out - this isn't something we're able to help with."
 2. Set `lead_score` to `"DQ"`
-3. Set `conversation_stage` to `"dq_closed"`
+3. Set `stage` to `"dq_closed"`
 4. Set `conversion_action` to `"none"`
 5. End conversation
 
@@ -41,7 +41,7 @@ DQ triggers:
 1. "Thanks for reaching out - based on what you've described, this service may not be the right fit right now."
 2. If `lead_score_reason` = "wrong_scope": add "If you're interested in other services, you can reach our team at inquiry@halo-lab.com."
 3. Set `lead_score` to `"DQ"`
-4. Set `conversation_stage` to `"dq_closed"`
+4. Set `stage` to `"dq_closed"`
 5. Set `conversion_action` to `"none"`
 6. End conversation
 
@@ -62,7 +62,7 @@ DQ triggers:
 |---|---|---|
 | lead_score | yes | yes |
 | lead_score_reason | yes | no |
-| conversation_stage | yes | yes |
+| stage | yes | yes |
 | conversion_action | yes | yes |
 
 ## Builder Notes

@@ -13,22 +13,22 @@
 ### Data Variables (capture verbatim from visitor)
 
 **use_case**
-What the visitor wants the AI agent to do for their business. Used to understand the visitor's goal and evaluate whether there is a real sales challenge. Capture at Discovery step 2.3 (Challenges) or whenever the visitor describes their goal. Feeds ch_challenges signal. Example values: "Qualify inbound leads from our website before they reach a sales rep", "Automate FAQ responses on our pricing page".
+REQUIRED — at least one of use_case or pain_points must be set before discovery can complete. What the visitor wants the AI agent to do for their business. Used to understand the visitor's goal and evaluate whether there is a real sales challenge. Capture at Discovery step 2.3 (Challenges) or whenever the visitor describes their goal. Feeds ch_challenges signal. Example values: "Qualify inbound leads from our website before they reach a sales rep", "Automate FAQ responses on our pricing page".
 
 **pain_points**
-The specific business problem the visitor is trying to solve. Used alongside use_case to evaluate the strength of the visitor's need. Capture at Discovery step 2.3 alongside use_case, or whenever the visitor describes a pain point. Feeds ch_challenges signal. Example values: "Our SDRs spend 60% of their time on leads that never convert", "We can't respond fast enough — leads go cold within hours".
+REQUIRED — at least one of use_case or pain_points must be set before discovery can complete. The specific business problem the visitor is trying to solve. Used alongside use_case to evaluate the strength of the visitor's need. Capture at Discovery step 2.3 alongside use_case, or whenever the visitor describes a pain point. Feeds ch_challenges signal. Example values: "Our SDRs spend 60% of their time on leads that never convert", "We can't respond fast enough — leads go cold within hours".
 
 **timeline**
-When the visitor wants the AI agent live. Used to assess project urgency and readiness. Capture at Discovery step 2.4 (Timeline) or whenever the visitor mentions their timeframe. Feeds p_prioritization signal. Example values: "1-2 months", "no deadline", "June", "till the end of Q3", "no rush", "this month".
+REQUIRED. When the visitor wants the AI agent live. Used to assess project urgency and readiness. Capture at Discovery step 2.4 (Timeline) or whenever the visitor mentions their timeframe. Feeds p_prioritization signal. Example values: "1-2 months", "no deadline", "June", "till the end of Q3", "no rush", "this month".
 
 **trigger_event**
 External event driving urgency behind the timeline. Provides context for why the visitor needs the agent by a certain date. Capture at Discovery step 2.4 or whenever the visitor mentions an event. Feeds p_prioritization signal. Example values: "conference in May", "product launch", "Q2 target", "funding round".
 
 **budget_indication**
-Budget range the visitor has in mind for the project. Used to assess financial fit and detect DQ scenarios. Accept any currency; evaluate against approximate EUR equivalent. Below EUR 5,000 triggers DQ. Capture at Discovery step 2.5 (Budget) or whenever the visitor mentions budget. Feeds m_money signal. Example values: "Around EUR 10,000-15,000", "We haven't allocated a specific budget yet", "No more than 5000 euros".
+REQUIRED. Budget range the visitor has in mind for the project. Used to assess financial fit and detect DQ scenarios. Accept any currency; evaluate against approximate EUR equivalent. Below EUR 5,000 triggers DQ. Capture at Discovery step 2.5 (Budget) or whenever the visitor mentions budget. Feeds m_money signal. Example values: "Around EUR 10,000-15,000", "We haven't allocated a specific budget yet", "No more than 5000 euros".
 
 **decision_authority**
-The visitor's level of decision authority. Captures whether they can approve the purchase or need someone else's sign-off. Capture at Discovery step 2.6 (Authority) or whenever the visitor describes their decision-making role. Feeds a_authority signal. Example values: "Decision maker", "Needs manager's approval", "It's a joint decision between me and our CTO", "I have no idea".
+REQUIRED. The visitor's level of decision authority. Captures whether they can approve the purchase or need someone else's sign-off. Capture at Discovery step 2.6 (Authority) or whenever the visitor describes their decision-making role. Feeds a_authority signal. Example values: "Decision maker", "Needs manager's approval", "It's a joint decision between me and our CTO", "I have no idea".
 
 **other_stakeholders**
 Other people involved in the buying decision beyond the visitor. Provides context on the decision-making structure. Capture at Discovery step 2.6 alongside decision_authority, or whenever the visitor mentions other decision-makers. Example values: "Our CTO and VP of Sales", "Just me", "My manager needs to sign off".
@@ -108,10 +108,10 @@ Boolean flag set by the Execute Code card after a Leads Table row is created. Ha
 Visitor's name. Used for personalization throughout the conversation. Save whenever shared during any conversation turn.
 
 **visitor_company**
-Company or organization name. Core qualification data — required before discovery can complete. Capture at Discovery step 2.2 (Company Profile) or whenever the visitor mentions their company.
+REQUIRED. Company or organization name. Capture at Discovery step 2.2 (Company Profile) or whenever the visitor mentions their company.
 
 **visitor_role**
-Visitor's role at their company. Provides context on seniority and decision-making capacity. Capture at Discovery step 2.2 or whenever the visitor mentions their role. Example values: "Founder", "Sales Manager", "Marketing Lead", "Enterprise buyer".
+REQUIRED. Visitor's role at their company. Provides context on seniority and decision-making capacity. Capture at Discovery step 2.2 or whenever the visitor mentions their role. Example values: "Founder", "Sales Manager", "Marketing Lead", "Enterprise buyer".
 
 **visitor_industry**
 Industry or vertical of the visitor's company. Provides context for tailoring the conversation and checking ICP fit. Infer from the company description at Discovery step 2.2, or whenever identifiable. Optional — only set if clearly identifiable. Example values: "EdTech", "SaaS", "E-commerce", "Real estate", "Healthcare".
@@ -122,7 +122,7 @@ Company location or country. Used for ICP exclusion check (Russia-based = automa
 **visitor_email**
 Visitor's email address. Collected when the visitor shares it directly, or requested by the bot for form_submitted scenarios (Handoff booking fallback, Edge Cases skip-to-human, Nurture close). Before saving, verify the email includes an @ symbol and a domain with a TLD (e.g., .com, .org). If it looks incomplete (e.g., "tes@gmail"), ask the visitor to double-check before saving.
 
-**conversation_stage**
+**stage**
 Current stage in the conversation flow. USER scope variable — must be written to user scope only. Updated at each discovery step to track progress and enable resumption after sub-workflows. Allowed values for Discovery: "introduction", "discovery_company", "discovery_use_case", "discovery_timeline", "discovery_budget", "discovery_authority", "discovery_current_stack". Values used by other workflows: "handoff_hot", "handoff_warm", "nurture", "dq_closed".
 
 **icp_exclusion_flag**

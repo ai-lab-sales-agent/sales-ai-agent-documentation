@@ -2,13 +2,25 @@
 
 > Botpress Studio: These prompts are set on individual tool cards (Search Knowledge, Execute Workflow, Create Table Row) within Autonomous Nodes. Each tool has its own instruction field.
 
-> Created: April 29, 2026 | Updated: May 11, 2026
+> Created: April 29, 2026 | Updated: May 18, 2026
 
 ---
 
 ## Search Knowledge (KB)
 
-Use when the visitor asks any factual question about the service, company, pricing, case studies, capabilities, or anything where the answer would come from the Halo Lab knowledge base. Also use to pull service-overview content when {{conversation.ch_challenges}} is "unclear" or "negative" and you need to share examples of what a Sales AI Agent does.
+When the visitor shares information and the Conversation Style rules call for value acknowledgment: search for the topic specified in the acknowledgment examples.
+
+When the visitor responds with uncertainty and KB content is needed to help them understand the topic: search for relevant content.
+
+When the visitor asks a factual question about the service, company, pricing, case studies, capabilities, or anything where the answer would come from the Halo Lab knowledge base: search using the visitor's words.
+
+After calling search, return think. Do not compose the message in the same iteration — use the search results in the next iteration.
+
+How to search:
+- Keep queries short and specific — use the core topic, not full sentences
+- For value acknowledgment, use the topic from the Conversation Style examples (e.g. "adoption trends EdTech", "conversion benchmarks outcomes")
+- For visitor questions, use the visitor's words as closely as possible
+- Review all returned results by their document title and topic tag — the most relevant result may not be ranked first
 
 Before responding, answer these three questions:
 
@@ -79,7 +91,7 @@ Use if you detect any of the following in the visitor's message:
 - Sharing of sensitive personal data (credit card numbers, passwords, ID numbers, medical info)
 - Out-of-scope requests (services Halo Lab does not offer, or topics unrelated to Sales AI Agent development)
 
-Call this workflow once per edge case detected. After it returns, check {{user.conversation_stage}} and resume discovery where you left off.
+Call this workflow once per edge case detected. After it returns, check {{user.stage}} and resume discovery where you left off.
 
 ---
 

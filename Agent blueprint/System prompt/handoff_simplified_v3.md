@@ -41,7 +41,7 @@ If Warm — exploratory tone, worth discussing:
 
 Present the booking link: `https://cal.com/sales-ai-agent/30min`
 
-Set conversation_stage to "handoff_hot" or "handoff_warm" based on lead_score.
+Set stage to "handoff_hot" or "handoff_warm" based on lead_score.
 Set conversion_action to "booking_link_shared".
 
 After sharing the link, ask if there's anything else you can help with before they go.
